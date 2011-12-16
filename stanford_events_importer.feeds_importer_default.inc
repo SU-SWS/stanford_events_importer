@@ -5,6 +5,7 @@
  */
 function stanford_events_importer_feeds_importer_default() {
   $export = array();
+
   $feeds_importer = new stdClass;
   $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
   $feeds_importer->api_version = 1;
@@ -57,25 +58,26 @@ function stanford_events_importer_feeds_importer_default() {
         ),
         'context' => '//EventList/Event',
         'exp' => array(
-          'errors' => 1,
+          'errors' => 0,
           'debug' => array(
-            'context' => 'context',
-            'xpathparser:0' => 'xpathparser:0',
-            'xpathparser:1' => 'xpathparser:1',
-            'xpathparser:2' => 'xpathparser:2',
-            'xpathparser:3' => 'xpathparser:3',
-            'xpathparser:4' => 'xpathparser:4',
-            'xpathparser:5' => 'xpathparser:5',
-            'xpathparser:6' => 'xpathparser:6',
-            'xpathparser:7' => 'xpathparser:7',
-            'xpathparser:8' => 'xpathparser:8',
-            'xpathparser:9' => 'xpathparser:9',
-            'xpathparser:10' => 'xpathparser:10',
-            'xpathparser:11' => 'xpathparser:11',
-            'xpathparser:12' => 'xpathparser:12',
-            'xpathparser:13' => 'xpathparser:13',
+            'context' => 0,
+            'xpathparser:0' => 0,
+            'xpathparser:1' => 0,
+            'xpathparser:2' => 0,
+            'xpathparser:3' => 0,
+            'xpathparser:4' => 0,
+            'xpathparser:5' => 0,
+            'xpathparser:6' => 0,
+            'xpathparser:7' => 0,
+            'xpathparser:8' => 0,
+            'xpathparser:9' => 0,
+            'xpathparser:10' => 0,
+            'xpathparser:11' => 0,
+            'xpathparser:12' => 0,
+            'xpathparser:13' => 0,
           ),
         ),
+        'allow_override' => 0,
       ),
     ),
     'processor' => array(
@@ -158,6 +160,7 @@ function stanford_events_importer_feeds_importer_default() {
           ),
         ),
         'author' => 0,
+        'authorize' => 0,
       ),
     ),
     'content_type' => 'stanford_event_importer',
@@ -166,7 +169,7 @@ function stanford_events_importer_feeds_importer_default() {
     'expire_period' => 3600,
     'import_on_create' => 1,
   );
-
   $export['stanford_event_importer'] = $feeds_importer;
+
   return $export;
 }
