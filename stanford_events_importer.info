@@ -1,7 +1,7 @@
 name = "Stanford Events Importer"
 description = "Imports events from events.stanford.edu and creates a "Stanford Event" node for each event record"
 core = "6.x"
-package = "Features"
+package = "Stanford"
 version = "6.x-1.x-dev"
 project = "stanford_events_importer"
 dependencies[] = "calendar"
