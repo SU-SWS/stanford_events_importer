@@ -1,0 +1,10 @@
+<?php
+
+include_once('stanford_events_importer.features.inc');
+
+/*
+ * Implementation of hook_enable().
+ */
+function stanford_events_importer_enable(){
+  cache_clear_all();
+}

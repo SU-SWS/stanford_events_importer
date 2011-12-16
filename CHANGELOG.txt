@@ -1,0 +1,12 @@
+Stanford Events Importer 6.1.0-beta6, 2011-10-03
+------------------------------------------------
+Updated to correct version number in .info file
+
+Stanford Events Importer 6.1.0-beta5, 2011-09-30
+------------------------------------------------
+Added README.txt
+Added CHANGELOG.txt
+Added LICENSE.txt
+
+Stanford Events Importer 6.1.0-beta4, 2011-06-21
+------------------------------------------------
