@@ -11,10 +11,9 @@ function stanford_events_importer_views_default_views() {
   $view->name = 'stanford_events_calendar';
   $view->description = 'A multi-dimensional calendar view of Stanford Events with back/next navigation.';
   $view->tag = 'Stanford';
-  $view->view_php = '';
   $view->base_table = 'node';
-  $view->is_cacheable = FALSE;
-  $view->api_version = 2;
+  $view->core = 0;
+  $view->api_version = '2';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
@@ -34,8 +33,10 @@ function stanford_events_importer_views_default_views() {
         'text' => '',
         'make_link' => 0,
         'path' => '',
+        'absolute' => 0,
         'link_class' => '',
         'alt' => '',
+        'rel' => '',
         'prefix' => '',
         'suffix' => '',
         'target' => '',
@@ -48,8 +49,9 @@ function stanford_events_importer_views_default_views() {
         'strip_tags' => 0,
       ),
       'empty' => '',
-      'hide_empty' => 0,
+      'hide_empty' => 1,
       'empty_zero' => 0,
+      'hide_alter_empty' => 1,
       'link_to_node' => 0,
       'label_type' => 'none',
       'format' => 'default',
@@ -74,15 +76,17 @@ function stanford_events_importer_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'field_event_location_url' => array(
-      'label' => 'Location',
+    'field_event_locationtext_value' => array(
+      'label' => 'Location:',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
         'path' => '',
+        'absolute' => 0,
         'link_class' => '',
         'alt' => '',
+        'rel' => '',
         'prefix' => '',
         'suffix' => '',
         'target' => '',
@@ -95,11 +99,12 @@ function stanford_events_importer_views_default_views() {
         'strip_tags' => 0,
       ),
       'empty' => '',
-      'hide_empty' => 0,
+      'hide_empty' => 1,
       'empty_zero' => 0,
+      'hide_alter_empty' => 1,
       'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
+      'label_type' => 'custom',
+      'format' => 'plain',
       'multiple' => array(
         'group' => TRUE,
         'multiple_number' => '',
@@ -107,13 +112,13 @@ function stanford_events_importer_views_default_views() {
         'multiple_reversed' => FALSE,
       ),
       'exclude' => 0,
-      'id' => 'field_event_location_url',
-      'table' => 'node_data_field_event_location',
-      'field' => 'field_event_location_url',
+      'id' => 'field_event_locationtext_value',
+      'table' => 'node_data_field_event_locationtext',
+      'field' => 'field_event_locationtext_value',
+      'relationship' => 'none',
       'override' => array(
         'button' => 'Override',
       ),
-      'relationship' => 'none',
     ),
   ));
   $handler->override_option('sorts', array(
@@ -150,7 +155,7 @@ function stanford_events_importer_views_default_views() {
       'field' => 'date_argument',
       'validate_user_argument_type' => 'uid',
       'validate_user_roles' => array(
-        '2' => 0,
+        2 => 0,
       ),
       'relationship' => 'none',
       'default_options_div_prefix' => '',
@@ -167,7 +172,7 @@ function stanford_events_importer_views_default_views() {
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
       'validate_argument_vocabulary' => array(
-        '1' => 0,
+        1 => 0,
       ),
       'validate_argument_type' => 'tid',
       'validate_argument_transform' => 0,
@@ -207,6 +212,9 @@ function stanford_events_importer_views_default_views() {
   $handler->override_option('use_more', 0);
   $handler->override_option('style_plugin', 'calendar_nav');
   $handler = $view->new_display('calendar', 'Calendar page', 'calendar_1');
+  $handler->override_option('style_options', NULL);
+  $handler->override_option('row_plugin', '');
+  $handler->override_option('row_options', NULL);
   $handler->override_option('path', 'stanford-events-calendar');
   $handler->override_option('menu', array(
     'type' => 'none',
@@ -223,13 +231,17 @@ function stanford_events_importer_views_default_views() {
     'name' => 'navigation',
   ));
   $handler->override_option('calendar_colors', array(
-    '0' => array(),
+    0 => array(),
   ));
   $handler->override_option('calendar_colors_vocabulary', array());
   $handler->override_option('calendar_colors_taxonomy', array());
+  $handler->override_option('calendar_colors_group', array());
   $handler->override_option('calendar_popup', '0');
   $handler->override_option('calendar_date_link', '');
   $handler = $view->new_display('calendar_block', 'Calendar block', 'calendar_block_1');
+  $handler->override_option('style_options', NULL);
+  $handler->override_option('row_plugin', '');
+  $handler->override_option('row_options', NULL);
   $handler->override_option('block_description', 'Calendar');
   $handler->override_option('block_caching', -1);
   $handler = $view->new_display('calendar_period', 'Year view', 'calendar_period_1');
@@ -420,10 +432,9 @@ function stanford_events_importer_views_default_views() {
   $view->name = 'stanford_events_list';
   $view->description = 'List of upcoming Stanford Events in chronological order';
   $view->tag = 'Stanford';
-  $view->view_php = '';
   $view->base_table = 'node';
-  $view->is_cacheable = FALSE;
-  $view->api_version = 2;
+  $view->core = 0;
+  $view->api_version = '2';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
@@ -501,15 +512,17 @@ function stanford_events_importer_views_default_views() {
       'field' => 'field_event_date_value',
       'relationship' => 'none',
     ),
-    'field_event_location_url' => array(
-      'label' => 'Location',
+    'field_event_admission_value' => array(
+      'label' => 'Admission',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
         'path' => '',
+        'absolute' => 0,
         'link_class' => '',
         'alt' => '',
+        'rel' => '',
         'prefix' => '',
         'suffix' => '',
         'target' => '',
@@ -524,46 +537,9 @@ function stanford_events_importer_views_default_views() {
       'empty' => '',
       'hide_empty' => 0,
       'empty_zero' => 0,
+      'hide_alter_empty' => 1,
       'link_to_node' => 0,
       'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_event_location_url',
-      'table' => 'node_data_field_event_location',
-      'field' => 'field_event_location_url',
-      'relationship' => 'none',
-    ),
-    'field_event_admission_value' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'none',
       'format' => 'default',
       'multiple' => array(
         'group' => TRUE,
@@ -615,82 +591,6 @@ function stanford_events_importer_views_default_views() {
       'field' => 'field_event_url_url',
       'relationship' => 'none',
     ),
-    'field_event_phone_value' => array(
-      'label' => 'Contact Phone Number',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_event_phone_value',
-      'table' => 'node_data_field_event_phone',
-      'field' => 'field_event_phone_value',
-      'relationship' => 'none',
-    ),
-    'field_event_email_email' => array(
-      'label' => 'Contact E-mail',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'html' => 0,
-        'strip_tags' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'link_to_node' => 0,
-      'label_type' => 'widget',
-      'format' => 'default',
-      'multiple' => array(
-        'group' => TRUE,
-        'multiple_number' => '',
-        'multiple_from' => '',
-        'multiple_reversed' => FALSE,
-      ),
-      'exclude' => 0,
-      'id' => 'field_event_email_email',
-      'table' => 'node_data_field_event_email',
-      'field' => 'field_event_email_email',
-      'relationship' => 'none',
-    ),
     'field_event_sponsor_value' => array(
       'label' => 'Event Sponsor',
       'alter' => array(
@@ -727,6 +627,129 @@ function stanford_events_importer_views_default_views() {
       'id' => 'field_event_sponsor_value',
       'table' => 'node_data_field_event_sponsor',
       'field' => 'field_event_sponsor_value',
+      'relationship' => 'none',
+    ),
+    'field_event_contactemail_value' => array(
+      'label' => 'Contact Email',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_event_contactemail_value',
+      'table' => 'node_data_field_event_contactemail',
+      'field' => 'field_event_contactemail_value',
+      'relationship' => 'none',
+    ),
+    'field_event_contactphone_value' => array(
+      'label' => 'Contact Phone',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_event_contactphone_value',
+      'table' => 'node_data_field_event_contactphone',
+      'field' => 'field_event_contactphone_value',
+      'relationship' => 'none',
+    ),
+    'field_event_locationtext_value' => array(
+      'label' => 'Location',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'absolute' => 0,
+        'link_class' => '',
+        'alt' => '',
+        'rel' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'html' => 0,
+        'strip_tags' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hide_alter_empty' => 1,
+      'link_to_node' => 0,
+      'label_type' => 'widget',
+      'format' => 'default',
+      'multiple' => array(
+        'group' => TRUE,
+        'multiple_number' => '',
+        'multiple_from' => '',
+        'multiple_reversed' => FALSE,
+      ),
+      'exclude' => 0,
+      'id' => 'field_event_locationtext_value',
+      'table' => 'node_data_field_event_locationtext',
+      'field' => 'field_event_locationtext_value',
       'relationship' => 'none',
     ),
   ));
