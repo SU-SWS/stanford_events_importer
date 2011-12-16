@@ -84,8 +84,8 @@ function stanford_events_importer_feeds_importer_default() {
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
         'content_type' => 'stanford_event',
-        'input_format' => '3',
-        'update_existing' => '1',
+        'input_format' => '0',
+        'update_existing' => '2',
         'expire' => '-1',
         'mappings' => array(
           0 => array(
@@ -165,7 +165,7 @@ function stanford_events_importer_feeds_importer_default() {
     ),
     'content_type' => 'stanford_event_importer',
     'update' => 0,
-    'import_period' => '1800',
+    'import_period' => '86400',
     'expire_period' => 3600,
     'import_on_create' => 1,
   );
