@@ -5,7 +5,11 @@ include_once('stanford_events_importer.features.inc');
 /*
  * Implementation of hook_enable().
  */
-/*function stanford_events_importer_enable(){
-  module_load_include('module', 'stanford_events_importer');
-  content_clear_type_cache();
-}*/
+function stanford_events_importer_enable(){
+  $modules = array();
+  $modules[] = 'feeds';
+  $modules[] = 'content';
+  module_enable($modules);
+  drupal_flush_all_caches();
+}
+
