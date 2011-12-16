@@ -11,9 +11,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_admission',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '9',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -61,9 +62,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_contactemail',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '7',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -104,9 +106,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_contactphone',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '8',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -154,9 +157,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_date',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '4',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -214,9 +218,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_image',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '3',
+      'parent' => '',
       'label' => array(
-        'format' => 'above',
-        'exclude' => 0,
+        'format' => 'hidden',
       ),
       'teaser' => array(
         'format' => 'image_plain',
@@ -268,9 +273,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_locationtext',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '5',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -318,9 +324,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_sponsor',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '6',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
@@ -368,9 +375,10 @@ function stanford_events_importer_content_default_fields() {
     'field_name' => 'field_event_url',
     'type_name' => 'stanford_event',
     'display_settings' => array(
+      'weight' => '10',
+      'parent' => '',
       'label' => array(
         'format' => 'above',
-        'exclude' => 0,
       ),
       'teaser' => array(
         'format' => 'default',
