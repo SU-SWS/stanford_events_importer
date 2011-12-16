@@ -1,3 +1,7 @@
+Stanford Events Importer 6.1.0-beta7, 2011-12-15
+------------------------------------------------
+-Added two Views (list View and Calendar View)
+
 Stanford Events Importer 6.1.0-beta6, 2011-10-03
 ------------------------------------------------
 Updated to correct version number in .info file
