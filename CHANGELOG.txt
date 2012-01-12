@@ -1,5 +1,10 @@
 Stanford Events Importer 6.1.0-beta9, 2011-12-16
 ------------------------------------------------
+-Added two new taxonomies (Stanford Event Audience
+    and Stanford Event Categories)
+
+Stanford Events Importer 6.1.0-beta9, 2011-12-16
+------------------------------------------------
 -Added feeds_tamper dependency
 -Decode HTML entities in node titles
 -Clear cache on module enable to allow Feed URL
