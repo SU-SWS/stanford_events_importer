@@ -1,4 +1,4 @@
-Stanford Events Importer 6.1.0-beta9, 2011-12-16
+Stanford Events Importer 6.1.0-beta10, 2012-01-12
 ------------------------------------------------
 -Added two new taxonomies (Stanford Event Audience
     and Stanford Event Categories)
