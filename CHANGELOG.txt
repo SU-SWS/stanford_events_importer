@@ -1,30 +1,5 @@
-Stanford Events Importer 6.1.0-beta10, 2012-01-12
+Stanford Events Importer 7.x-1.0-alpha2, 2012-01-23
 ------------------------------------------------
--Added two new taxonomies (Stanford Event Audience
-    and Stanford Event Categories)
+-Initial release of Stanford Events Importer for 
+  Drupal 7
 
-Stanford Events Importer 6.1.0-beta9, 2011-12-16
-------------------------------------------------
--Added feeds_tamper dependency
--Decode HTML entities in node titles
--Clear cache on module enable to allow Feed URL
-  field to show up on node form
--Fixed nodes to update (rather than replace)
--Changed refresh rate to 1 day
-
-Stanford Events Importer 6.1.0-beta7, 2011-12-15
-------------------------------------------------
--Added two Views (list View and Calendar View)
-
-Stanford Events Importer 6.1.0-beta6, 2011-10-03
-------------------------------------------------
-Updated to correct version number in .info file
-
-Stanford Events Importer 6.1.0-beta5, 2011-09-30
-------------------------------------------------
-Added README.txt
-Added CHANGELOG.txt
-Added LICENSE.txt
-
-Stanford Events Importer 6.1.0-beta4, 2011-06-21
-------------------------------------------------
