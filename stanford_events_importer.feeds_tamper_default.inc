@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * stanford_events_importer.feeds_tamper_default.inc
+ */
 
 /**
- * Implementation of hook_feeds_tamper_default().
+ * Implements hook_feeds_tamper_default().
  */
 function stanford_events_importer_feeds_tamper_default() {
   $export = array();
@@ -13,7 +17,7 @@ function stanford_events_importer_feeds_tamper_default() {
   $feeds_tamper->importer = 'stanford_event_importer';
   $feeds_tamper->source = 'xpathparser:0';
   $feeds_tamper->plugin_id = 'html_entity_decode';
-  $feeds_tamper->settings = FALSE;
+  $feeds_tamper->settings = '';
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'HTML entity decode';
   $export['stanford_event_importer-xpathparser_0-html_entity_decode'] = $feeds_tamper;

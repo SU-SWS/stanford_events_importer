@@ -1,7 +1,11 @@
 <?php
+/**
+ * @file
+ * stanford_events_importer.feeds_importer_default.inc
+ */
 
 /**
- * Implementation of hook_feeds_importer_default().
+ * Implements hook_feeds_importer_default().
  */
 function stanford_events_importer_feeds_importer_default() {
   $export = array();
@@ -31,14 +35,14 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:3' => 'isoEventDate',
           'xpathparser:4' => 'status',
           'xpathparser:5' => 'Audience/audienceName',
-          'xpathparser:6' => 'Category/categoryName',
-          'xpathparser:7' => 'admissionDescription',
-          'xpathparser:8' => 'contactPhone',
-          'xpathparser:9' => 'imageUrl',
-          'xpathparser:10' => 'sponsor',
-          'xpathparser:11' => 'url',
-          'xpathparser:12' => 'locationText',
-          'xpathparser:13' => 'contactEmail',
+          'xpathparser:7' => 'contactPhone',
+          'xpathparser:8' => 'imageUrl',
+          'xpathparser:9' => 'sponsor',
+          'xpathparser:10' => 'url',
+          'xpathparser:11' => 'locationText',
+          'xpathparser:12' => 'admissionDescription',
+          'xpathparser:13' => 'Category/categoryName',
+          'xpathparser:14' => 'contactEmail',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -47,7 +51,6 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:3' => 0,
           'xpathparser:4' => 0,
           'xpathparser:5' => 0,
-          'xpathparser:6' => 0,
           'xpathparser:7' => 0,
           'xpathparser:8' => 0,
           'xpathparser:9' => 0,
@@ -55,6 +58,7 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:11' => 0,
           'xpathparser:12' => 0,
           'xpathparser:13' => 0,
+          'xpathparser:14' => 0,
         ),
         'context' => '//EventList/Event',
         'exp' => array(
@@ -67,7 +71,6 @@ function stanford_events_importer_feeds_importer_default() {
             'xpathparser:3' => 0,
             'xpathparser:4' => 0,
             'xpathparser:5' => 0,
-            'xpathparser:6' => 0,
             'xpathparser:7' => 0,
             'xpathparser:8' => 0,
             'xpathparser:9' => 0,
@@ -75,6 +78,7 @@ function stanford_events_importer_feeds_importer_default() {
             'xpathparser:11' => 0,
             'xpathparser:12' => 0,
             'xpathparser:13' => 0,
+            'xpathparser:14' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -84,9 +88,8 @@ function stanford_events_importer_feeds_importer_default() {
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
         'content_type' => 'stanford_event',
-        'input_format' => '0',
-        'update_existing' => '2',
         'expire' => '-1',
+        'author' => 0,
         'mappings' => array(
           0 => array(
             'source' => 'xpathparser:0',
@@ -105,7 +108,7 @@ function stanford_events_importer_feeds_importer_default() {
           ),
           3 => array(
             'source' => 'xpathparser:3',
-            'target' => 'field_event_date:start',
+            'target' => 'field_stanford_event_datetime:start',
             'unique' => FALSE,
           ),
           4 => array(
@@ -115,52 +118,52 @@ function stanford_events_importer_feeds_importer_default() {
           ),
           5 => array(
             'source' => 'xpathparser:5',
-            'target' => 'taxonomy:features_stanford_event_audience',
+            'target' => 'field_stanford_event_audience',
             'unique' => FALSE,
           ),
           6 => array(
-            'source' => 'xpathparser:6',
-            'target' => 'taxonomy:features_stanford_event_categories',
+            'source' => 'xpathparser:7',
+            'target' => 'field_stanford_event_phone',
             'unique' => FALSE,
           ),
           7 => array(
-            'source' => 'xpathparser:7',
-            'target' => 'field_event_admission',
+            'source' => 'xpathparser:8',
+            'target' => 'field_stanford_event_image',
             'unique' => FALSE,
           ),
           8 => array(
-            'source' => 'xpathparser:8',
-            'target' => 'field_event_contactphone',
+            'source' => 'xpathparser:9',
+            'target' => 'field_stanford_event_sponsor',
             'unique' => FALSE,
           ),
           9 => array(
-            'source' => 'xpathparser:9',
-            'target' => 'field_event_image',
+            'source' => 'xpathparser:10',
+            'target' => 'field_stanford_event_url:url',
             'unique' => FALSE,
           ),
           10 => array(
-            'source' => 'xpathparser:10',
-            'target' => 'field_event_sponsor',
+            'source' => 'xpathparser:11',
+            'target' => 'field_stanford_event_location',
             'unique' => FALSE,
           ),
           11 => array(
-            'source' => 'xpathparser:11',
-            'target' => 'field_event_url:url',
+            'source' => 'xpathparser:12',
+            'target' => 'field_stanford_event_admission',
             'unique' => FALSE,
           ),
           12 => array(
-            'source' => 'xpathparser:12',
-            'target' => 'field_event_locationtext',
+            'source' => 'xpathparser:13',
+            'target' => 'field_stanford_event_categories',
             'unique' => FALSE,
           ),
           13 => array(
-            'source' => 'xpathparser:13',
-            'target' => 'field_event_contactemail',
+            'source' => 'xpathparser:14',
+            'target' => 'field_stanford_event_email',
             'unique' => FALSE,
           ),
         ),
-        'author' => 0,
-        'authorize' => 0,
+        'update_existing' => '2',
+        'input_format' => 'filtered_html',
       ),
     ),
     'content_type' => 'stanford_event_importer',
@@ -168,6 +171,7 @@ function stanford_events_importer_feeds_importer_default() {
     'import_period' => '86400',
     'expire_period' => 3600,
     'import_on_create' => 1,
+    'process_in_background' => 0,
   );
   $export['stanford_event_importer'] = $feeds_importer;
 

@@ -1,38 +1,58 @@
 <?php
+/**
+ * @file
+ * stanford_events_importer.features.taxonomy.inc
+ */
 
 /**
- * Implementation of hook_taxonomy_default_vocabularies().
+ * Implements hook_taxonomy_default_vocabularies().
  */
 function stanford_events_importer_taxonomy_default_vocabularies() {
   return array(
     'stanford_event_audience' => array(
       'name' => 'Stanford Event Audience',
+      'machine_name' => 'stanford_event_audience',
       'description' => 'Audience as used on events.stanford.edu (e.g., "Faculty/Staff", "Students", etc.)',
-      'help' => '',
-      'relations' => '1',
       'hierarchy' => '0',
-      'multiple' => '0',
-      'required' => '0',
-      'tags' => '1',
-      'module' => 'features_stanford_event_audience',
+      'module' => 'taxonomy',
       'weight' => '0',
-      'nodes' => array(
-        'stanford_event' => 'stanford_event',
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
       ),
     ),
     'stanford_event_categories' => array(
       'name' => 'Stanford Event Categories',
+      'machine_name' => 'stanford_event_categories',
       'description' => 'Category names as used on events.stanford.edu',
-      'help' => '',
-      'relations' => '1',
       'hierarchy' => '0',
-      'multiple' => '0',
-      'required' => '0',
-      'tags' => '1',
-      'module' => 'features_stanford_event_categories',
+      'module' => 'taxonomy',
       'weight' => '0',
-      'nodes' => array(
-        'stanford_event' => 'stanford_event',
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          0 => 'skos:ConceptScheme',
+        ),
+        'name' => array(
+          'predicates' => array(
+            0 => 'dc:title',
+          ),
+        ),
+        'description' => array(
+          'predicates' => array(
+            0 => 'rdfs:comment',
+          ),
+        ),
       ),
     ),
   );
