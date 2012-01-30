@@ -10,6 +10,7 @@ It gives the following:
 The imported items are set to refresh once every 12 hours, and to update (rather than replace) existing nodes.
 
 -- DEPENDENCIES --
+* Calendar (calendar)
 * Content Construction Kit (cck)
 * Chaos Tools (ctools)
 * Date (date)
