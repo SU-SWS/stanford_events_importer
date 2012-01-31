@@ -7,7 +7,7 @@ It gives the following:
 * A CCK content type "Stanford Event Importer", which allows you to create a content node of this type to import each feed you wish
 * A CCK content type of "Stanford Event". Nodes of this type are created by the "Stanford Event Importer" nodes when using "Import".
 
-The imported items are set to refresh once every 12 hours, and to update (rather than replace) existing nodes.
+The imported items are set to refresh once every 30 minutes, and not to update existing nodes. You can change these and other options at admin/build/feeds/edit/stanford_event_importer.
 
 -- DEPENDENCIES --
 * Calendar (calendar)
