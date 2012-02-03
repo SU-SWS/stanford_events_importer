@@ -855,7 +855,7 @@ function stanford_events_importer_views_default_views() {
   ));
   $handler = $view->new_display('block', 'Block', 'block_1');
   $handler->override_option('items_per_page', 5);
-  $handler->override_option('block_description', 'A list of 5 upcoming events, soonest listed first');
+  $handler->override_option('block_description', 'Upcoming Stanford Events');
   $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
