@@ -807,13 +807,32 @@ function stanford_events_importer_views_default_views() {
       'field' => 'status_extra',
       'relationship' => 'none',
     ),
+    'type' => array(
+      'operator' => 'in',
+      'value' => array(
+        'stanford_event' => 'stanford_event',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('access', array(
     'type' => 'none',
   ));
   $handler->override_option('cache', array(
-    'type' => 'none',
+    'type' => 'time',
+    'results_lifespan' => '3600',
+    'output_lifespan' => '3600',
   ));
+  $handler->override_option('title', 'Upcoming Events');
   $handler->override_option('use_pager', '1');
   $handler->override_option('use_more', 1);
   $handler->override_option('use_more_always', 0);
@@ -834,6 +853,10 @@ function stanford_events_importer_views_default_views() {
     'weight' => 0,
     'name' => 'navigation',
   ));
+  $handler = $view->new_display('block', 'Block', 'block_1');
+  $handler->override_option('items_per_page', 5);
+  $handler->override_option('block_description', 'A list of 5 upcoming events, soonest listed first');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
