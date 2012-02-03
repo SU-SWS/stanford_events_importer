@@ -35,3 +35,4 @@ Added LICENSE.txt
 
 Stanford Events Importer 6.x-1.0-beta4, 2011-06-21
 ------------------------------------------------
+
