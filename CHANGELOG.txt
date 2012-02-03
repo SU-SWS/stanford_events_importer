@@ -1,3 +1,10 @@
+Stanford Events Importer 6.1.0-rc1, 2012-02-03
+----------------------------------------------
+Updated stanford_events_list View
+-Added filter to only show stanford_event nodes
+-Added block display
+-Added 1 hour/1 hour caching to default display
+
 Stanford Events Importer 6.1.0-beta10, 2012-01-12
 ------------------------------------------------
 -Added two new taxonomies (Stanford Event Audience
