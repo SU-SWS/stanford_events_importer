@@ -836,7 +836,7 @@ function stanford_events_importer_views_default_views() {
   $handler->override_option('use_pager', '1');
   $handler->override_option('use_more', 1);
   $handler->override_option('use_more_always', 0);
-  $handler->override_option('use_more_text', 'See more events');
+  $handler->override_option('use_more_text', 'See More Events');
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->override_option('path', 'stanford-events');
   $handler->override_option('menu', array(
@@ -855,8 +855,10 @@ function stanford_events_importer_views_default_views() {
   ));
   $handler = $view->new_display('block', 'Block', 'block_1');
   $handler->override_option('items_per_page', 5);
+  $handler->override_option('use_pager', '0');
   $handler->override_option('block_description', 'Upcoming Stanford Events');
   $handler->override_option('block_caching', -1);
+
 
   $views[$view->name] = $view;
 
