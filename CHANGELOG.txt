@@ -1,3 +1,8 @@
+Stanford Events Importer 6.x-1.0-rc2, 2012-03-06
+----------------------------------------------
+Fixed "Upcoming" display in stanford_events_calendar View
+Added hook_help().
+
 Stanford Events Importer 6.x-1.0-rc1, 2012-02-03
 ----------------------------------------------
 Updated stanford_events_list View
