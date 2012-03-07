@@ -13,3 +13,19 @@ function stanford_events_importer_enable(){
   drupal_flush_all_caches();
 }
 
+/*
+* Implementation of hook_help().
+*/
+function stanford_events_importer_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#stanford_events_importer':
+      $output = '<h2>' . t('To Use') . '</h2>';
+      $output .= '<ol><li>' . t('Enable the module and all dependencies') . '</li>';
+      $output .= '<li>' . t('Go to !permissions and give selected roles the permission to view/edit/delete stanford_event content type nodes (and possibly fields if the content permissions module is enabled), plus permission to import feeds', array('!permissions' => l('admin/user/permissions', 'admin/user/permissions'))) . '</li>';
+      $output .= '<li>' . t('!addnode of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and a feed URL (eg, !feedurl)', array('!addnode' => l('Create a new node', 'node/add/stanford-event-importer'), '!feedurl' => l('http://events.stanford.edu/xml/drupal/feed.php?featured', 'http://events.stanford.edu/xml/drupal/feed.php?featured')));
+      $output .= '<ul><li>' . t('Full documentation of the Stanford Events Drupal Feed Service is available at !eventsdrupal', array('!eventsdrupal' => l('http://events.stanford.edu/xml/drupal/', 'http://events.stanford.edu/xml/drupal/'))) . '</li></ul></li>';
+      $output .= '<li>' . t('Your events will be imported') . '</li>';
+      $output .= '<li>' . t('You can set refresh rate and other options at !editimporter', array('!editimporter' => l('admin/build/feeds/edit/stanford_event_importer', 'admin/build/feeds/edit/stanford_event_importer'))) . '</li></ol>';
+      return $output;
+  }
+}
