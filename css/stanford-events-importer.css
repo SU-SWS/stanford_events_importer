@@ -1,0 +1,47 @@
+.view-id-stanford_events_list.view-display-id-block_2 .views-row {
+  margin: 0 0 20px 10px;
+  width: 100%;
+  float:left;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-row.views-row-last {
+  margin-bottom: 0;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value-1 {
+  width: 30px;
+  float:left;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value-1 .date .views-field-field-event-date-value-1 .date-display-single, 
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value-1 .date .date .date-display-single {
+  color: #565347;
+  display: block;
+  font-family: "Georgia,Times New Roman,Times";
+  font-size: 21px;
+  text-align: center;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value-1 .date .date-display-single {
+  color: #820000;
+  display: block;
+  font-size: 11px;
+  font-family: "Georgia,Times New Roman,Times";
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value {
+  border-left: 1px solid #EAE9E6;
+  display: block;
+  float: right;
+  margin: 0;
+  padding: 0 0 10px 5px;
+  width: 105px;
+  overflow: hidden;
+}
+
+.view-id-stanford_events_list.view-display-id-block_2 .views-field-field-event-date-value .time {
+  color: #820000;
+  margin-top: 3px;
+}
