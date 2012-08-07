@@ -14,6 +14,14 @@ function stanford_events_importer_enable(){
 }
 
 /*
+ * Implements hook_init().
+ */
+function stanford_events_importer_init(){
+  $path = drupal_get_path('module', 'stanford_events_importer') . '/css/stanford-events-importer.css';
+  drupal_add_css($path);
+}
+
+/*
 * Implementation of hook_help().
 */
 function stanford_events_importer_help($path, $arg) {
