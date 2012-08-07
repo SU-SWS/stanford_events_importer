@@ -1,4 +1,5 @@
 -- SUMMARY --
+Authors: Scott Stocker, John Bickar; upcoming Event View configuration and styling courtesy of Linnea Williams.
 
 The Stanford Events Importer provides custom functionality for importing from events.stanford.edu XML feeds. A new feed API is available that is customized to work with this importer. It is available at: http://events.stanford.edu/xml/drupal/
 (See http://events.stanford.edu/xml/ for more information on feeds.)
@@ -22,6 +23,7 @@ The imported items are set to refresh once every day, and to update existing nod
 * Image Field (imagefield)
 * Job Scheduler (job_scheduler)
 * Link (link)
+* Strongarm (strongarm)
 
 -- KNOWN ISSUES --
 * In some circumstances, batch import or batch delete fails with an "access denied" message.
@@ -37,3 +39,6 @@ for more information
 * Create Content of type "Stanford Event Importer". Give it a title (eg, "Featured Events") and a feed URL (eg, http://events.stanford.edu/xml/drupal/feed.php?featured)
 * Your events will be imported
 * You can set refresh rate and other options at admin/build/feeds/edit/stanford_event_importer
+
+-- HELP --
+* Available at admin/help/stanford_events_importer
