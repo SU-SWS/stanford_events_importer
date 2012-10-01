@@ -10,7 +10,7 @@
 function stanford_events_importer_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-stanford_event-body'
+  // Exported field: 'node-stanford_event-body'.
   $fields['node-stanford_event-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -33,6 +33,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -77,12 +78,95 @@ function stanford_events_importer_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '31',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_admission'
+  // Exported field: 'node-stanford_event-field_stanford_event_add_to_cal'.
+  $fields['node-stanford_event-field_stanford_event_add_to_cal'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_stanford_event_add_to_cal',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'link',
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'rel' => '',
+          'target' => 'default',
+        ),
+        'display' => array(
+          'url_cutoff' => 80,
+        ),
+        'enable_tokens' => 1,
+        'title' => 'optional',
+        'title_maxlength' => 128,
+        'title_value' => '',
+        'url' => 0,
+      ),
+      'translatable' => '0',
+      'type' => 'link_field',
+    ),
+    'field_instance' => array(
+      'bundle' => 'stanford_event',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter an iCal link to add this event to a personal calendar',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'link_default',
+          'weight' => 11,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_stanford_event_add_to_cal',
+      'label' => 'Add to Calendar',
+      'required' => 0,
+      'settings' => array(
+        'attributes' => array(
+          'class' => '',
+          'configurable_title' => 0,
+          'rel' => '',
+          'target' => 'default',
+          'title' => '',
+        ),
+        'display' => array(
+          'url_cutoff' => '80',
+        ),
+        'enable_tokens' => 0,
+        'title' => 'value',
+        'title_maxlength' => '128',
+        'title_value' => 'Add this event to my calendar',
+        'url' => 0,
+        'user_register_form' => FALSE,
+        'validate_url' => 1,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_field',
+        'weight' => '5',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-stanford_event-field_stanford_event_admission'.
   $fields['node-stanford_event-field_stanford_event_admission'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +187,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -143,12 +228,12 @@ function stanford_events_importer_field_default_fields() {
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '38',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_audience'
+  // Exported field: 'node-stanford_event-field_stanford_event_audience'.
   $fields['node-stanford_event-field_stanford_event_audience'] = array(
     'field_config' => array(
       'active' => '1',
@@ -169,6 +254,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -216,12 +302,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '40',
+        'weight' => '12',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_categories'
+  // Exported field: 'node-stanford_event-field_stanford_event_categories'.
   $fields['node-stanford_event-field_stanford_event_categories'] = array(
     'field_config' => array(
       'active' => '1',
@@ -242,6 +328,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -289,12 +376,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => 60,
         ),
         'type' => 'taxonomy_autocomplete',
-        'weight' => '41',
+        'weight' => '13',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_datetime'
+  // Exported field: 'node-stanford_event-field_stanford_event_datetime'.
   $fields['node-stanford_event-field_stanford_event_datetime'] = array(
     'field_config' => array(
       'active' => '1',
@@ -304,8 +391,11 @@ function stanford_events_importer_field_default_fields() {
       'field_name' => 'field_stanford_event_datetime',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'date',
       'settings' => array(
+        'cache_count' => '4',
+        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 'hour',
@@ -315,7 +405,7 @@ function stanford_events_importer_field_default_fields() {
           'year' => 'year',
         ),
         'timezone_db' => 'UTC',
-        'todate' => '',
+        'todate' => 'optional',
         'tz_handling' => 'utc',
       ),
       'translatable' => '0',
@@ -369,12 +459,12 @@ function stanford_events_importer_field_default_fields() {
           'year_range' => '-3:+3',
         ),
         'type' => 'date_text',
-        'weight' => '33',
+        'weight' => '4',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_email'
+  // Exported field: 'node-stanford_event-field_stanford_event_email'.
   $fields['node-stanford_event-field_stanford_event_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -395,6 +485,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -437,12 +528,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '36',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_image'
+  // Exported field: 'node-stanford_event-field_stanford_event_image'.
   $fields['node-stanford_event-field_stanford_event_image'] = array(
     'field_config' => array(
       'active' => '1',
@@ -463,6 +554,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -499,6 +591,7 @@ function stanford_events_importer_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
+        'default_image' => 0,
         'file_directory' => '',
         'file_extensions' => 'png gif jpg jpeg',
         'max_filesize' => '',
@@ -527,12 +620,12 @@ function stanford_events_importer_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'image_image',
-        'weight' => '32',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_location'
+  // Exported field: 'node-stanford_event-field_stanford_event_location'.
   $fields['node-stanford_event-field_stanford_event_location'] = array(
     'field_config' => array(
       'active' => '1',
@@ -553,6 +646,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -595,12 +689,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '34',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_phone'
+  // Exported field: 'node-stanford_event-field_stanford_event_phone'.
   $fields['node-stanford_event-field_stanford_event_phone'] = array(
     'field_config' => array(
       'active' => '1',
@@ -621,6 +715,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -663,12 +758,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '37',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_sponsor'
+  // Exported field: 'node-stanford_event-field_stanford_event_sponsor'.
   $fields['node-stanford_event-field_stanford_event_sponsor'] = array(
     'field_config' => array(
       'active' => '1',
@@ -689,6 +784,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -731,12 +827,12 @@ function stanford_events_importer_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '35',
+        'weight' => '7',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_url'
+  // Exported field: 'node-stanford_event-field_stanford_event_url'.
   $fields['node-stanford_event-field_stanford_event_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -746,6 +842,7 @@ function stanford_events_importer_field_default_fields() {
       'field_name' => 'field_stanford_event_url',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -813,12 +910,12 @@ function stanford_events_importer_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '39',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_event_importer-body'
+  // Exported field: 'node-stanford_event_importer-body'.
   $fields['node-stanford_event_importer-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -841,6 +938,7 @@ function stanford_events_importer_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -892,6 +990,7 @@ function stanford_events_importer_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Add to Calendar');
   t('Admission');
   t('Audience');
   t('Body');
@@ -899,6 +998,7 @@ function stanford_events_importer_field_default_fields() {
   t('Contact Email');
   t('Contact Phone');
   t('Date and Time');
+  t('Enter an iCal link to add this event to a personal calendar');
   t('Event Sponsor');
   t('Image');
   t('Location');
