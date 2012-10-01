@@ -1,5 +1,10 @@
-Stanford Events Importer 7.x-1.0-alpha2, 2012-01-23
-------------------------------------------------
--Initial release of Stanford Events Importer for 
-  Drupal 7
+Stanford Events Importer 7.x-2.0-alpha1, 2012-10-01
+---------------------------------------------------
+-Initial release of Stanford Events Importer 7.x-2.x branch
+-Improvements over the 7.x-1.x branch include:
+  Updated feed url in documentation
+  Added "add to calendar" ical download link
+  Added inline help
+  Added end date to content type and feed
+
 
