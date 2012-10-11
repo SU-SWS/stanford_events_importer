@@ -191,5 +191,213 @@ function stanford_events_importer_feeds_importer_default() {
   );
   $export['stanford_event_importer'] = $feeds_importer;
 
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'stanford_events_categories';
+  $feeds_importer->config = array(
+    'name' => 'Stanford Events Categories',
+    'description' => 'Imports Stanford Events Categories into database table',
+    'fetcher' => array(
+      'plugin_key' => 'FeedsHTTPFetcher',
+      'config' => array(
+        'auto_detect_feeds' => FALSE,
+        'use_pubsubhubbub' => FALSE,
+        'designated_hub' => '',
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsXPathParserXML',
+      'config' => array(
+        'sources' => array(
+          'xpathparser:0' => 'guid',
+          'xpathparser:1' => 'categoryID',
+          'xpathparser:2' => 'name',
+          'xpathparser:3' => 'type',
+          'xpathparser:4' => 'description',
+          'xpathparser:5' => 'tag',
+        ),
+        'rawXML' => array(
+          'xpathparser:0' => 0,
+          'xpathparser:1' => 0,
+          'xpathparser:2' => 0,
+          'xpathparser:3' => 0,
+          'xpathparser:4' => 0,
+          'xpathparser:5' => 0,
+        ),
+        'context' => '//CategoryList/Category',
+        'exp' => array(
+          'errors' => 0,
+          'debug' => array(
+            'context' => 0,
+            'xpathparser:0' => 0,
+            'xpathparser:1' => 0,
+            'xpathparser:2' => 0,
+            'xpathparser:3' => 0,
+            'xpathparser:4' => 0,
+            'xpathparser:5' => 0,
+          ),
+        ),
+        'allow_override' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsEntityProcessorData_stanford_events_category_list',
+      'config' => array(
+        'values' => array(),
+        'mappings' => array(
+          0 => array(
+            'source' => 'xpathparser:0',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'xpathparser:1',
+            'target' => 'category_id',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'xpathparser:2',
+            'target' => 'name',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'xpathparser:3',
+            'target' => 'type',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'xpathparser:4',
+            'target' => 'description',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'xpathparser:5',
+            'target' => 'tag',
+            'unique' => FALSE,
+          ),
+        ),
+        'update_existing' => '2',
+        'input_format' => 'plain_text',
+        'skip_hash_check' => 0,
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '43200',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['stanford_events_categories'] = $feeds_importer;
+
+  $feeds_importer = new stdClass();
+  $feeds_importer->disabled = FALSE; /* Edit this to true to make a default feeds_importer disabled initially */
+  $feeds_importer->api_version = 1;
+  $feeds_importer->id = 'stanford_events_organizations';
+  $feeds_importer->config = array(
+    'name' => 'Stanford Events Organizations',
+    'description' => 'Imports Stanford Events Organizations into database table',
+    'fetcher' => array(
+      'plugin_key' => 'FeedsHTTPFetcher',
+      'config' => array(
+        'auto_detect_feeds' => FALSE,
+        'use_pubsubhubbub' => FALSE,
+        'designated_hub' => '',
+      ),
+    ),
+    'parser' => array(
+      'plugin_key' => 'FeedsXPathParserXML',
+      'config' => array(
+        'sources' => array(
+          'xpathparser:0' => 'guid',
+          'xpathparser:1' => 'organizationID',
+          'xpathparser:2' => 'name',
+          'xpathparser:3' => 'type',
+          'xpathparser:4' => 'email',
+          'xpathparser:5' => 'url',
+          'xpathparser:6' => 'rssUrl',
+        ),
+        'rawXML' => array(
+          'xpathparser:0' => 0,
+          'xpathparser:1' => 0,
+          'xpathparser:2' => 0,
+          'xpathparser:3' => 0,
+          'xpathparser:4' => 0,
+          'xpathparser:5' => 0,
+          'xpathparser:6' => 0,
+        ),
+        'context' => '//OrganizationList/Organization',
+        'exp' => array(
+          'errors' => 0,
+          'debug' => array(
+            'context' => 0,
+            'xpathparser:0' => 0,
+            'xpathparser:1' => 0,
+            'xpathparser:2' => 0,
+            'xpathparser:3' => 0,
+            'xpathparser:4' => 0,
+            'xpathparser:5' => 0,
+            'xpathparser:6' => 0,
+          ),
+        ),
+        'allow_override' => 0,
+      ),
+    ),
+    'processor' => array(
+      'plugin_key' => 'FeedsEntityProcessorData_stanford_events_organization_list',
+      'config' => array(
+        'values' => array(),
+        'mappings' => array(
+          0 => array(
+            'source' => 'xpathparser:0',
+            'target' => 'guid',
+            'unique' => 1,
+          ),
+          1 => array(
+            'source' => 'xpathparser:1',
+            'target' => 'organization_id',
+            'unique' => FALSE,
+          ),
+          2 => array(
+            'source' => 'xpathparser:2',
+            'target' => 'name',
+            'unique' => FALSE,
+          ),
+          3 => array(
+            'source' => 'xpathparser:3',
+            'target' => 'type',
+            'unique' => FALSE,
+          ),
+          4 => array(
+            'source' => 'xpathparser:4',
+            'target' => 'email',
+            'unique' => FALSE,
+          ),
+          5 => array(
+            'source' => 'xpathparser:5',
+            'target' => 'url',
+            'unique' => FALSE,
+          ),
+          6 => array(
+            'source' => 'xpathparser:6',
+            'target' => 'rss_url',
+            'unique' => FALSE,
+          ),
+        ),
+        'update_existing' => '2',
+        'input_format' => 'plain_text',
+        'skip_hash_check' => 0,
+      ),
+    ),
+    'content_type' => '',
+    'update' => 0,
+    'import_period' => '43200',
+    'expire_period' => 3600,
+    'import_on_create' => 1,
+    'process_in_background' => 0,
+  );
+  $export['stanford_events_organizations'] = $feeds_importer;
+
   return $export;
 }
