@@ -28,7 +28,7 @@ function stanford_events_importer_help($path, $arg) {
  * Implements hook_form_FORM_ID_alter().
  */
 function stanford_events_importer_form_stanford_event_importer_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['feeds']['#access'] = FALSE;
+  //$form['feeds']['#access'] = FALSE;
   $query = db_select('stanford_events_category_list', 'c');
   $query->fields('c', array('category_id', 'name'));
   $result = $query->execute();
@@ -39,17 +39,62 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   $result = $query->execute();
   $organizations = $result->fetchAllKeyed();
   asort(&$organizations);
-  $form['stanford_events_category'] = array (
+  $form['s_events_cat_org'] = array (
+    '#type' => 'fieldset',
+    '#title' => t('Category or Organization'),
+    '#collapsible' => FALSE,
+    '#description' => t('Select <strong>either</strong> a Category <strong>or</strong> an Organization.'),
+  );
+  $form['s_events_cat_org']['s_events_category'] = array (
     '#type' => 'select',
     '#options' => $categories,
     '#title' => t('Category'),
     '#description' => t('Select a category'),
+    '#empty_option' => '-- ' . t('None') . ' --',
   );
-  $form['stanford_events_organization'] = array (
+  $form['s_events_cat_org']['s_events_organization'] = array (
     '#type' => 'select',
     '#options' => $organizations,
     '#title' => t('Organization'),
     '#description' => t('Select an organization'),
-  );
+    '#empty_option' => '-- ' . t('None') . ' --',
+   );
+
+// Commenting this out for now because it's unclear whether it's possible to
+// determine whether it's a Category or an Organization.
+/*  $optgroup = array();
+  $optgroup['Categories'] = $categories;
+  $optgroup['Organizations'] = $organizations;
+  $form['stanford_events_cat_org'] = array (
+    '#type' => 'select',
+    '#options' => $optgroup,
+    '#title' => t('Category or Organization'),
+    '#description' => t('Select a category or organization'),
+  );*/
   //dpm($form);
+  $form['#validate'][] = 'stanford_events_importer_validate';
+  $form['#validate'][] = 'stanford_events_importer_build_feed_url';
+}
+
+/*
+ * Validate user input.
+ */
+function stanford_events_importer_validate($form, &$form_state) {
+  // Check that the user did not select both a Category and an Organization.
+  if (($form_state['values']['s_events_category'] != '') && ($form_state['values']['s_events_organization'] != '')) {
+    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization, not one of each.'));
+  }
+  // Check that the user did not select both a Category and an Organization.
+  if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
+    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
+  }
+  dpm($form_state);
+}
+/*
+ * Build the feed URL out of the user's choice in the select list.
+ */
+function stanford_events_importer_build_feed_url($form, &$form_state) {
+  $feed_url = 'http://events.stanford.edu/xml/drupal/v2.php?';
+  $form_state['values']['feeds']['FeedsHTTPFetcher']['source'] = '$feed_url';
+  //dpm($form_state);
 }
