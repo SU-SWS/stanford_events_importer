@@ -117,3 +117,12 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
   $form_state['values']['feeds']['FeedsHTTPFetcher']['source'] = $feed_url;
   //dpm($form_state);
 }
+
+/*
+ * Fetch the list of organizations.
+ */
+function stanford_events_importer_get_categories() {
+  $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
+  $categories = drupal_http_request($category_url);
+  dpm($categories);
+}
