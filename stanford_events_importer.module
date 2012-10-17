@@ -19,6 +19,7 @@ function stanford_events_importer_help($path, $arg) {
       $output .= '<li>' . t('!addnode of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and choose <strong>either</strong> a Category or an Organization (not one of each). ', array('!addnode' => l('Create a new node', 'node/add/stanford-event-importer')));
       $output .= '<ul><li>' . t('Full documentation of the Stanford Events Drupal Feed Service is available at !eventsdrupal', array('!eventsdrupal' => l('http://events.stanford.edu/xml/drupal/', 'http://events.stanford.edu/xml/drupal/'))) . '</li></ul></li>';
       $output .= '<li>' . t('Your events will be imported') . '</li>';
+      $output .= '<li>' . t('Create a separate Stanford Event Importer node for each category or organization you would like to use to import events');
       $output .= '<li>' . t('You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module)', array('!editimporter' => l('admin/build/feeds/edit/stanford_event_importer', 'admin/build/feeds/edit/stanford_event_importer'))) . '</li></ol>';
       return $output;
   }
