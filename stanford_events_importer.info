@@ -13,7 +13,6 @@ dependencies[] = feeds_tamper
 dependencies[] = feeds_xpathparser
 dependencies[] = image
 dependencies[] = link
-dependencies[] = schema
 dependencies[] = strongarm
 dependencies[] = taxonomy
 features[ctools][] = data:data_default:1
