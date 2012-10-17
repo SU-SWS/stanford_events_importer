@@ -1,3 +1,15 @@
+Stanford Events Importer x.x-x.x, xxxx-xx-xx
+--------------------------------------------
+
+Stanford Events Importer 7.x-2.0-alpha6, 2012-10-17
+---------------------------------------------------
+Changes since 2.0-alpha1 include:
+  -Automatically pulling list of categories and organizations from events.stanford.edu
+    and presenting those to the user in a dropdown list at node/add/stanford-event-importer
+    (no more manual pasting of feed URL)
+(-alpha2 through -alpha5 were incremental development releases and likely should not be used by anyone.)
+
+
 Stanford Events Importer 7.x-2.0-alpha1, 2012-10-01
 ---------------------------------------------------
 -Initial release of Stanford Events Importer 7.x-2.x branch
