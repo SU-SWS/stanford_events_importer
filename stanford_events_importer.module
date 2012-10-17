@@ -28,17 +28,23 @@ function stanford_events_importer_help($path, $arg) {
  * Implements hook_form_FORM_ID_alter().
  */
 function stanford_events_importer_form_stanford_event_importer_node_form_alter(&$form, &$form_state, $form_id) {
+  //disable the default feed URL form field
+  //We'll supply our own options, then convert to a feed URL.
   $form['feeds']['#access'] = FALSE;
   $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] = 'http://events.stanford.edu/xml/drupal/v2.php?featured';
+  //get our list of categories
   $query = db_select('stanford_events_category_list', 'c');
   $query->fields('c', array('category_id', 'name'));
   $result = $query->execute();
   $categories = $result->fetchAllKeyed();
+  //tidy them up alphabetically
   asort(&$categories);
+  //get our list of organizations
   $query = db_select('stanford_events_organization_list', 'o');
   $query->fields('o', array('organization_id', 'name'));
   $result = $query->execute();
   $organizations = $result->fetchAllKeyed();
+  //tidy them up alphabetically
   asort(&$organizations);
   $form['s_events_cat_org'] = array (
     '#type' => 'fieldset',
@@ -60,19 +66,6 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#description' => t('Select an organization'),
     '#empty_option' => '-- ' . t('None') . ' --',
    );
-
-  // Commenting this out for now because it's unclear whether it's possible to
-  // determine whether it's a Category or an Organization.
-/*  $optgroup = array();
-  $optgroup['Categories'] = $categories;
-  $optgroup['Organizations'] = $organizations;
-  $form['stanford_events_cat_org'] = array (
-    '#type' => 'select',
-    '#options' => $optgroup,
-    '#title' => t('Category or Organization'),
-    '#description' => t('Select a category or organization'),
-  );*/
-  //dpm($form);
   //make our validation function run first
   if (is_array($form['#validate'])) {
     array_unshift($form['#validate'], 'stanford_events_importer_build_feed_url');
@@ -82,8 +75,8 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     $form['#validate'][] = 'stanford_events_importer_validate';
     $form['#validate'][] = 'stanford_events_importer_build_feed_url';
   }
-  //dpm($form);
 }
+
 /*
  * Validate user input.
  */
@@ -96,33 +89,129 @@ function stanford_events_importer_validate($form, &$form_state) {
   if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
     form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
   }
-  //dpm($form_state);
 }
+
 /*
  * Build the feed URL out of the user's choice in the select list.
  */
 function stanford_events_importer_build_feed_url($form, &$form_state) {
+  //set the stem of the feed URL
   $feed_url = 'http://events.stanford.edu/xml/drupal/v2.php?';
+  //grab the user-entered values, which have already been validated
   $category = $form_state['values']['s_events_category'];
   $organization = $form_state['values']['s_events_organization'];
+  //append the correct category or organization number to the feed URL
+  //the array of options that we presented to the user in $form['s_events_cat_org']['s_events_category'] returns a numeric value (the numeric key)
   if ($category != '') {
     $feed_url .= 'category=' . $category;
   }
   elseif ($organization != '') {
     $feed_url .= 'organization=' . $organization;
   }
+  //pray we don't get this far.
   else {
     form_set_error(NULL, t('Something has gone horribly, horribly wrong.'));
   }
+  //pop our constructed feed URL into the field in a format that Feeds and Feeds XPath Parser can digest it.
   $form_state['values']['feeds']['FeedsHTTPFetcher']['source'] = $feed_url;
-  //dpm($form_state);
+}
+
+/*
+ * Fetch the list of categories.
+ */
+function stanford_events_importer_get_categories() {
+  //get the XML url, either user-defined, or fall back to a default.
+  $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
+  //Pull in the XML file from a URL
+  $categories = drupal_http_request($category_url);
+  //Put just the XML data into a variable
+  $category_xml = $categories->data;
+  return($category_xml);
+}
+
+/*
+ * Write the categories to the database.
+ */
+function stanford_events_importer_write_categories($category_xml) {
+  $parser = xml_parser_create();
+  xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+  xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+  xml_parse_into_struct($parser, $category_xml, $valuesarray, $index);
+  xml_parser_free($parser);
+  foreach($index['guid'] as $key => $value) {
+    $guid = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $category_id = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $name = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $type = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $description = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $tag = $valuesarray[$value]['value'];
+    $result = db_insert('stanford_events_category_list')
+      ->fields(array(
+        'guid' => $guid,
+        'category_id' => $category_id,
+        'name' => $name,
+        'type' => $type,
+        'description' => $description,
+        'tag' => $tag,
+       ))
+       ->execute();
+  }
 }
 
 /*
  * Fetch the list of organizations.
  */
-function stanford_events_importer_get_categories() {
-  $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
-  $categories = drupal_http_request($category_url);
-  dpm($categories);
+function stanford_events_importer_get_organizations() {
+  //get the XML url, either user-defined, or fall back to a default.
+  $organization_url = variable_get('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  //Pull in the XML file from a URL
+  $organizations = drupal_http_request($organization_url);
+  //Put just the XML data into a variable
+  $organization_xml = $organizations->data;
+  return($organization_xml);
+}
+
+/*
+ * Write the organizations to the database.
+ */
+function stanford_events_importer_write_organizations($organization_xml) {
+  $parser = xml_parser_create();
+  xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
+  xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+  xml_parse_into_struct($parser, $organization_xml, $valuesarray, $index);
+  xml_parser_free($parser);
+  foreach($index['guid'] as $key => $value) {
+    $guid = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $organization_id = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $name = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $type = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $email = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $phone = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $url = $valuesarray[$value]['value'];
+    $value = $value + 1;
+    $rss_url = $valuesarray[$value]['value'];
+    $result = db_insert('stanford_events_organization_list')
+      ->fields(array(
+        'guid' => $guid,
+        'organization_id' => $organization_id,
+        'name' => $name,
+        'type' => $type,
+        'email' => $email,
+        'phone' => $phone,
+        'url' => $url,
+        'rss_url' => $rss_url,
+       ))
+       ->execute();
+  }
 }
