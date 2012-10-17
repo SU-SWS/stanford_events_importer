@@ -16,7 +16,7 @@ function stanford_events_importer_help($path, $arg) {
       $output .= '<ol><li>' . t('Enable the module and all dependencies') . '</li>';
       $output .= '<li>' . t('Go to !permissions and give selected roles the following permissions:', array('!permissions' => l('admin/people/permissions', 'admin/people/permissions')));
       $output .= '<ul><li>' . t('Import Stanford Event Importer feeds ') . '</li><li>' . t('Stanford Event: Create new content') . '</li><li>' . t('Stanford Event Importer: Create new content ') . '</li></ul></li>';
-      $output .= '<li>' . t('!addnode of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and a feed URL (eg, !feedurl)', array('!addnode' => l('Create a new node', 'node/add/stanford-event-importer'), '!feedurl' => l('http://events.stanford.edu/xml/drupal/v2.php?featured', 'http://events.stanford.edu/xml/drupal/v2.php?featured')));
+      $output .= '<li>' . t('!addnode of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and choose <strong>either</strong> a Category or an Organization (not one of each). ', array('!addnode' => l('Create a new node', 'node/add/stanford-event-importer')));
       $output .= '<ul><li>' . t('Full documentation of the Stanford Events Drupal Feed Service is available at !eventsdrupal', array('!eventsdrupal' => l('http://events.stanford.edu/xml/drupal/', 'http://events.stanford.edu/xml/drupal/'))) . '</li></ul></li>';
       $output .= '<li>' . t('Your events will be imported') . '</li>';
       $output .= '<li>' . t('You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module)', array('!editimporter' => l('admin/build/feeds/edit/stanford_event_importer', 'admin/build/feeds/edit/stanford_event_importer'))) . '</li></ol>';
@@ -28,15 +28,21 @@ function stanford_events_importer_help($path, $arg) {
  * Implements hook_form_FORM_ID_alter().
  */
 function stanford_events_importer_form_stanford_event_importer_node_form_alter(&$form, &$form_state, $form_id) {
-  //disable the default feed URL form field
-  //We'll supply our own options, then convert to a feed URL.
-  $form['feeds']['#access'] = FALSE;
-  $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] = 'http://events.stanford.edu/xml/drupal/v2.php?featured';
   //get our list of categories
   $query = db_select('stanford_events_category_list', 'c');
   $query->fields('c', array('category_id', 'name'));
   $result = $query->execute();
   $categories = $result->fetchAllKeyed();
+  //add Featured and Today into the list
+  $categories[] = 'Featured';
+  $categories[] = 'Today';
+  //grab the key of Featured and Today
+  //These may change if additional categories are added, so don't make these persistent
+  $featured_id = array_search('Featured', $categories);
+  $today_id = array_search('Today', $categories);
+  //stash the Featured and Today as variables, because they're special cases
+  variable_set('stanford_events_featured_id', $featured_id);
+  variable_set('stanford_events_today_id', $today_id);
   //tidy them up alphabetically
   asort(&$categories);
   //get our list of organizations
@@ -66,6 +72,42 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#description' => t('Select an organization'),
     '#empty_option' => '-- ' . t('None') . ' --',
    );
+  //disable the default feed URL form field
+  //We'll supply our own options, then convert to a feed URL.
+  $form['feeds']['#access'] = FALSE;
+  //Check if the feed URL is blank (e.g., when creating a new node)
+  if ($form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] == '') {
+    //if it's blank, set the default to featured, to avoid errors, because we're hiding the field
+    $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] = 'http://events.stanford.edu/xml/drupal/v2.php?featured';
+  }
+  //if the feed URL is not blank (e.g., when editing an existing node), populate the correct dropdown.
+  else {
+    $feed_url = $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'];
+    $pattern = '/v2\.php\?.*$/';
+    //look for 'v2.php?foo' or whatever in the feed URL, and capture that into $matches[0]
+    preg_match($pattern, $feed_url, $matches);
+    $current_selection = $matches[0];
+    //strip out 'v2.php?'
+    $current_selection = preg_replace('/v2\.php\?/', '', $current_selection);
+    //today is a beautiful and unique snowflake
+    if($current_selection == 'today') {
+      $form['s_events_cat_org']['s_events_category']['#default_value'] = $today_id;
+    }
+    //featured also is a beautiful and unique snowflake
+    elseif($current_selection == 'featured') {
+      $form['s_events_cat_org']['s_events_category']['#default_value'] = $featured_id;
+    }
+    //if it's a category, pull the category id and make that the default in the dropdown
+    elseif(preg_match('/category\=/', $current_selection) == 1) {
+      $current_selection = preg_replace('/category\=/', '', $current_selection);
+      $form['s_events_cat_org']['s_events_category']['#default_value'] = $current_selection;
+    }
+    //if it's an organization, pull the organization id and make that the default in the dropdown
+    elseif(preg_match('/organization\=/', $current_selection) == 1) {
+      $current_selection = preg_replace('/organization\=/', '', $current_selection);
+      $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+    }
+  }
   //make our validation function run first
   if (is_array($form['#validate'])) {
     array_unshift($form['#validate'], 'stanford_events_importer_build_feed_url');
@@ -102,11 +144,24 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
   $organization = $form_state['values']['s_events_organization'];
   //append the correct category or organization number to the feed URL
   //the array of options that we presented to the user in $form['s_events_cat_org']['s_events_category'] returns a numeric value (the numeric key)
-  if ($category != '') {
-    $feed_url .= 'category=' . $category;
-  }
-  elseif ($organization != '') {
+  if ($organization != '') {
     $feed_url .= 'organization=' . $organization;
+  }
+  elseif ($category != '') {
+    //get the id/numeric key of our beautiful and unique snowflakes, Featured and Today
+    $featured_id = variable_get('stanford_events_featured_id');
+    $today_id =  variable_get('stanford_events_today_id');
+    //set the Feed URL to pull Featured events if requested
+    if ($category == $featured_id) {
+      $feed_url .= 'featured';
+    }
+    //set the Feed URL to pull Today's events if requested
+    elseif ($category == $today_id) {
+      $feed_url .= 'today';
+    }
+    else {
+      $feed_url .= 'category=' . $category;
+    }
   }
   //pray we don't get this far.
   else {
