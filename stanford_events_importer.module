@@ -91,10 +91,7 @@ function stanford_events_importer_config_form_submit($form, &$form_state) {
  * Custom submit function for "Refresh" button of config form.
  */
 function stanford_events_importer_config_form_refresh_lists($form, &$form_state) {
-  $category_xml = stanford_events_importer_get_categories();
-  stanford_events_importer_write_categories($category_xml);
-  $organization_xml = stanford_events_importer_get_organizations();
-  stanford_events_importer_write_organizations($organization_xml);
+  stanford_events_importer_update_cat_org();  
 }
 
 /**
@@ -322,9 +319,11 @@ function stanford_events_importer_write_organizations($organization_xml) {
     $value = $value + 1;
     $type = $valuesarray[$value]['value'];
     $value = $value + 1;
-    $email = $valuesarray[$value]['value'];
+    //email can be empty sometimes; set it to the value if it's set, blank if it's not set.
+    $email = isset($valuesarray[$value]['value']) ? $valuesarray[$value]['value'] : '';
     $value = $value + 1;
-    $phone = $valuesarray[$value]['value'];
+    //phone can be empty sometimes; set it to the value if it's set, blank if it's not set.
+    $phone = isset($valuesarray[$value]['value']) ? $valuesarray[$value]['value'] : '';
     $value = $value + 1;
     $url = $valuesarray[$value]['value'];
     $value = $value + 1;
