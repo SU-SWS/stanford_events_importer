@@ -10,7 +10,10 @@ function stanford_events_importer_install() {
   variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
   variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
   module_enable(array('stanford_events_importer'));
+  //get the list of categories and orgs, and put them into the DB
   stanford_events_importer_update_cat_org();
+  //clear the cache, because we're adding a new menu item.
+  menu_cache_clear_all();
 }
 
 /**
