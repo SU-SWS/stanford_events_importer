@@ -249,15 +249,25 @@ function stanford_events_importer_get_categories() {
   $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
   //Pull in the XML file from a URL
   $categories = drupal_http_request($category_url);
-  //Put just the XML data into a variable
-  $category_xml = $categories->data;
-  return($category_xml);
+  //check that drupal_http_request didn't return an error and that we have data
+  if(!isset($categories->error) && isset($categories->data)) {
+    //Put just the XML data into a variable
+    $category_xml = $categories->data;
+    return($category_xml);
+  }
+  else {
+    return;
+  }
 }
 
 /**
  * Write the categories to the database.
  */
 function stanford_events_importer_write_categories($category_xml) {
+  //don't do anything if we don't have anything
+  if(!isset($category_xml)) {
+    return;
+  }
   $parser = xml_parser_create();
   xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
   xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
@@ -296,15 +306,25 @@ function stanford_events_importer_get_organizations() {
   $organization_url = variable_get('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
   //Pull in the XML file from a URL
   $organizations = drupal_http_request($organization_url);
-  //Put just the XML data into a variable
-  $organization_xml = $organizations->data;
-  return($organization_xml);
+  //check that drupal_http_request didn't return an error and that we have data
+  if(!isset($organizations->error) && isset($organizations->data)) {
+    //Put just the XML data into a variable
+    $organization_xml = $organizations->data;
+    return($organization_xml);
+  }
+  else {
+    return;
+  }
 }
 
 /**
  * Write the organizations to the database.
  */
 function stanford_events_importer_write_organizations($organization_xml) {
+  //don't do anything if we don't have anything
+  if(!isset($organization_xml)) {
+    return;
+  }
   $parser = xml_parser_create();
   xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
   xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
@@ -356,12 +376,8 @@ function stanford_events_importer_update_cat_org() {
 }
 
 /**
- * Implements hook_cron_queue_info().
+ * Implements hook_cron().
  */
-function stanford_events_importer_cron_queue_info() {
-  $queues['stanford_events_importer_tasks'] = array(
-    'worker callback' => '  stanford_events_importer_update_cat_org',
-    'time' => 15, 
-  );  
-  return $queues;
+function stanford_events_importer_cron() {
+  stanford_events_importer_update_cat_org();
 }
