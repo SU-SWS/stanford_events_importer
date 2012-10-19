@@ -1,9 +1,9 @@
 <?php
-/*
+/**
  * @file Schema definitions. Install/update/uninstall hooks.
  */
 
-/*
+/**
  * Implements hook_install().
  */
 function stanford_events_importer_install() {
@@ -16,7 +16,7 @@ function stanford_events_importer_install() {
   stanford_events_importer_write_organizations($organization_xml);
 }
 
-/*
+/**
  * Implements hook_schema().
  */
 function stanford_events_importer_schema() {
@@ -164,8 +164,8 @@ function stanford_events_importer_schema() {
   return $schema;
 }
 
-/*
- * Implements hook_update_N().
+/**
+ * Install two new database tables for holding category and organization information.
  */
 function stanford_events_importer_update_7200() {
   $schema = array();
@@ -309,14 +309,28 @@ function stanford_events_importer_update_7200() {
       0 => 'guid',
     ),
   );
+  //create the tables
   db_create_table('stanford_events_category_list', $schema['stanford_events_category_list']);
   db_create_table('stanford_events_organization_list', $schema['stanford_events_organization_list']);
+  //set initial source URLs for category and organization lists
+  variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  //make stanford_events_importer functions available to us
+  drupal_load('module', 'stanford_events_importer');
+  $category_xml = stanford_events_importer_get_categories();
+  //insert categories
+  stanford_events_importer_write_categories($category_xml);
+  $organization_xml = stanford_events_importer_get_organizations();
+  //insert organizations
+  stanford_events_importer_write_organizations($organization_xml);
 }
 
-/*
+/**
  * Implements hook_uninstall().
  */
 function stanford_events_importer_uninstall() {
   db_drop_table('stanford_events_category_list');
   db_drop_table('stanford_events_organization_list');
+  variable_del('stanford_events_category_source');
+  variable_del('stanford_events_organization_source');
 }
