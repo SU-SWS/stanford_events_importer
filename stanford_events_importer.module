@@ -21,6 +21,9 @@ function stanford_events_importer_help($path, $arg) {
       $output .= '<li>' . t('Your events will be imported') . '</li>';
       $output .= '<li>' . t('Create a separate Stanford Event Importer node for each category or organization you would like to use to import events');
       $output .= '<li>' . t('You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module)', array('!editimporter' => l('admin/build/feeds/edit/stanford_event_importer', 'admin/build/feeds/edit/stanford_event_importer'))) . '</li></ol>';
+      $output .= '<p>' . t('The service at !events maintains lists of categories and organizations. ', array('!events' => l('events.stanford.edu', 'http://events.stanford.edu')));
+      $output .= t('These lists are updated several times daily, and the Drupal module is configured to fetch changes regularly. ');
+      $output .= t('If you have recently added an organization and it is not appearing in the list at !import, you can manually refresh the list information at !config.', array('!import' => l('node/add/stanford-event-importer', 'node/add/stanford-event-importer'), '!config' => l('the module configuration page', 'admin/config/stanfordevents'))) . '</p>';
       return $output;
   }
 }
@@ -43,6 +46,17 @@ function stanford_events_importer_menu() {
  * Configuration form.
  */
 function stanford_events_importer_config_form($form, &$form_state) {
+  $form['refresh'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Refresh Lists'),
+    '#description' => t('Click this button to import the latest category and organization information to your website.'),
+  );
+  $form['refresh']['refresh_cat_org_lists'] = array(
+    '#type' => 'button',
+    '#value' => t('Refresh category and organization information'),
+    '#executes_submit_callback' => TRUE,
+    '#submit' => array('stanford_events_importer_config_form_refresh_lists'),
+  );
   $form['feed_urls'] = array(
     '#type' => 'fieldset',
     '#title' => t('Feed URLs'),
@@ -58,17 +72,10 @@ function stanford_events_importer_config_form($form, &$form_state) {
     '#title' => t('Organizations Feed URL'),
     '#default_value' => variable_get('stanford_events_organization_source'),
   );
-  $form['actions']['refresh_cat_org_lists'] = array(
-    '#type' => 'button',
-    '#value' => t('Refresh category and organization lists'),
-    '#executes_submit_callback' => TRUE,
-    '#submit' => array('stanford_events_importer_config_form_refresh_lists'),
-  );
-  $form['actions']['submit'] = array(
+  $form['feed_urls']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Save settings'),
+    '#value' => t('Update feed URLs'),
   );
-//  dpm($form);
   return $form;
 }
 
