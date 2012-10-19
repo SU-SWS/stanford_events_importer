@@ -6,7 +6,7 @@
 
 include_once('stanford_events_importer.features.inc');
 
-/*
+/**
  * Implements hook_help().
  */
 function stanford_events_importer_help($path, $arg) {
@@ -25,7 +25,7 @@ function stanford_events_importer_help($path, $arg) {
   }
 }
 
-/*
+/**
  * Implements hook_menu().
  */
 function stanford_events_importer_menu() {
@@ -39,7 +39,7 @@ function stanford_events_importer_menu() {
   return $items;
 }
 
-/*
+/**
  * Configuration form.
  */
 function stanford_events_importer_config_form($form, &$form_state) {
@@ -72,7 +72,7 @@ function stanford_events_importer_config_form($form, &$form_state) {
   return $form;
 }
 
-/*
+/**
  * Submit function for configuration form.
  */
 function stanford_events_importer_config_form_submit($form, &$form_state) {
@@ -80,7 +80,7 @@ function stanford_events_importer_config_form_submit($form, &$form_state) {
   variable_set('stanford_events_organization_source', $form_state['values']['stanford_events_organization_source']);
 }
 
-/*
+/**
  * Custom submit function for "Refresh" button of config form.
  */
 function stanford_events_importer_config_form_refresh_lists($form, &$form_state) {
@@ -90,7 +90,7 @@ function stanford_events_importer_config_form_refresh_lists($form, &$form_state)
   stanford_events_importer_write_organizations($organization_xml);
 }
 
-/*
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function stanford_events_importer_form_stanford_event_importer_node_form_alter(&$form, &$form_state, $form_id) {
@@ -185,7 +185,7 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   }
 }
 
-/*
+/**
  * Validate user input.
  */
 function stanford_events_importer_validate($form, &$form_state) {
@@ -199,7 +199,7 @@ function stanford_events_importer_validate($form, &$form_state) {
   }
 }
 
-/*
+/**
  * Build the feed URL out of the user's choice in the select list.
  */
 function stanford_events_importer_build_feed_url($form, &$form_state) {
@@ -237,7 +237,7 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
   $form_state['values']['feeds']['FeedsHTTPFetcher']['source'] = $feed_url;
 }
 
-/*
+/**
  * Fetch the list of categories.
  */
 function stanford_events_importer_get_categories() {
@@ -250,7 +250,7 @@ function stanford_events_importer_get_categories() {
   return($category_xml);
 }
 
-/*
+/**
  * Write the categories to the database.
  */
 function stanford_events_importer_write_categories($category_xml) {
@@ -284,7 +284,7 @@ function stanford_events_importer_write_categories($category_xml) {
   }
 }
 
-/*
+/**
  * Fetch the list of organizations.
  */
 function stanford_events_importer_get_organizations() {
@@ -297,7 +297,7 @@ function stanford_events_importer_get_organizations() {
   return($organization_xml);
 }
 
-/*
+/**
  * Write the organizations to the database.
  */
 function stanford_events_importer_write_organizations($organization_xml) {
@@ -336,4 +336,33 @@ function stanford_events_importer_write_organizations($organization_xml) {
        ))
        ->execute();
   }
+}
+
+/**
+ * Combination function to get the list of categories and organizations, and write them to the database.
+ * Used in several places: hook_cron_queue_info(), hook_install(), hook_update_N().
+ */
+function stanford_events_importer_update_cat_org() {
+  $category_xml = stanford_events_importer_get_categories();
+  stanford_events_importer_write_categories($category_xml);
+  $organization_xml = stanford_events_importer_get_organizations();
+  stanford_events_importer_write_organizations($organization_xml);
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function stanford_events_importer_cron_queue_info() {
+  $queues['stanford_events_importer_tasks'] = array(
+    'worker callback' => '  stanford_events_importer_update_cat_org',
+    'time' => 15, 
+  );  
+  return $queues;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function stanford_events_importer_cron() {
+  $queue = DrupalQueue::get('stanford_events_importer_tasks');
 }
