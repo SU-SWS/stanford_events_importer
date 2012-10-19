@@ -110,14 +110,14 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   variable_set('stanford_events_featured_id', $featured_id);
   variable_set('stanford_events_today_id', $today_id);
   //tidy them up alphabetically
-  asort(&$categories);
+  asort($categories);
   //get our list of organizations
   $query = db_select('stanford_events_organization_list', 'o');
   $query->fields('o', array('organization_id', 'name'));
   $result = $query->execute();
   $organizations = $result->fetchAllKeyed();
   //tidy them up alphabetically
-  asort(&$organizations);
+  asort($organizations);
   $form['s_events_cat_org'] = array (
     '#type' => 'fieldset',
     '#title' => t('Category or Organization'),
