@@ -26,7 +26,8 @@ The imported items are set to refresh once every 24 hours, and to update (rather
 ** Import Stanford Event Importer feeds
 ** Stanford Event: Create new content
 ** Stanford Event Importer: Create new content 
-* Create a new node of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and a feed URL (eg, http://events.stanford.edu/xml/drupal/v2.php?featured)
+* Create a new node of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and choose either a Category or an Organization
 ** Full documentation of the Stanford Events Drupal Feed Service is available at http://events.stanford.edu/xml/drupal/
 * Your events will be imported
 * You can set refresh rate and other options at admin/build/feeds/edit/stanford_event_importer (requires enabling the Feeds UI module)
+* You must set up an individual feed node for each Category or Organization feed you would like to import
