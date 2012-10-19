@@ -10,10 +10,7 @@ function stanford_events_importer_install() {
   variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
   variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
   module_enable(array('stanford_events_importer'));
-  $category_xml = stanford_events_importer_get_categories();
-  stanford_events_importer_write_categories($category_xml);
-  $organization_xml = stanford_events_importer_get_organizations();
-  stanford_events_importer_write_organizations($organization_xml);
+  stanford_events_importer_update_cat_org();
 }
 
 /**
@@ -317,12 +314,7 @@ function stanford_events_importer_update_7200() {
   variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
   //make stanford_events_importer functions available to us
   drupal_load('module', 'stanford_events_importer');
-  $category_xml = stanford_events_importer_get_categories();
-  //insert categories
-  stanford_events_importer_write_categories($category_xml);
-  $organization_xml = stanford_events_importer_get_organizations();
-  //insert organizations
-  stanford_events_importer_write_organizations($organization_xml);
+  stanford_events_importer_update_cat_org();
 }
 
 /**
