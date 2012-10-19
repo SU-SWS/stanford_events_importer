@@ -1,6 +1,16 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-2.0-beta1, 2012-10-19
+--------------------------------------------------
+The 7.x-2.0-beta1 release is the first release in the 7.x-2.x branch that should
+  be considered stable.
+Changes since 2.0-alpha6 include:
+  -support for updating from 7.x-1.x branch
+  -configuration screen
+  -update Drupal database tables with category and organization lists on cron runs
+  -bug fixes
+
 Stanford Events Importer 7.x-2.0-alpha6, 2012-10-17
 ---------------------------------------------------
 Changes since 2.0-alpha1 include:
