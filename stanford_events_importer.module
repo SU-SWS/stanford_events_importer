@@ -359,10 +359,3 @@ function stanford_events_importer_cron_queue_info() {
   );  
   return $queues;
 }
-
-/**
- * Implements hook_cron().
- */
-function stanford_events_importer_cron() {
-  $queue = DrupalQueue::get('stanford_events_importer_tasks');
-}
