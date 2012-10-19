@@ -165,6 +165,155 @@ function stanford_events_importer_schema() {
 }
 
 /*
+ * Implements hook_update_N().
+ */
+function stanford_events_importer_update_7200() {
+  $schema = array();
+  $schema['stanford_events_category_list'] = array(
+    'description' => 'List of categories from events.stanford.edu',
+    'fields' => array(
+      'guid' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => '',
+        'unsigned' => 1,
+      ),
+      'category_id' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+        'description' => '',
+        'unsigned' => 1,
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => '',
+      ),
+      'type' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => FALSE,
+        'description' => '',
+        'unsigned' => 1,
+      ),
+      'description' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => '',
+      ),
+      'tag' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => '',
+      ),
+    ),
+    'name' => 'stanford_events_category_list',
+    'indexes' => array(
+      'category_id' => array(
+        0 => 'category_id',
+      ),
+      'guid' => array(
+        0 => 'guid',
+      ),
+      'type' => array(
+        0 => 'type',
+      ),
+    ),
+    'primary key' => array(
+      0 => 'guid',
+    ),
+  );
+  $schema['stanford_events_organization_list'] = array(
+    'description' => '',
+    'fields' => array(
+      'guid' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'GUID',
+      ),
+      'organization_id' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'description' => 'Organization ID',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => 'Name',
+      ),
+      'type' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'description' => 'Type',
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => 'Email',
+      ),
+      'phone' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => 'Phone',
+      ),
+      'url' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => 'URL',
+      ),
+      'rss_url' => array(
+        'type' => 'varchar',
+        'size' => 'normal',
+        'length' => '255',
+        'not null' => FALSE,
+        'description' => 'RSS URL',
+      ),
+    ),
+    'name' => 'stanford_events_organization_list',
+    'indexes' => array(
+      'guid' => array(
+        0 => 'guid',
+      ),
+      'organization_id' => array(
+        0 => 'organization_id',
+      ),
+      'type' => array(
+        0 => 'type',
+      ),
+    ),
+    'primary key' => array(
+      0 => 'guid',
+    ),
+  );
+  db_create_table('stanford_events_category_list', $schema['stanford_events_category_list']);
+  db_create_table('stanford_events_organization_list', $schema['stanford_events_organization_list']);
+}
+
+/*
  * Implements hook_uninstall().
  */
 function stanford_events_importer_uninstall() {
