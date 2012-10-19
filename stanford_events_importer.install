@@ -317,7 +317,7 @@ function stanford_events_importer_update_7200() {
   //get the list of categories and orgs, and put them into the DB
   stanford_events_importer_update_cat_org();
   //clear the cache, because we're adding a new menu item.
-  cache_clear_all();
+  menu_cache_clear_all();
 }
 
 /**
