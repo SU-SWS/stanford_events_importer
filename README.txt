@@ -31,3 +31,12 @@ The imported items are set to refresh once every 24 hours, and to update (rather
 * Your events will be imported
 * You can set refresh rate and other options at admin/build/feeds/edit/stanford_event_importer (requires enabling the Feeds UI module)
 * You must set up an individual feed node for each Category or Organization feed you would like to import
+
+-- NOTES ON UPGRADING FROM THE 7.x-1.x BRANCH --
+When upgrading from 7.x-1.x to 7.x-2.x:
+* You must run update.php
+* If you have existing Stanford Event nodes, you must do the following:
+** Go to each Stanford Event Importer node and click "Delete items" to delete all associated Stanford Event nodes (you will lose any edits you have made to those nodes)
+** Go to admin/structure/features/stanford_events_importer and revert the Stanford Events Importer Feature
+** Go to each Stanford Event Importer node and click "Import items" to re-import the Stanford Event nodes
+This is necessary because the 7.x-2.x branch makes changes to some of the fields in the Stanford Event content type, and those changes cannot be applied if there is existing data in those fields
