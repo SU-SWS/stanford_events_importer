@@ -1,6 +1,7 @@
 <?php
 /**
- * @file Schema definitions. Install/update/uninstall hooks.
+ * @file
+ * Schema definitions. Install/update/uninstall hooks.
  */
 
 /**

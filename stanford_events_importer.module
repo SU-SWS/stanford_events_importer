@@ -15,14 +15,14 @@ function stanford_events_importer_help($path, $arg) {
       $output = '<h2>' . t('To Use') . '</h2>';
       $output .= '<ol><li>' . t('Enable the module and all dependencies') . '</li>';
       $output .= '<li>' . t('Go to !permissions and give selected roles the following permissions:', array('!permissions' => l('admin/people/permissions', 'admin/people/permissions')));
-      $output .= '<ul><li>' . t('Import Stanford Event Importer feeds ') . '</li><li>' . t('Stanford Event: Create new content') . '</li><li>' . t('Stanford Event Importer: Create new content ') . '</li></ul></li>';
+      $output .= '<ul><li>' . t('Import Stanford Event Importer feeds') . ' </li><li>' . t('Stanford Event: Create new content') . '</li><li>' . t('Stanford Event Importer: Create new content') . ' </li></ul></li>';
       $output .= '<li>' . t('!addnode of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and choose <strong>either</strong> a Category or an Organization (not one of each). ', array('!addnode' => l('Create a new node', 'node/add/stanford-event-importer')));
       $output .= '<ul><li>' . t('Full documentation of the Stanford Events Drupal Feed Service is available at !eventsdrupal', array('!eventsdrupal' => l('http://events.stanford.edu/xml/drupal/', 'http://events.stanford.edu/xml/drupal/'))) . '</li></ul></li>';
       $output .= '<li>' . t('Your events will be imported') . '</li>';
       $output .= '<li>' . t('Create a separate Stanford Event Importer node for each category or organization you would like to use to import events');
       $output .= '<li>' . t('You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module)', array('!editimporter' => l('admin/build/feeds/edit/stanford_event_importer', 'admin/build/feeds/edit/stanford_event_importer'))) . '</li></ol>';
-      $output .= '<p>' . t('The service at !events maintains lists of categories and organizations. ', array('!events' => l('events.stanford.edu', 'http://events.stanford.edu')));
-      $output .= t('These lists are updated several times daily, and the Drupal module is configured to fetch changes regularly. ');
+      $output .= '<p>' . t('The service at !events maintains lists of categories and organizations.', array('!events' => l('events.stanford.edu', 'http://events.stanford.edu'))) . ' ';
+      $output .= t('These lists are updated several times daily, and the Drupal module is configured to fetch changes regularly.') . ' ';
       $output .= t('If you have recently added an organization and it is not appearing in the list at !import, you can manually refresh the list information at !config.', array('!import' => l('node/add/stanford-event-importer', 'node/add/stanford-event-importer'), '!config' => l('the module configuration page', 'admin/config/stanfordevents'))) . '</p>';
       return $output;
   }
@@ -91,7 +91,7 @@ function stanford_events_importer_config_form_submit($form, &$form_state) {
  * Custom submit function for "Refresh" button of config form.
  */
 function stanford_events_importer_config_form_refresh_lists($form, &$form_state) {
-  stanford_events_importer_update_cat_org();  
+  stanford_events_importer_update_cat_org();
 }
 
 /**
@@ -122,26 +122,26 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   $organizations = $result->fetchAllKeyed();
   //tidy them up alphabetically
   asort($organizations);
-  $form['s_events_cat_org'] = array (
+  $form['s_events_cat_org'] = array(
     '#type' => 'fieldset',
     '#title' => t('Category or Organization'),
     '#collapsible' => FALSE,
     '#description' => t('Select <strong>either</strong> a Category <strong>or</strong> an Organization.'),
   );
-  $form['s_events_cat_org']['s_events_category'] = array (
+  $form['s_events_cat_org']['s_events_category'] = array(
     '#type' => 'select',
     '#options' => $categories,
     '#title' => t('Category'),
     '#description' => t('Select a category'),
     '#empty_option' => '-- ' . t('None') . ' --',
   );
-  $form['s_events_cat_org']['s_events_organization'] = array (
+  $form['s_events_cat_org']['s_events_organization'] = array(
     '#type' => 'select',
     '#options' => $organizations,
     '#title' => t('Organization'),
     '#description' => t('Select an organization'),
     '#empty_option' => '-- ' . t('None') . ' --',
-   );
+  );
   //disable the default feed URL form field
   //We'll supply our own options, then convert to a feed URL.
   $form['feeds']['#access'] = FALSE;
@@ -160,20 +160,20 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     //strip out 'v2.php?'
     $current_selection = preg_replace('/v2\.php\?/', '', $current_selection);
     //today is a beautiful and unique snowflake
-    if($current_selection == 'today') {
+    if ($current_selection == 'today') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $today_id;
     }
     //featured also is a beautiful and unique snowflake
-    elseif($current_selection == 'featured') {
+    elseif ($current_selection == 'featured') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $featured_id;
     }
     //if it's a category, pull the category id and make that the default in the dropdown
-    elseif(preg_match('/category\=/', $current_selection) == 1) {
+    elseif (preg_match('/category\=/', $current_selection) == 1) {
       $current_selection = preg_replace('/category\=/', '', $current_selection);
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $current_selection;
     }
     //if it's an organization, pull the organization id and make that the default in the dropdown
-    elseif(preg_match('/organization\=/', $current_selection) == 1) {
+    elseif (preg_match('/organization\=/', $current_selection) == 1) {
       $current_selection = preg_replace('/organization\=/', '', $current_selection);
       $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
     }
@@ -250,10 +250,10 @@ function stanford_events_importer_get_categories() {
   //Pull in the XML file from a URL
   $categories = drupal_http_request($category_url);
   //check that drupal_http_request didn't return an error and that we have data
-  if(!isset($categories->error) && isset($categories->data)) {
+  if (!isset($categories->error) && isset($categories->data)) {
     //Put just the XML data into a variable
     $category_xml = $categories->data;
-    return($category_xml);
+    return ($category_xml);
   }
   else {
     return;
@@ -265,7 +265,7 @@ function stanford_events_importer_get_categories() {
  */
 function stanford_events_importer_write_categories($category_xml) {
   //don't do anything if we don't have anything
-  if(!isset($category_xml)) {
+  if (!isset($category_xml)) {
     return;
   }
   $parser = xml_parser_create();
@@ -273,7 +273,7 @@ function stanford_events_importer_write_categories($category_xml) {
   xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
   xml_parse_into_struct($parser, $category_xml, $valuesarray, $index);
   xml_parser_free($parser);
-  foreach($index['guid'] as $key => $value) {
+  foreach ($index['guid'] as $key => $value) {
     $guid = $valuesarray[$value]['value'];
     $value = $value + 1;
     $category_id = $valuesarray[$value]['value'];
@@ -293,8 +293,8 @@ function stanford_events_importer_write_categories($category_xml) {
         'type' => $type,
         'description' => $description,
         'tag' => $tag,
-       ))
-       ->execute();
+      ))
+      ->execute();
   }
 }
 
@@ -307,10 +307,10 @@ function stanford_events_importer_get_organizations() {
   //Pull in the XML file from a URL
   $organizations = drupal_http_request($organization_url);
   //check that drupal_http_request didn't return an error and that we have data
-  if(!isset($organizations->error) && isset($organizations->data)) {
+  if (!isset($organizations->error) && isset($organizations->data)) {
     //Put just the XML data into a variable
     $organization_xml = $organizations->data;
-    return($organization_xml);
+    return ($organization_xml);
   }
   else {
     return;
@@ -322,7 +322,7 @@ function stanford_events_importer_get_organizations() {
  */
 function stanford_events_importer_write_organizations($organization_xml) {
   //don't do anything if we don't have anything
-  if(!isset($organization_xml)) {
+  if (!isset($organization_xml)) {
     return;
   }
   $parser = xml_parser_create();
@@ -330,7 +330,7 @@ function stanford_events_importer_write_organizations($organization_xml) {
   xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
   xml_parse_into_struct($parser, $organization_xml, $valuesarray, $index);
   xml_parser_free($parser);
-  foreach($index['guid'] as $key => $value) {
+  foreach ($index['guid'] as $key => $value) {
     $guid = $valuesarray[$value]['value'];
     $value = $value + 1;
     $organization_id = $valuesarray[$value]['value'];
@@ -359,8 +359,8 @@ function stanford_events_importer_write_organizations($organization_xml) {
         'phone' => $phone,
         'url' => $url,
         'rss_url' => $rss_url,
-       ))
-       ->execute();
+      ))
+      ->execute();
   }
 }
 
