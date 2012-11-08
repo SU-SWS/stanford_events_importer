@@ -7,6 +7,7 @@ version = 7.x-2.0-beta1
 project = stanford_events_importer
 dependencies[] = ctools
 dependencies[] = date
+dependencies[] = date_all_day
 dependencies[] = features
 dependencies[] = feeds
 dependencies[] = feeds_tamper
