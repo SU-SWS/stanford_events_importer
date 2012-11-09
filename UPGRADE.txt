@@ -1,0 +1,20 @@
+INTRODUCTION
+------------
+The 7.x-2.x branch of the Stanford Events Importer module is a significant upgrade
+  from the 7.x-1.x branch. It uses a new version of the API from events.stanford.edu,
+  removes the requirement that users input the Feed URL directly, and adds several new
+  fields to the Stanford Event content type and associated Feed Importer.
+
+UPGRADING
+---------
+Follow the steps below to upgrade from Stanford Events Importer 7.x-1.x to 7.x-2.x
+
+0) Update to latest 7.x-1.x version of Stanford Events Importer (7.x-1.x-alpha2)
+1) Disable Stanford Events Importer 7.x-1.x
+2) Upload new version of module (7.x-2.x branch)
+3) Enable Stanford Events Importer module
+4) Run update.php
+5) Delete all items from each feed importer (node/x/delete-items)
+6) Revert Feature (at admin/structure/features/stanford_events_importer)
+7) Edit and save each feed importers (select appropriate Category or Organization from the dropdown and it will fill a new Feed URL)
+8) Re-import items from feed importers (node/x/import)
