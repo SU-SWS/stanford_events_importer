@@ -249,6 +249,8 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
   }
   //pop our constructed feed URL into the field in a format that Feeds and Feeds XPath Parser can digest it.
   $form_state['values']['feeds']['FeedsHTTPFetcher']['source'] = $feed_url;
+  //clear warning messages
+  drupal_get_messages('warning');
 }
 
 /**
