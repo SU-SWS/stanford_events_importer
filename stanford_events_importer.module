@@ -165,8 +165,10 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
 
     //look for 'v2.php?foo' or whatever in the feed URL, and capture that into $matches[0]
     preg_match($pattern, $feed_url, $matches);
-    
-    $current_selection = $matches[0];
+    $current_selection = '';
+    if(isset($matches[0])) {
+      $current_selection = $matches[0];
+    }
     //strip out 'v2.php?'
     $current_selection = preg_replace('/v2\.php\?/', '', $current_selection);
     //today is a beautiful and unique snowflake
