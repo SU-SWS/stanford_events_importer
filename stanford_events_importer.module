@@ -152,10 +152,20 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   }
   //if the feed URL is not blank (e.g., when editing an existing node), populate the correct dropdown.
   else {
+    //OK, what is the feed URL?
     $feed_url = $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'];
+    //Does it have v2.php in it?
     $pattern = '/v2\.php\?.*$/';
+    $feed_exists = preg_match($pattern, $feed_url);
+    $message = t('This importer has an invalid feed source. This error usually appears when updating from an earlier version of the Stanford Events Importer module. Please choose an organization or category from the lists below.');
+    //If it doesn't use the v2 version of the feed URL, display a warning message
+    if ($feed_exists == 0){
+      drupal_set_message($message, 'warning', FALSE);
+    }
+
     //look for 'v2.php?foo' or whatever in the feed URL, and capture that into $matches[0]
     preg_match($pattern, $feed_url, $matches);
+    
     $current_selection = $matches[0];
     //strip out 'v2.php?'
     $current_selection = preg_replace('/v2\.php\?/', '', $current_selection);
