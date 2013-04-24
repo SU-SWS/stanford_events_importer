@@ -1,6 +1,11 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-2.0-beta5, 2013-04-24
+--------------------------------------------------
+-Changed date/time field to use site time zone instead of UTC.
+-Added Feeds Tamper to date field to convert string to UNIX timestamp
+
 Stanford Events Importer 7.x-2.0-beta4, 2012-11-09
 --------------------------------------------------
 Fix version number mismatch in .info file.
