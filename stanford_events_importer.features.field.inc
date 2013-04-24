@@ -406,7 +406,7 @@ function stanford_events_importer_field_default_fields() {
         ),
         'timezone_db' => 'UTC',
         'todate' => 'optional',
-        'tz_handling' => 'utc',
+        'tz_handling' => 'site',
       ),
       'translatable' => '0',
       'type' => 'datetime',
