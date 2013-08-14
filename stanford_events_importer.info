@@ -3,14 +3,14 @@ description = Imports events from events.stanford.edu and creates a "Stanford Ev
 core = 7.x
 package = Stanford
 php = 5.2.4
-version = 7.x-2.0-beta4
+version = 7.x-2.0-beta5
 project = stanford_events_importer
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
 dependencies[] = date_popup
 dependencies[] = features
-dependencies[] = feeds
+dependencies[] = feeds (>=2.0-alpha8)
 dependencies[] = feeds_tamper
 dependencies[] = feeds_xpathparser
 dependencies[] = image

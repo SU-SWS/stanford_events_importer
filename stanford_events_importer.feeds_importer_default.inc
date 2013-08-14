@@ -23,6 +23,7 @@ function stanford_events_importer_feeds_importer_default() {
         'auto_detect_feeds' => FALSE,
         'use_pubsubhubbub' => FALSE,
         'designated_hub' => '',
+        'request_timeout' => NULL,
       ),
     ),
     'parser' => array(
@@ -93,7 +94,6 @@ function stanford_events_importer_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'stanford_event',
         'expire' => '-1',
         'author' => 0,
         'mappings' => array(
@@ -180,6 +180,9 @@ function stanford_events_importer_feeds_importer_default() {
         ),
         'update_existing' => '2',
         'input_format' => 'filtered_html',
+        'authorize' => 1,
+        'skip_hash_check' => 0,
+        'bundle' => 'stanford_event',
       ),
     ),
     'content_type' => 'stanford_event_importer',
@@ -189,6 +192,7 @@ function stanford_events_importer_feeds_importer_default() {
     'import_on_create' => 1,
     'process_in_background' => 0,
   );
+
   $export['stanford_event_importer'] = $feeds_importer;
 
   return $export;
