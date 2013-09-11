@@ -21,7 +21,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Descriptor group',
-    'weight' => '2',
+    'weight' => '1',
     'children' => array(
       0 => 'field_stanford_event_admission',
       1 => 'field_stanford_event_datetime',
@@ -73,6 +73,36 @@ function stanford_events_importer_field_group_info() {
     ),
   );
   $export['group_floatright|node|stanford_event|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_stanford_event_advanced|node|stanford_event|form';
+  $field_group->group_name = 'group_stanford_event_advanced';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Advanced',
+    'weight' => '11',
+    'children' => array(
+      0 => 'field_stanford_event_add_to_cal',
+      1 => 'field_stanford_event_audience',
+      2 => 'field_stanford_event_categories',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Advanced',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_stanford_event_advanced|node|stanford_event|form'] = $field_group;
 
   return $export;
 }
