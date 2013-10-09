@@ -62,7 +62,7 @@ function stanford_events_importer_field_group_info() {
     'format_settings' => array(
       'label' => 'Float Right',
       'instance_settings' => array(
-        'classes' => 'float-right',
+        'classes' => 'float-right border-simple-nowidth border-shadow',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
