@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01c74a87-3536-4da6-bd5d-5a5ecbe50aaa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/stanford_events_importer.field_group.inc" afterPath="$PROJECT_DIR$/stanford_events_importer.field_group.inc" />
-    </list>
+    <list default="true" id="01c74a87-3536-4da6-bd5d-5a5ecbe50aaa" name="Default" comment="" />
     <ignored path="stanford_events_importer.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="01c74a87-3536-4da6-bd5d-5a5ecbe50aaa" time="1381332771955" ignored="false" />
@@ -68,6 +66,7 @@
       </list>
     </option>
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="29" />
