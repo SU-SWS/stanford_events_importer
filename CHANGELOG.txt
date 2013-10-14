@@ -1,6 +1,15 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-2.0-beta6, 2013-10-14
+--------------------------------------------------
+Changes since 7.x-2.0-beta5:
+  -Changes to node add/edit form
+  -Added border classes to image on node display
+  -Changes to node add/edit form
+  -Added Field Groups
+  -Updated to attach to a bundle per feeds-7.x-2.0-alpha8
+
 Stanford Events Importer 7.x-2.0-beta5, 2013-04-24
 --------------------------------------------------
 -Changed date/time field to use site time zone instead of UTC.
