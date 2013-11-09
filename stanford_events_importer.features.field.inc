@@ -449,9 +449,9 @@ function stanford_events_importer_field_default_fields() {
         'module' => 'date',
         'settings' => array(
           'display_all_day' => 1,
-          'increment' => 15,
+          'increment' => 1,
           'input_format' => 'custom',
-          'input_format_custom' => 'Y-m-d H:i:s O',
+          'input_format_custom' => 'Y-m-d g:i:sA',
           'label_position' => 'above',
           'text_parts' => array(),
           'year_range' => '-3:+3',
