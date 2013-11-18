@@ -5,7 +5,7 @@
  */
 
 /**
- * Implements hook_requirements
+ * Implements hook_requirements().
  */
 function stanford_events_importer_requirements($phase) {
   $requirements = array();
@@ -13,7 +13,7 @@ function stanford_events_importer_requirements($phase) {
   switch($phase) {
     case 'update':
 
-      // Ensure that field_collection module is enabled before updating.
+      // Ensure that strongarm module is enabled before updating.
       if (!module_exists('strongarm')) {
         // Be nice and try to enable it for the user.
         if(!module_enable(array('strongarm'))) {
@@ -21,21 +21,21 @@ function stanford_events_importer_requirements($phase) {
           $requirements['strongarm_enabled'] = array(
             'title' => 'Strongarm Module Required',
             'value' => 'Not installed',
-            'description' => 'Strongarm module required for version 2.x of the stanford events module. Please download and enable the strongarm module before proceeding. http://drupal.org/project/strongarm',
+            'description' => 'The Strongarm module is required for version 2.x of the Stanford Events Importer module. Please download and enable the Strongarm module before proceeding. http://drupal.org/project/strongarm',
             'severity' => REQUIREMENT_ERROR,
           );
         }
       }
 
-      // Ensure that field_collection module is enabled before updating.
+      // Ensure that field_group module is enabled before updating.
       if (!module_exists('field_group')) {
         // Be nice and try to enable it for the user.
         if(!module_enable(array('field_group'))) {
           // Still no dice. Throw out requirement.
-          $requirements['field_groupenabled'] = array(
+          $requirements['field_group_enabled'] = array(
             'title' => 'Field Group Module Required',
             'value' => 'Not installed',
-            'description' => 'Field Group module required for version 2.x of the stanford events module. Please download and enable the field_group module before proceeding. http://drupal.org/project/field_group',
+            'description' => 'The Field Group module is required for version 2.x of the Stanford Events Importer module. Please download and enable the Field Group module before proceeding. http://drupal.org/project/field_group',
             'severity' => REQUIREMENT_ERROR,
           );
         }
