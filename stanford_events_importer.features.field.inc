@@ -391,8 +391,6 @@ function stanford_events_importer_field_default_fields() {
       'locked' => '0',
       'module' => 'date',
       'settings' => array(
-        'cache_count' => '4',
-        'cache_enabled' => 0,
         'granularity' => array(
           'day' => 'day',
           'hour' => 'hour',
@@ -402,8 +400,8 @@ function stanford_events_importer_field_default_fields() {
           'year' => 'year',
         ),
         'timezone_db' => 'UTC',
-        'todate' => 'optional',
-        'tz_handling' => 'site',
+        'todate' => '',
+        'tz_handling' => 'utc',
       ),
       'translatable' => '0',
       'type' => 'datetime',
@@ -462,7 +460,7 @@ function stanford_events_importer_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-stanford_event-field_stanford_event_email'.
+    // Exported field: 'node-stanford_event-field_stanford_event_email'.
   $fields['node-stanford_event-field_stanford_event_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -913,6 +911,7 @@ function stanford_events_importer_field_default_fields() {
       ),
     ),
   );
+
 
   // Translatables
   // Included for use with string extractors like potx.
