@@ -309,18 +309,74 @@ function stanford_events_importer_update_7200(&$sandbox) {
     'not null' => FALSE,
   );
 
-  if (!$vald2d) {
+  if (!$val2d) {
     db_add_field('field_data_field_stanford_event_datetime', 'field_stanford_event_datetime_value2', $field_config);
   }
 
-  if (!$vald2r) {
+  if (!$val2r) {
     db_add_field('field_revision_field_stanford_event_datetime', 'field_stanford_event_datetime_value2', $field_config);
   }
 
-  // Now one more interesting issue. The guid field is changing.
-
+  // Update all existing feed items... arg.
+  $success = stanford_events_importer_update_7200b();
 
 }
+
+function stanford_events_importer_update_7200b() {
+  // Now one more interesting issue. The guid field is changing. Will need to
+  // update that as well....
+
+  $items = db_select('feeds_item', 'fi')
+            ->fields('fi', array('entity_id', 'guid'))
+            ->condition('id', 'stanford_event_importer')
+            ->orderBy('entity_id', 'ASC')
+            ->execute();
+
+  $eids = $items->fetchAllAssoc('entity_id');
+
+  if (count($eids) >= 50000) {
+    watchdog('stanford_events_importer', 'Could not update existing event nodes. Too many.');
+    return FALSE;
+  }
+
+  $exression = 'CASE';
+  $gids = array();
+  $nids = array();
+  foreach ($eids as $nid => $info) {
+    $existing_guid_parts = explode("/", $info->guid);
+
+    // Do not process items that dont match.
+    if (!isset($existing_guid_parts[5])) {
+      continue;
+    }
+
+    // Remove the extra information.
+    $key = preg_replace('/\?date.*/', '', $existing_guid_parts[5]);
+
+    // If the key is not an integer we did something wrong.
+    if (!is_numeric($key)) {
+      continue;
+    }
+
+    // Create the keys.
+    $gids[$key][] = $nid;
+    $nids[] = $nid;
+    $guid = $key . "-" . (count($gids[$key]) - 1);
+
+    $exression .= " WHEN entity_id = $nid THEN '" . $guid . "' \n";
+  }
+
+  $exression .= ' END';
+
+  // Create an update fields array... oi.
+  $query = db_update('feeds_item');
+  $query->condition('feeds_item.entity_id', $nids, 'IN');
+  $query->expression('guid', $exression);
+  $results = $query->execute();
+
+  return TRUE;
+}
+
 
 /**
  * Update all importers to use the new v2.php for importing.
