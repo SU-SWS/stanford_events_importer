@@ -395,13 +395,13 @@ function stanford_events_importer_update_7200c() {
     // clauses so limit it!.
     if (count($mappings) >= 50000) {
       watchdog('stanford_events_importer', 'Could not update new event nodes. Too many.');
-      return FALSE;
+      continue;
     }
 
     // Possibly the feed was right? yes. Possible.
-    if (empty($mappings) == 0) {
+    if (empty($mappings)) {
       watchdog('stanford_events_importer', 'Nothing to map. Continuing on. Importer node id: ' . $entity_id, array(), WATCHDOG_NOTICE);
-      return TRUE;
+      continue;
     }
 
     $exression = 'CASE';
