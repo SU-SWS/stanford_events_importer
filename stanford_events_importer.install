@@ -398,6 +398,12 @@ function stanford_events_importer_update_7200c() {
       return FALSE;
     }
 
+    // Possibly the feed was right? yes. Possible.
+    if (empty($mappings) == 0) {
+      watchdog('stanford_events_importer', 'Nothing to map. Continuing on. Importer node id: ' . $entity_id, array(), WATCHDOG_NOTICE);
+      return TRUE;
+    }
+
     $exression = 'CASE';
     $guids = array();
     foreach ($mappings as $guid => $guid2) {
