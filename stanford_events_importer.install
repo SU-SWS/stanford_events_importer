@@ -251,6 +251,27 @@ function stanford_events_importer_update_7100(&$sandbox) {
  */
 function stanford_events_importer_update_7200(&$sandbox) {
 
+  // Get helper functions and utilities.
+  module_load_include('php', 'stanford_events_importer', 'inc/stanford_events_importer.util.inc');
+
+  // First batch of updates. Schema checks and such.
+  $success = stanford_events_importer_update_7200a();
+
+  // Update all existing feed items datetime stamp to match site!
+  $success = stanford_events_importer_update_7200b();
+
+  // Update all existing feed items guid to new values.
+  $success = stanford_events_importer_update_7200c();
+
+}
+
+/**
+ * The features schema changes and so will the db schmea. Because field api
+ * does not allow this we have to do some dirty work with changing the values.
+ * @return bool
+ *   success or not.
+ */
+function stanford_events_importer_update_7200a() {
   // Check if latest schema is installed. No. Install it.
   if (db_table_exists('stanford_events_organization_list') == FALSE) {
     drupal_install_schema('stanford_events_importer');
@@ -317,62 +338,82 @@ function stanford_events_importer_update_7200(&$sandbox) {
     db_add_field('field_revision_field_stanford_event_datetime', 'field_stanford_event_datetime_value2', $field_config);
   }
 
-  // Update all existing feed items... arg.
-  $success = stanford_events_importer_update_7200b();
-
+  return TRUE;
 }
 
+
+/**
+ * Update all existing stanford_event nodes' datetime field to roll back 8 hours
+ * due to the change in timezone handling on the field. With the datetime field
+ * this update will only work with MYSQL databases. Contact sheamck@stanford.edu
+ * if you have another database type.
+ * @return bool
+ *   success or not.
+ */
 function stanford_events_importer_update_7200b() {
-  // Now one more interesting issue. The guid field is changing. Will need to
-  // update that as well....
 
-  $items = db_select('feeds_item', 'fi')
-            ->fields('fi', array('entity_id', 'guid'))
-            ->condition('id', 'stanford_event_importer')
-            ->orderBy('entity_id', 'ASC')
-            ->execute();
-
-  $eids = $items->fetchAllAssoc('entity_id');
-
-  if (count($eids) >= 50000) {
-    watchdog('stanford_events_importer', 'Could not update existing event nodes. Too many.');
+  // We have to db MYSQL for this to work. Sorry other guys.
+  $type = db_driver();
+  if ($type !== "mysql") {
+    $msg = t('Could not update existing stanford_event nodes. Database connection must be mysql.');
+    drupal_set_message($msg, 'error');
+    watchdog('stanford_events_importer', $msg, array(), WATCHDOG_ERROR);
     return FALSE;
   }
 
-  $exression = 'CASE';
-  $gids = array();
-  $nids = array();
-  foreach ($eids as $nid => $info) {
-    $existing_guid_parts = explode("/", $info->guid);
+  // Update the data field first.
+  $result = db_query("UPDATE {field_data_field_stanford_event_datetime} SET `field_stanford_event_datetime_value2` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+            ->execute();
 
-    // Do not process items that dont match.
-    if (!isset($existing_guid_parts[5])) {
-      continue;
+  // Update the revisions field.
+  $result = db_query("UPDATE {field_revision_field_stanford_event_datetime} SET `field_stanford_event_datetime_value2` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+            ->execute();
+
+  return TRUE;
+}
+
+/**
+ * This function has been broken out into its own function for testing and
+ * because it may not be included in the end. It goes through all stanford event
+ * importers and updates the GUID of the feeds_item so that the nodes are
+ * updated rather then re-imported. To do this we have to get the feed
+ * from feeds.php and line up the guid and guid2 into a keyed array then loop
+ * through the database to update the keys.
+ *
+ * Gack.
+ */
+function stanford_events_importer_update_7200c() {
+
+  // The guid field is changing. Will need to update that.
+  // Get and store XML information as keyd guids.
+  $keys = stanford_events_importer_update_7200_get_xml_keys();
+
+  // Loop through each importer node and generate an update query.
+  foreach ($keys as $entity_id => $mappings) {
+
+    // The mysql query we are going to generate can really only handle 50000
+    // clauses so limit it!.
+    if (count($mappings) >= 50000) {
+      watchdog('stanford_events_importer', 'Could not update new event nodes. Too many.');
+      return FALSE;
     }
 
-    // Remove the extra information.
-    $key = preg_replace('/\?date.*/', '', $existing_guid_parts[5]);
-
-    // If the key is not an integer we did something wrong.
-    if (!is_numeric($key)) {
-      continue;
+    $exression = 'CASE';
+    $guids = array();
+    foreach ($mappings as $guid => $guid2) {
+      $guids[] = $guid;
+      $exression .= " WHEN guid = '" . $guid . "' THEN '" . $guid2 . "' \n";
     }
 
-    // Create the keys.
-    $gids[$key][] = $nid;
-    $nids[] = $nid;
-    $guid = $key . "-" . (count($gids[$key]) - 1);
+    $exression .= ' END';
 
-    $exression .= " WHEN entity_id = $nid THEN '" . $guid . "' \n";
-  }
+    // Create an update fields array... oi.
+    $query = db_update('feeds_item');
+    $query->condition('feeds_item.guid', $guids, 'IN');
+    $query->expression('guid', $exression);
+    $results = $query->execute();
 
-  $exression .= ' END';
-
-  // Create an update fields array... oi.
-  $query = db_update('feeds_item');
-  $query->condition('feeds_item.entity_id', $nids, 'IN');
-  $query->expression('guid', $exression);
-  $results = $query->execute();
+  } // end foreach.
 
   return TRUE;
 }
@@ -452,8 +493,6 @@ function stanford_events_importer_update_7201(&$sandbox) {
       ->condition('feed_nid', $nid)
       ->execute();
   }
-
-
 
 
 }
