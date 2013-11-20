@@ -112,7 +112,13 @@ function stanford_events_importer_update_7200_process_xml_to_guids($xml = array(
   $mappings = array();
   $i = 0;
   while ($event = $xml->Event[$i]) {
-    $mappings[(string) $event->guid] = (string) $event->guid2;
+    $guid = (string) $event->guid;
+    $guid2 = (string) $event->guid2;
+    if (empty($guid2)) {
+      $i++;
+      continue;
+    }
+    $mappings[$guid] = $guid2;
     $i++;
   }
   return $mappings;
