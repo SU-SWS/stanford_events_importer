@@ -362,11 +362,11 @@ function stanford_events_importer_update_7200b() {
   }
 
   // Update the data field first.
-  $result = db_query("UPDATE {field_data_field_stanford_event_datetime} SET `field_stanford_event_datetime_value2` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+  $result = db_query("UPDATE {field_data_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
             ->execute();
 
   // Update the revisions field.
-  $result = db_query("UPDATE {field_revision_field_stanford_event_datetime} SET `field_stanford_event_datetime_value2` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+  $result = db_query("UPDATE {field_revision_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
             ->execute();
 
   return TRUE;
