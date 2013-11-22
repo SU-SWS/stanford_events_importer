@@ -15,7 +15,7 @@
 
       $.each($('.start-date-wrapper ', context), function(i, v) {
         var timefield = $(v).find('input:eq(1)');
-        timefield.blur(time_blur_handler);
+        timefield.bind('blur.stanford_events_importer', from_time_blur_handler);
       });
 
     }
@@ -31,7 +31,7 @@
    * @param  {[type]} e [description]
    * @return {[type]}   [description]
    */
-  var time_blur_handler = function(e) {
+  var from_time_blur_handler = function(e) {
 
     // First find the show end date checkbox and see if it is checked.
     var showend = $(this)
@@ -62,6 +62,8 @@
     if (typeof to_date_field === undefined) { return; }
     if (typeof to_time_field === undefined) { return; }
 
+    to_time_field.one('blur', to_time_blur_handler);
+
     // If the date field is empty populate it.
     if (to_date_field.val().length === 0) {
       to_date_field.val(from_date_value);
@@ -70,20 +72,57 @@
     // Date conversion needs 24hr format.
     var from_time_value_twenty_four = stanford_events_importer_time_to_twenty_four(from_time_value);
 
+    // Something went wrong. Die quietly.
+    if(!from_time_value_twenty_four) {
+      return;
+    }
+
     // Format the new time appropriately.
     var date_object = new Date(from_date_value + " " + from_time_value_twenty_four);
+
+    // Something went wrong. Die quietly.
+    if(date_object.toString() == "Invalid Date") {
+      return;
+    }
+
     var formatted_time = stanford_events_importer_get_formatted_time(date_object, php_time_format);
 
     // Set the time field to the new date.
     to_time_field.val(formatted_time);
+    to_time_field.highlight();
 
   };
+
+  /**
+   * An event handler to unbind the to_time_event_handler on blur.
+   */
+  var to_time_blur_handler = function(e) {
+    // Fields and variable definitions oh my!
+    var fields = $(this)
+                 .closest('.fieldset-wrapper')
+                 .find('.start-date-wrapper input');
+    var from_time_field = fields.eq(1);
+
+    // If we can't find the fields then we must end our journey.
+    if (typeof from_time_field === undefined) { return; }
+
+    from_time_field.unbind('blur.stanford_events_importer');
+  };
+
+
+
+
 
   // Public Functions
   // ---------------------------------------------------------------------------
 
 
   function stanford_events_importer_time_to_twenty_four(time) {
+
+    // Invalid Syntax Provided.
+    if (typeof time !== 'string' || time.length === 0) {
+      return false;
+    }
 
     var hours = Number(time.match(/^(\d+)/)[1]);
     var minutes = Number(time.match(/:(\d+)/)[1]);
@@ -144,6 +183,35 @@
     formatted = formatted.replace(/[A]/g, ampm.toUpperCase());
     return formatted;
   }
+
+
+// Jquery Plugins
+// -----------------------------------------------------------------------------
+
+if(typeof $.fn.highlight !== "function") {
+    /**
+   * A quick yellow highlight that fades out.
+   */
+  $.fn.highlight = function() {
+
+    $(this).each(function () {
+        var el = $(this);
+        $("<div/>")
+        .width(el.outerWidth())
+        .height(el.outerHeight())
+        .css({
+            "position": "absolute",
+            "left": el.offset().left,
+            "top": el.offset().top,
+            "background-color": "#ffff99",
+            "opacity": ".7",
+            "z-index": "9999999"
+        }).appendTo('body').fadeOut(1000).queue(function () { $(this).remove(); });
+    });
+
+  };
+
+}
 
 
 })(jQuery);
