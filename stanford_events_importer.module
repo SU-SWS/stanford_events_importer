@@ -417,6 +417,9 @@ function stanford_events_importer_date_popup_process_alter(&$element, &$form_sta
   // $element['#wrapper_attributes']['data-timeformat'] = $format;
   $element['time']['#attributes']['data-timeformat'] = $format;
 
+  // If there is a value on the to field already then we dont want to autopop.
+  if (!empty($element['#value']['time'])) {
+    $element['time']['#attributes']['class'][] = 'autopop-no-process';
+  }
+
 }
-
-
