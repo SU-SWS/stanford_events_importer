@@ -96,7 +96,7 @@
 
     // Set the time field to the new date.
     to_time_field.val(formatted_time);
-    to_time_field.highlight();
+    to_time_field.quiet_highlight();
 
   };
 
@@ -221,11 +221,11 @@
 // Jquery Plugins
 // -----------------------------------------------------------------------------
 
-  if(typeof $.fn.highlight !== "function") {
+  if(typeof $.fn.quiet_highlight !== "function") {
       /**
      * A quick yellow highlight that fades out.
      */
-    $.fn.highlight = function() {
+    $.fn.quiet_highlight = function() {
 
       $(this).each(function () {
           var el = $(this);
