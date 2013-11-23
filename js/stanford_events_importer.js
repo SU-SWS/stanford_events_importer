@@ -18,10 +18,10 @@
   Drupal.behaviors.stanford_date_timepicker = {
     attach: function (context, settings) {
 
-      // Attach the blur handler to each date field.
+      // Attach the change handler to each date field.
       $.each($('.start-date-wrapper ', context), function(i, v) {
         var timefield = $(v).find('input:eq(1)');
-        timefield.bind('blur.stanford_events_importer', from_time_blur_handler);
+        timefield.bind('change.stanford_events_importer', from_time_change_handler);
       });
 
     }
@@ -33,11 +33,11 @@
 
 
   /**
-   * Blur callback event handler for from time fields.
+   * Change callback event handler for from time fields.
    * Adds functionality to add 1 hour to the 'to' time value in the
    * same field collection as the 'from' time value.
    */
-  var from_time_blur_handler = function(e) {
+  var from_time_change_handler = function(e) {
 
     // First find the show end date checkbox and see if it is checked.
     var showend = $(this)
@@ -67,9 +67,9 @@
     if (typeof to_date_field === undefined) { stanford_events_importer_unset_bind(this); return; }
     if (typeof to_time_field === undefined) { stanford_events_importer_unset_bind(this); return; }
 
-    // Add a one time blur function to the 'to' time field so that when
+    // Add a one time change function to the 'to' time field so that when
     // the user manipulates that time manually we don't eff with it.
-    to_time_field.one('blur', to_time_blur_handler);
+    to_time_field.one('change', to_time_change_handler);
 
     // If the date field is empty populate it.
     if (to_date_field.val().length === 0) {
@@ -101,9 +101,9 @@
   };
 
   /**
-   * An event handler to unbind the to_time_event_handler on blur.
+   * An event handler to unbind the to_time_event_handler on change.
    */
-  var to_time_blur_handler = function(e) {
+  var to_time_change_handler = function(e) {
     // Fields and variable definitions oh my!
     var fields = $(this)
                  .closest('.fieldset-wrapper')
@@ -113,8 +113,8 @@
     // If we can't find the field then we must end our journey.
     if (typeof from_time_field === undefined) { return; }
 
-    // Remove our blur handler.
-    from_time_field.unbind('blur.stanford_events_importer');
+    // Remove our change handler.
+    from_time_field.unbind('change.stanford_events_importer');
   };
 
 
@@ -125,11 +125,11 @@
   // ---------------------------------------------------------------------------
 
   /**
-   * Unbinds the blur event from something that doesnt need it.
-   * @param  {object} element   the element with the blur event on it.
+   * Unbinds the change event from something that doesnt need it.
+   * @param  {object} element   the element with the change event on it.
    */
   function stanford_events_importer_unset_bind(element) {
-    $(element).unbind('blur.stanford_events_importer');
+    $(element).unbind('change.stanford_events_importer');
   }
 
 
