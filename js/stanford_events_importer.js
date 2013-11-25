@@ -153,9 +153,12 @@
     var AMPM = time.match(/(am|pm)/gi);
 
     // If am/pm is found then look for pm and add 12hrs to the current time.
-    if (AMPM instanceof Array && hours < 12) {
-      if (AMPM[0] == "pm" || AMPM[0] == "PM") {
+    if (AMPM instanceof Array) {
+      if (AMPM[0].toLowerCase() == "pm" && hours <= 11) {
         hours = hours + 12;
+      }
+      if (AMPM[0].toLowerCase() == "am" && hours == 12) {
+        hours = 0;
       }
     }
 
