@@ -153,7 +153,7 @@
     var AMPM = time.match(/(am|pm)/gi);
 
     // If am/pm is found then look for pm and add 12hrs to the current time.
-    if (AMPM instanceof Array) {
+    if (AMPM instanceof Array && hours < 12) {
       if (AMPM[0] == "pm" || AMPM[0] == "PM") {
         hours = hours + 12;
       }
@@ -192,11 +192,14 @@
     var formatted = php_format;
 
     // Define date parts as string with preceeding 0s by default.
-    var hr_twentyfour = date_object.getHours() < 12 ? "0" + date_object.getHours().toString() : date_object.getHours();
-    var hr_twelve = (hr_twentyfour - 12) < 12 ? "0" + (hr_twentyfour - 12) : 12;
+    var ampm = date_object.getHours() < 12 ? "am" : "pm";
+    var hr_twentyfour = date_object.getHours() < 10 ? "0" + date_object.getHours().toString() : date_object.getHours().toString();
+    var hr_twelve = hr_twentyfour;
+    if (parseInt(hr_twelve, 10) >= 12) { hr_twelve = hr_twentyfour-12; }
+    if (hr_twelve === 0) { hr_twelve = 12; }
+    hr_twelve = (hr_twelve < 10) ? "0" + hr_twelve : hr_twelve.toString();
     var min = date_object.getMinutes() < 10 ? "0" + date_object.getMinutes().toString() : date_object.getMinutes();
     var sec = date_object.getSeconds() < 10 ? "0" + date_object.getSeconds().toString() : date_object.getSeconds();
-    var ampm = date_object.getHours() < 12 ? "am" : "pm";
 
     // Hours.
     formatted = formatted.replace(/[H]/g, hr_twentyfour);
