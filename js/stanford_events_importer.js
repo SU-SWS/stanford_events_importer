@@ -154,7 +154,7 @@
 
     // If am/pm is found then look for pm and add 12hrs to the current time.
     if (AMPM instanceof Array) {
-      if (AMPM[0] == "pm" || APMPM[0] == "PM") {
+      if (AMPM[0] == "pm" || AMPM[0] == "PM") {
         hours = hours + 12;
       }
     }
