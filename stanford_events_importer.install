@@ -73,16 +73,14 @@ function stanford_events_importer_uninstall() {
 }
 
 /**
- * Implementation of hook_enable
- * @return [type] [description]
+ * Implements hook_enable().
  */
 function stanford_events_importer_enable() {
   // Enable module functions
 }
 
 /**
- * implementation of hook_disable
- * @return [type] [description]
+ * Implements hook_disable().
  */
 function stanford_events_importer_disable() {
   // Disable module functions
@@ -272,7 +270,7 @@ function stanford_events_importer_update_7200(&$sandbox) {
  *   success or not.
  */
 function stanford_events_importer_update_7200a() {
-  // Check if latest schema is installed. No. Install it.
+  // Check if latest schema is installed. If not, install it.
   if (db_table_exists('stanford_events_organization_list') == FALSE) {
     drupal_install_schema('stanford_events_importer');
   }

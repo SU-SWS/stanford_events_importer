@@ -35,7 +35,7 @@ The imported items are set to refresh once every 24 hours, and to update (rather
 -- NOTES ON UPGRADING FROM THE 7.x-1.x BRANCH --
 When upgrading from 7.x-1.x to 7.x-2.x:
 * You must run update.php
-* In beta7 a features revert was placed into update.php. Please navigate to
+* In 7.x-2.0-beta6 a features revert was placed into update.php. Please navigate to
 admin/structure/features an ensure that this feature is in the "default" status.
 * All existing event nodes are marked for update and will be on the next several
 cron runs depending on the amount of existing content your site has.
@@ -47,7 +47,7 @@ See UPGRADE.txt for more information
 -- NOTES ON UPGRADING FROM 7.x-2.0-beta4 AND EARLIER VERSIONS --
 When upgrading from 7.x-2.0-beta4 and earlier:
 * You must run update.php
-* In alpha7 a features revert was placed into update.php. Please navigate to
+* In 7.x-2.0-beta6 a features revert was placed into update.php. Please navigate to
 admin/structure/features an ensure that this feature is in the "default" status.
 * All existing event nodes are marked for update and will be on the next several
 cron runs depending on the amount of existing content your site has.

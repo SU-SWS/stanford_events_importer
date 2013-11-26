@@ -62,7 +62,7 @@ function stanford_events_importer_update_7200_get_xml_urls() {
 }
 
 /**
- * [stanford_events_importer_update_7200_process_xml_feeds description]
+ * Gets and returns a nested array of XML data
  * @param  array  $feeds an array of feed urls keyed with the feed_nid
  * @return array
  *   An array of arrays of arrays of xml data as arrays
@@ -78,7 +78,7 @@ function stanford_events_importer_update_7200_process_xml_feeds($feeds = array()
 
   foreach ($feeds as $nid => $url) {
 
-    // No guarentees this will work.
+    // No guarantees this will work.
     try {
       $response = drupal_http_request($url);
     }
