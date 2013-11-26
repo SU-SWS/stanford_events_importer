@@ -47,8 +47,9 @@
     var checked = showend.attr('checked');
 
     // If show end date is not checked then die.
-    if (!checked) { return; }
-
+    if (!checked) {
+      return;
+    }
 
     // Fields and variable definitions oh my!
     var fields = $(this)
@@ -235,22 +236,31 @@
 
       $(this).each(function () {
           var el = $(this);
-          $("<div/>")
-          .width(el.outerWidth())
-          .height(el.outerHeight())
-          .css({
-              "position": "absolute",
-              "left": el.offset().left,
-              "top": el.offset().top,
-              "background-color": "#ffff99",
-              "opacity": ".7",
-              "z-index": "9999999"
-          }).appendTo('body').fadeOut(1000).queue(function () { $(this).remove(); });
+      el.css({position:"relative",zIndex:'1',background:"transparent"});
+      el.parent().css({position:"relative"});
+
+      var div = $("<div/>")
+      .addClass('su-highlighter')
+      .width(el.outerWidth())
+      .height(el.outerHeight())
+      .css({
+          "position": "absolute",
+          "left": 0,
+          "top": 20,
+          "background-color": "#ffff99",
+          "opacity": ".7",
+          "z-index": "0"
       });
 
-    };
+      $(this).before(div);
+      div.fadeOut(1000)
+      .queue(function () {
+        $(this).remove();
+        el.css({background:"#FFFFFF"});
+      });
 
-  }
-
+    });
+  };
+}
 
 })(jQuery);
