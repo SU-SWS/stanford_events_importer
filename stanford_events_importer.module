@@ -257,6 +257,14 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function stanford_events_importer_form_stanford_event_node_form_alter(&$form, &$form_state) {
+  drupal_add_js(drupal_get_path('module', 'stanford_events_importer') . '/js/stanford_events_importer.js');
+}
+
+
+/**
  * Fetch the list of categories.
  */
 function stanford_events_importer_get_categories() {
@@ -395,4 +403,24 @@ function stanford_events_importer_update_cat_org() {
  */
 function stanford_events_importer_cron() {
   stanford_events_importer_update_cat_org();
+}
+
+
+/**
+ * Implements hook date_popup_process_alter()
+ * Alters the time field to include additional formatting data for js to use.
+ */
+function stanford_events_importer_date_popup_process_alter(&$element, &$form_state, $form) {
+
+  // The time field. Already processed.
+  $format = preg_replace('/[^AaigGHhs\:]/', '', $element['#date_format']);
+  // $element['#attributes']['data-timeformat'] = $format;
+  // $element['#wrapper_attributes']['data-timeformat'] = $format;
+  $element['time']['#attributes']['data-timeformat'] = $format;
+
+  // If there is a value on the to field already then we dont want to autopop.
+  if (!empty($element['#value']['time'])) {
+    $element['time']['#attributes']['class'][] = 'autopop-no-process';
+  }
+
 }
