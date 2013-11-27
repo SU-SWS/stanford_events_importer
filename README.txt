@@ -55,3 +55,8 @@ cron runs depending on the amount of existing content your site has.
 manually running the import process.
 
 See UPGRADE.txt for more information
+
+-- AUTHORS --
+John Bickar
+Scott Stocker
+Shea McKinney
