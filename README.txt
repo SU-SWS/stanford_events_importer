@@ -25,7 +25,7 @@ The imported items are set to refresh once every 24 hours, and to update (rather
 * Go to admin/people/permissions and give selected roles the following permissions:
 ** Import Stanford Event Importer feeds
 ** Stanford Event: Create new content
-** Stanford Event Importer: Create new content 
+** Stanford Event Importer: Create new content
 * Create a new node of the type "Stanford Event Importer". Give it a title (eg, "Featured Events") and choose either a Category or an Organization
 ** Full documentation of the Stanford Events Drupal Feed Service is available at http://events.stanford.edu/xml/drupal/
 * Your events will be imported
@@ -35,19 +35,23 @@ The imported items are set to refresh once every 24 hours, and to update (rather
 -- NOTES ON UPGRADING FROM THE 7.x-1.x BRANCH --
 When upgrading from 7.x-1.x to 7.x-2.x:
 * You must run update.php
-* If you have existing Stanford Event nodes, you must do the following:
-** Go to each Stanford Event Importer node and click "Delete items" to delete all associated Stanford Event nodes (you will lose any edits you have made to those nodes)
-** Go to admin/structure/features/stanford_events_importer and revert the Stanford Events Importer Feature
-** Go to each Stanford Event Importer node and click "Import items" to re-import the Stanford Event nodes
-This is necessary because the 7.x-2.x branch makes changes to some of the fields in the Stanford Event content type, and those changes cannot be applied if there is existing data in those fields
+* In 7.x-2.0-beta7 a features revert was placed into update.php. Please navigate to
+admin/structure/features an ensure that this feature is in the "default" status.
+* All existing event nodes are marked for update and will be on the next several
+cron runs depending on the amount of existing content your site has.
+** You can update and import all new content by going to each importer node and
+manually running the import process.
 
 See UPGRADE.txt for more information
 
 -- NOTES ON UPGRADING FROM 7.x-2.0-beta4 AND EARLIER VERSIONS --
 When upgrading from 7.x-2.0-beta4 and earlier:
-* If you have existing Stanford Event nodes, you must do the following:
-** Go to each Stanford Event Importer node and click "Delete items" to delete all associated Stanford Event nodes (you will lose any edits you have made to those nodes)
-** Go to admin/structure/features/stanford_events_importer and revert the Stanford Events Importer Feature
-** Go to each Stanford Event Importer node and click "Import items" to re-import the Stanford Event nodes
+* You must run update.php
+* In 7.x-2.0-beta7 a features revert was placed into update.php. Please navigate to
+admin/structure/features an ensure that this feature is in the "default" status.
+* All existing event nodes are marked for update and will be on the next several
+cron runs depending on the amount of existing content your site has.
+** You can update and import all new content by going to each importer node and
+manually running the import process.
 
 See UPGRADE.txt for more information

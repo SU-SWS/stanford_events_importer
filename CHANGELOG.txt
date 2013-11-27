@@ -1,6 +1,15 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-2.0-beta7, xxxx-xx-xx
+--------------------------------------------
+Changes since 7.x-2.0-beta6:
+  - Cleaned up .install hooks
+  - Added hook update 7201
+  -- Hook update 7201 changes all existing importers to have the new import url
+  -- Reverts the feature so that all new fields and configuration settings are up to date
+  -- Invalidates all imported event feed nodes' hash in order to force updates.
+
 Stanford Events Importer 7.x-2.0-beta6, 2013-10-14
 --------------------------------------------------
 Changes since 7.x-2.0-beta5:
