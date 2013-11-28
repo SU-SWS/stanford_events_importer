@@ -199,8 +199,8 @@
     var ampm = date_object.getHours() < 12 ? "am" : "pm";
     var hr_twentyfour = date_object.getHours() < 10 ? "0" + date_object.getHours().toString() : date_object.getHours().toString();
     var hr_twelve = hr_twentyfour;
-    if (parseInt(hr_twelve, 10) >= 12) { hr_twelve = hr_twentyfour-12; }
-    if (hr_twelve === 0) { hr_twelve = 12; }
+    if (parseInt(hr_twelve, 10) > 12) { hr_twelve = parseInt(hr_twentyfour, 10) - 12; }
+    if (hr_twelve == 0) { hr_twelve = 12; }
     hr_twelve = (hr_twelve < 10) ? "0" + hr_twelve : hr_twelve.toString();
     var min = date_object.getMinutes() < 10 ? "0" + date_object.getMinutes().toString() : date_object.getMinutes();
     var sec = date_object.getSeconds() < 10 ? "0" + date_object.getSeconds().toString() : date_object.getSeconds();
