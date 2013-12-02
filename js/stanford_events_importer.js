@@ -246,7 +246,7 @@
       .css({
           "position": "absolute",
           "left": 0,
-          "top": 20,
+          "top": 24,
           "background-color": "#ffff99",
           "opacity": ".7",
           "z-index": "0"
