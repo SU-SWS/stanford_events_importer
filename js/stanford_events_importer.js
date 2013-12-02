@@ -84,7 +84,9 @@
     if(!from_time_value_twenty_four) { return; }
 
     // Format the new time appropriately.
-    var date_object = new Date(from_date_value + " " + from_time_value_twenty_four);
+    // Remove extra formatting
+    var fdv = from_date_value.replace(/\-|\//g, ' ');
+    var date_object = new Date(fdv + " " + from_time_value_twenty_four);
 
     // Something went wrong. Die quietly.
     if(date_object.toString() == "Invalid Date") { return; }
