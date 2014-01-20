@@ -192,7 +192,6 @@ function stanford_events_importer_feeds_importer_default() {
     'import_on_create' => 1,
     'process_in_background' => 0,
   );
-
   $export['stanford_event_importer'] = $feeds_importer;
 
   return $export;
