@@ -15,7 +15,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This filtered text field is event description (e.g., this event is etc. etc.).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -37,13 +37,40 @@ function stanford_events_importer_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'body',
     'label' => 'Body',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -111,7 +138,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This formatted text field is for the event admission information (e.g., Free and open to the public).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -132,6 +159,32 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Admission',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -151,7 +204,8 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This content is imported from events.stanford.edu.
+',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -190,7 +244,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This content is imported from events.stanford.edu.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -283,7 +337,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the email address of the contact person for the event (e.g., email-address@stanford.edu).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -304,6 +358,32 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Contact Email',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -386,7 +466,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is the location for the event (e.g., Redwood Hall, Room 308).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -407,6 +487,32 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Location',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -426,7 +532,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the phone number of the contact person for the event (e.g., 650-725-1234).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -447,6 +553,32 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Contact Phone',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -466,7 +598,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the event sponsor (e.g., Stanford Web Services).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -487,6 +619,32 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Event Sponsor',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -506,7 +664,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -569,6 +727,16 @@ function stanford_events_importer_field_default_field_instances() {
   t('Image');
   t('Location');
   t('More Information');
+  t('This content is imported from events.stanford.edu.');
+  t('This content is imported from events.stanford.edu.
+');
+  t('This filtered text field is event description (e.g., this event is etc. etc.).');
+  t('This formatted text field is for the event admission information (e.g., Free and open to the public).');
+  t('This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).');
+  t('This text field is for the email address of the contact person for the event (e.g., email-address@stanford.edu).');
+  t('This text field is for the event sponsor (e.g., Stanford Web Services).');
+  t('This text field is for the phone number of the contact person for the event (e.g., 650-725-1234).');
+  t('This text field is the location for the event (e.g., Redwood Hall, Room 308).');
 
   return $field_instances;
 }
