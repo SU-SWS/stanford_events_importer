@@ -190,6 +190,9 @@ function stanford_events_importer_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'stanford_8_col_banner' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -200,7 +203,10 @@ function stanford_events_importer_strongarm() {
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '13',
+        ),
+        'redirect' => array(
+          'weight' => '14',
         ),
       ),
       'display' => array(),
@@ -295,10 +301,10 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_add_to_cal' => array(
       'region' => 'main',
-      'weight' => '10',
+      'weight' => '11',
       'has_required' => FALSE,
       'title' => 'Add to Calendar',
-      'hidden' => 0,
+      'hidden' => 1,
     ),
     'field_stanford_event_admission' => array(
       'region' => 'main',
@@ -309,14 +315,14 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_audience' => array(
       'region' => 'main',
-      'weight' => '11',
+      'weight' => '12',
       'has_required' => FALSE,
       'title' => 'Audience',
       'hidden' => 0,
     ),
     'field_stanford_event_categories' => array(
       'region' => 'main',
-      'weight' => '12',
+      'weight' => '13',
       'has_required' => FALSE,
       'title' => 'Categories',
       'hidden' => 0,
@@ -330,7 +336,7 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_email' => array(
       'region' => 'main',
-      'weight' => '8',
+      'weight' => '7',
       'has_required' => FALSE,
       'title' => 'Contact Email',
       'hidden' => 0,
@@ -351,30 +357,30 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_phone' => array(
       'region' => 'main',
-      'weight' => '9',
+      'weight' => '8',
       'has_required' => FALSE,
       'title' => 'Contact Phone',
       'hidden' => 0,
     ),
     'field_stanford_event_sponsor' => array(
       'region' => 'main',
-      'weight' => '7',
+      'weight' => '6',
       'has_required' => FALSE,
       'title' => 'Event Sponsor',
       'hidden' => 0,
     ),
     'field_stanford_event_url' => array(
       'region' => 'main',
-      'weight' => '6',
+      'weight' => '9',
       'has_required' => FALSE,
       'title' => 'More Information',
       'hidden' => 0,
     ),
-    'field_s_all_entityref_person' => array(
+    'field_s_event_type' => array(
       'region' => 'main',
-      'weight' => '13',
+      'weight' => '10',
       'has_required' => FALSE,
-      'title' => 'Associated Person',
+      'title' => 'Event Type',
       'hidden' => 0,
     ),
   );
