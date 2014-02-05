@@ -85,7 +85,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '11',
+    'weight' => '12',
     'children' => array(
       0 => 'field_stanford_event_add_to_cal',
       1 => 'field_stanford_event_audience',

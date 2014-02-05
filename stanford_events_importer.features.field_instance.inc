@@ -81,6 +81,42 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-stanford_event-field_s_event_type'
+  $field_instances['node-stanford_event-field_s_event_type'] = array(
+    'bundle' => 'stanford_event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Choose the appropriate event type(s).',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_event_type',
+    'label' => 'Event Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-stanford_event-field_stanford_event_add_to_cal'
   $field_instances['node-stanford_event-field_stanford_event_add_to_cal'] = array(
     'bundle' => 'stanford_event',
@@ -92,7 +128,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -211,7 +247,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -250,7 +286,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -719,11 +755,13 @@ function stanford_events_importer_field_default_field_instances() {
   t('Audience');
   t('Body');
   t('Categories');
+  t('Choose the appropriate event type(s).');
   t('Contact Email');
   t('Contact Phone');
   t('Date and Time');
   t('Enter an iCal link to add this event to a personal calendar');
   t('Event Sponsor');
+  t('Event Type');
   t('Image');
   t('Location');
   t('More Information');

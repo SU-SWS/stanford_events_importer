@@ -190,6 +190,9 @@ function stanford_events_importer_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'stanford_8_col_banner' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -200,7 +203,10 @@ function stanford_events_importer_strongarm() {
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '12',
+          'weight' => '13',
+        ),
+        'redirect' => array(
+          'weight' => '14',
         ),
       ),
       'display' => array(),
@@ -274,14 +280,14 @@ function stanford_events_importer_strongarm() {
     ),
     'additional_settings' => array(
       'region' => 'main',
-      'weight' => '13',
+      'weight' => '14',
       'has_required' => FALSE,
       'title' => 'Vertical tabs',
       'hidden' => 0,
     ),
     'actions' => array(
       'region' => 'main',
-      'weight' => '14',
+      'weight' => '15',
       'has_required' => FALSE,
       'title' => 'Save',
       'hidden' => 0,
@@ -295,7 +301,7 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_add_to_cal' => array(
       'region' => 'main',
-      'weight' => '10',
+      'weight' => '11',
       'has_required' => FALSE,
       'title' => 'Add to Calendar',
       'hidden' => 1,
@@ -309,14 +315,14 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_audience' => array(
       'region' => 'main',
-      'weight' => '11',
+      'weight' => '12',
       'has_required' => FALSE,
       'title' => 'Audience',
       'hidden' => 0,
     ),
     'field_stanford_event_categories' => array(
       'region' => 'main',
-      'weight' => '12',
+      'weight' => '13',
       'has_required' => FALSE,
       'title' => 'Categories',
       'hidden' => 0,
@@ -368,6 +374,13 @@ function stanford_events_importer_strongarm() {
       'weight' => '9',
       'has_required' => FALSE,
       'title' => 'More Information',
+      'hidden' => 0,
+    ),
+    'field_s_event_type' => array(
+      'region' => 'main',
+      'weight' => '10',
+      'has_required' => FALSE,
+      'title' => 'Event Type',
       'hidden' => 0,
     ),
   );
