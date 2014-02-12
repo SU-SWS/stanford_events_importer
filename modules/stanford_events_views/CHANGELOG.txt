@@ -1,0 +1,19 @@
+Stanford Events Views x.x-x.x xxxx-xx-xx
+--------------------------------------
+
+Stanford Events Views 7.x-1.0-alpha10 2013-10-14
+------------------------------------------------
+Changes since 7.x-1.0-alpha9:
+  -Removed date formats
+  -Added dependency on stanford_date_formats
+  -Updated Views to use stanford_date_formats
+  -Removed well class from Upcoming Block View
+  -Updated date format for Upcoming Block
+  -Removed create new event View
+  -Updated Views header
+  -Added manage events link to manage content menu
+  -Code cleanup
+
+Stanford Events Views 7.x-1.0-alpha9 2013-08-21
+-----------------------------------------------
+Initial tagged release.
