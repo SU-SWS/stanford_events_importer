@@ -19,3 +19,10 @@ features[field_instance][] = node-stanford_event-field_stanford_event_deadline
 features[views_view][] = stanford_create_new_event_link
 features[views_view][] = stanford_undergrad_calendar
 project status url = http://drupalfeatures.stanford.edu/fserver/stanford_event_and_deadline_calendar
+
+
+; Information added by drush on 2014-03-03
+version = ""
+project = "stanford_events_importer"
+datestamp = "1393876987"
+

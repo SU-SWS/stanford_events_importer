@@ -16,3 +16,10 @@ features[features_api][] = api:1
 features[variable][] = date_format_iso_8601
 features[views_view][] = stanford_events_export
 project status url = http://drupalfeatures.stanford.edu/fserver/stanford_events_export/7.x
+
+
+; Information added by drush on 2014-03-03
+version = ""
+project = "stanford_events_importer"
+datestamp = "1393876987"
+
