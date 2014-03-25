@@ -629,6 +629,43 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-stanford_event-field_stanford_event_program'
+  $field_instances['node-stanford_event-field_stanford_event_program'] = array(
+    'bundle' => 'stanford_event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Select the program(s) with which this event is associated.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_stanford_event_program',
+    'label' => 'Associated Program',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'node-stanford_event-field_stanford_event_sponsor'
   $field_instances['node-stanford_event-field_stanford_event_sponsor'] = array(
     'bundle' => 'stanford_event',
@@ -752,6 +789,7 @@ function stanford_events_importer_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Add to Calendar');
   t('Admission');
+  t('Associated Program');
   t('Audience');
   t('Body');
   t('Categories');
@@ -765,6 +803,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('Image');
   t('Location');
   t('More Information');
+  t('Select the program(s) with which this event is associated.');
   t('This content is imported from events.stanford.edu.');
   t('This content is imported from events.stanford.edu.
 ');

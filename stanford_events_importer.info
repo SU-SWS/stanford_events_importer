@@ -2,22 +2,23 @@ name = Stanford Events Importer
 description = Imports events from events.stanford.edu and creates a "Stanford Event" node for each event record
 core = 7.x
 package = Stanford
-version = 7.x-3.0-alpha1
 project = stanford_events_importer
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
 dependencies[] = date_popup
 dependencies[] = features
-dependencies[] = feeds (>=2.0-alpha8)
+dependencies[] = feeds
 dependencies[] = feeds_tamper
 dependencies[] = feeds_xpathparser
 dependencies[] = field_group
 dependencies[] = image
 dependencies[] = link
+dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
+datestamp = 1393876987
 features[ctools][] = data:data_default:1
 features[ctools][] = feeds:feeds_importer_default:1
 features[ctools][] = feeds_tamper:feeds_tamper_default:2
@@ -38,6 +39,7 @@ features[field_base][] = field_stanford_event_email
 features[field_base][] = field_stanford_event_image
 features[field_base][] = field_stanford_event_location
 features[field_base][] = field_stanford_event_phone
+features[field_base][] = field_stanford_event_program
 features[field_base][] = field_stanford_event_sponsor
 features[field_base][] = field_stanford_event_url
 features[field_group][] = group_descriptor_info|node|stanford_event|default
@@ -54,6 +56,7 @@ features[field_instance][] = node-stanford_event-field_stanford_event_email
 features[field_instance][] = node-stanford_event-field_stanford_event_image
 features[field_instance][] = node-stanford_event-field_stanford_event_location
 features[field_instance][] = node-stanford_event-field_stanford_event_phone
+features[field_instance][] = node-stanford_event-field_stanford_event_program
 features[field_instance][] = node-stanford_event-field_stanford_event_sponsor
 features[field_instance][] = node-stanford_event-field_stanford_event_url
 features[node][] = stanford_event
@@ -98,11 +101,5 @@ features[variable][] = nodeformscols_field_placements_stanford_event_default
 features[variable][] = pathauto_node_stanford_event_importer_pattern
 features[variable][] = pathauto_node_stanford_event_pattern
 features_exclude[field_base][body] = body
+features_exclude[dependencies][stanford_program] = stanford_program
 project status url = http://drupalfeatures.stanford.edu/fserver/stanford_events_importer/7.x
-
-
-; Information added by drush on 2014-03-03
-version = ""
-project = "stanford_events_importer"
-datestamp = "1393876987"
-

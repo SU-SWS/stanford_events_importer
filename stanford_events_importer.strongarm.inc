@@ -200,13 +200,13 @@ function stanford_events_importer_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '1',
-        ),
-        'metatags' => array(
           'weight' => '13',
         ),
-        'redirect' => array(
+        'metatags' => array(
           'weight' => '14',
+        ),
+        'redirect' => array(
+          'weight' => '15',
         ),
       ),
       'display' => array(),

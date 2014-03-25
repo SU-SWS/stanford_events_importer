@@ -314,6 +314,40 @@ function stanford_events_importer_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_stanford_event_program'
+  $field_bases['field_stanford_event_program'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_stanford_event_program',
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'stanford_program_type',
+          'parent' => 0,
+        ),
+      ),
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
   // Exported field_base: 'field_stanford_event_sponsor'
   $field_bases['field_stanford_event_sponsor'] = array(
     'active' => 1,
