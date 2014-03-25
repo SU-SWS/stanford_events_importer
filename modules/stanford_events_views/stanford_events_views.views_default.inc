@@ -1244,6 +1244,15 @@ function stanford_events_views_views_default_views() {
     'multiple_from' => '',
     'multiple_to' => '',
   );
+  /* Field: Content: Associated Program */
+  $handler->display->display_options['fields']['field_stanford_event_program']['id'] = 'field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['table'] = 'field_data_field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['field'] = 'field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['label'] = '';
+  $handler->display->display_options['fields']['field_stanford_event_program']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_program']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_program']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_stanford_event_program']['delta_offset'] = '0';
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_stanford_event_image']['id'] = 'field_stanford_event_image';
   $handler->display->display_options['fields']['field_stanford_event_image']['table'] = 'field_data_field_stanford_event_image';
@@ -1301,14 +1310,15 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="postcard-left">
   <div>
-  <div class="event-image">[field_stanford_event_image]</div>
+    <div class="event-image">[field_stanford_event_image]</div>
   </div>
   <div>
-  <div class="event-title"><h3>[title]</h3></div>
-  <div class="descriptor">
-  <div class="event-date-long">[field_stanford_event_datetime]</div>
-  <div class="event-location">[field_stanford_event_location]</div>
-  <div>[field_s_event_type_1][field_s_event_type]</div>
+    <div class="event-title"><h3>[title]</h3></div>
+    <div class="descriptor">
+    <div class="event-date-long">[field_stanford_event_datetime]</div>
+    <div class="event-location">[field_stanford_event_location]</div>
+    <div class="program-type">[field_stanford_event_program]</div>
+    <div>[field_s_event_type_1][field_s_event_type]</div>
   </div>
   </div>
   </div>';
@@ -1421,6 +1431,29 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_event_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_s_event_type_tid']['vocabulary'] = 'stanford_event_type';
   $handler->display->display_options['filters']['field_s_event_type_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Associated Program (field_stanford_event_program) */
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['id'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['table'] = 'field_data_field_stanford_event_program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['field'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator_id'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['label'] = 'Filter by program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['identifier'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['vocabulary'] = 'stanford_program_type';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['hierarchy'] = 1;
 
   /* Display: 5 Item Upcoming - List Page */
   $handler = $view->new_display('page', '5 Item Upcoming - List Page', 'page');
