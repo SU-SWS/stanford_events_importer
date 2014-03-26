@@ -15,4 +15,3 @@ features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 features[variable][] = date_format_iso_8601
 features[views_view][] = stanford_events_export
-project status url = http://drupalfeatures.stanford.edu/fserver/stanford_events_export/7.x
