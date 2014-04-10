@@ -1362,7 +1362,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['group'] = 1;
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'now';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'today';
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
@@ -1904,6 +1904,47 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'now';
+
+  /* Display: Upcoming Events Search */
+  $handler = $view->new_display('page', 'Upcoming Events Search', 'upcoming_events_search');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Search Events';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'well';
+  $handler->display->display_options['display_description'] = 'Upcoming Events Search';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = '<p>Sorry, no future events for that search are scheduled.</p>
+ <p><a class="more-link" href="/events/past-events">View Past Events</a></p>';
+  $handler->display->display_options['empty']['area']['format'] = 'content_editor_text_format';
+  $handler->display->display_options['path'] = 'events/upcoming-events/search';
+  $handler->display->display_options['menu']['title'] = 'Upcoming Events';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $export['stanford_events_views'] = $view;
 
   return $export;
