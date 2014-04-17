@@ -1,70 +1,10 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
-Stanford Events Importer 7.x-2.0-beta7, 2013-11-26
+Stanford Events Importer 7.x-3.0-alpha1, 2014-03-11
 --------------------------------------------------
-Changes since 7.x-2.0-beta6:
-By sheamck:
-  - Cleaned up .install hooks
-  - Added hook update 7201
-  -- Hook update 7201 changes all existing importers to have the new import url
-  -- Reverts the feature so that all new fields and configuration settings are up to date
-  -- Invalidates all imported event feed nodes' hash in order to force updates.
-  - Autopopulate date fields with sensible defaults
-
-Stanford Events Importer 7.x-2.0-beta6, 2013-10-14
---------------------------------------------------
-Changes since 7.x-2.0-beta5:
-  -Changes to node add/edit form
-  -Added border classes to image on node display
-  -Changes to node add/edit form
-  -Added Field Groups
-  -Updated to attach to a bundle per feeds-7.x-2.0-alpha8
-
-Stanford Events Importer 7.x-2.0-beta5, 2013-04-24
---------------------------------------------------
--Changed date/time field to use site time zone instead of UTC.
--Added Feeds Tamper to date field to convert string to UNIX timestamp
-
-Stanford Events Importer 7.x-2.0-beta4, 2012-11-09
---------------------------------------------------
-Fix version number mismatch in .info file.
-
-Stanford Events Importer 7.x-2.0-beta3, 2012-11-09
---------------------------------------------------
-The 7.x-2.0-beta3 release is functionally identical to the 7.x-2.0-beta2 release.
-The only changes are to the content of this CHANGELOG.txt file.
-Changes since 2.0-beta1 include:
-  -improvements to upgrade path from 7.x-1.x
-  -changing date field to use the Date Popup functionality
-  -additional support for all-day events
-
-Stanford Events Importer 7.x-2.0-beta1, 2012-10-19
---------------------------------------------------
-The 7.x-2.0-beta1 release is the first release in the 7.x-2.x branch that should
-  be considered stable.
-Changes since 2.0-alpha6 include:
-  -support for updating from 7.x-1.x branch
-  -configuration screen
-  -update Drupal database tables with category and organization lists on cron runs
-  -bug fixes
-
-Stanford Events Importer 7.x-2.0-alpha6, 2012-10-17
----------------------------------------------------
-Changes since 2.0-alpha1 include:
-  -Automatically pulling list of categories and organizations from events.stanford.edu
-    and presenting those to the user in a dropdown list at node/add/stanford-event-importer
-    (no more manual pasting of feed URL)
-(-alpha2 through -alpha5 were incremental development releases and likely should not be used by anyone.)
-
-
-Stanford Events Importer 7.x-2.0-alpha1, 2012-10-01
----------------------------------------------------
--Initial release of Stanford Events Importer 7.x-2.x branch
--Improvements over the 7.x-1.x branch include:
-  Updated feed url in documentation
-  Added "add to calendar" ical download link
-  Added inline help
-  Added end date to content type and feed
-
+- Features 2.x Compatible feature
+- New Views
+- New sub feature modules
+- Clead up node edit form
 
