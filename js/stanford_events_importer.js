@@ -84,7 +84,9 @@
     if(!from_time_value_twenty_four) { return; }
 
     // Format the new time appropriately.
-    var date_object = new Date(from_date_value + " " + from_time_value_twenty_four);
+    // Remove extra formatting
+    var fdv = from_date_value.replace(/\-|\//g, ' ');
+    var date_object = new Date(fdv + " " + from_time_value_twenty_four);
 
     // Something went wrong. Die quietly.
     if(date_object.toString() == "Invalid Date") { return; }
@@ -199,8 +201,8 @@
     var ampm = date_object.getHours() < 12 ? "am" : "pm";
     var hr_twentyfour = date_object.getHours() < 10 ? "0" + date_object.getHours().toString() : date_object.getHours().toString();
     var hr_twelve = hr_twentyfour;
-    if (parseInt(hr_twelve, 10) >= 12) { hr_twelve = hr_twentyfour-12; }
-    if (hr_twelve === 0) { hr_twelve = 12; }
+    if (parseInt(hr_twelve, 10) > 12) { hr_twelve = parseInt(hr_twentyfour, 10) - 12; }
+    if (hr_twelve == 0) { hr_twelve = 12; }
     hr_twelve = (hr_twelve < 10) ? "0" + hr_twelve : hr_twelve.toString();
     var min = date_object.getMinutes() < 10 ? "0" + date_object.getMinutes().toString() : date_object.getMinutes();
     var sec = date_object.getSeconds() < 10 ? "0" + date_object.getSeconds().toString() : date_object.getSeconds();
@@ -246,7 +248,7 @@
       .css({
           "position": "absolute",
           "left": 0,
-          "top": 20,
+          "top": 24,
           "background-color": "#ffff99",
           "opacity": ".7",
           "z-index": "0"
