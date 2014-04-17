@@ -437,7 +437,7 @@ function stanford_events_importer_field_default_fields() {
       'required' => 0,
       'settings' => array(
         'default_value' => 'now',
-        'default_value2' => 'same',
+        'default_value2' => 'blank',
         'default_value_code' => '',
         'default_value_code2' => '',
         'user_register_form' => FALSE,
@@ -447,7 +447,7 @@ function stanford_events_importer_field_default_fields() {
         'module' => 'date',
         'settings' => array(
           'display_all_day' => 1,
-          'increment' => 1,
+          'increment' => 5,
           'input_format' => 'custom',
           'input_format_custom' => 'Y-m-d g:i:sA',
           'label_position' => 'above',
