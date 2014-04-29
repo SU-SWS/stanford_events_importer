@@ -13,6 +13,37 @@ function stanford_events_importer_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_caption_style|node|stanford_event|default';
+  $field_group->group_name = 'group_caption_style';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'default';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Caption Style',
+    'weight' => '7',
+    'children' => array(
+      0 => 'field_s_event_image_caption',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Caption Style',
+      'instance_settings' => array(
+        'classes' => 'caption',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_caption_style|node|stanford_event|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_descriptor_info|node|stanford_event|default';
   $field_group->group_name = 'group_descriptor_info';
   $field_group->entity_type = 'node';

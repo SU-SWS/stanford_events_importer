@@ -77,7 +77,73 @@ function stanford_events_importer_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 2,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-stanford_event-field_s_event_image_caption'
+  $field_instances['node-stanford_event-field_s_event_image_caption'] = array(
+    'bundle' => 'stanford_event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Include caption information for the event image.',
+    'display' => array(
+      'default' => array(
+        'label' => 'inline',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_event_image_caption',
+    'label' => 'Caption',
+    'required' => 0,
+    'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
     ),
   );
 
@@ -92,7 +158,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -128,7 +194,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -165,7 +231,7 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -231,7 +297,7 @@ function stanford_events_importer_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 9,
+      'weight' => 3,
     ),
   );
 
@@ -246,7 +312,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -270,7 +336,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -285,7 +351,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -309,7 +375,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
@@ -323,7 +389,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'stanford_date_year_time',
+          'format_type' => 'stanford_event',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
@@ -363,7 +429,7 @@ function stanford_events_importer_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 4,
+      'weight' => 1,
     ),
   );
 
@@ -429,7 +495,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -492,7 +558,7 @@ function stanford_events_importer_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -558,7 +624,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 2,
     ),
   );
 
@@ -624,7 +690,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -690,7 +756,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -753,6 +819,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('Admission');
   t('Audience');
   t('Body');
+  t('Caption');
   t('Categories');
   t('Choose the appropriate event type(s).');
   t('Contact Email');
@@ -762,6 +829,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('Event Sponsor');
   t('Event Type');
   t('Image');
+  t('Include caption information for the event image.');
   t('Location');
   t('More Information');
   t('This content is imported from events.stanford.edu.');
