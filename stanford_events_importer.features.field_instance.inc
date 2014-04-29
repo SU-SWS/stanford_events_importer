@@ -323,7 +323,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'date',
         'settings' => array(
-          'format_type' => 'stanford_event',
+          'format_type' => 'stanford_date_year_time',
           'fromto' => 'both',
           'multiple_from' => '',
           'multiple_number' => '',
