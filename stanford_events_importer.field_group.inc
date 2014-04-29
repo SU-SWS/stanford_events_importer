@@ -21,7 +21,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Caption Style',
-    'weight' => '7',
+    'weight' => '9',
     'children' => array(
       0 => 'field_s_event_image_caption',
     ),
@@ -116,7 +116,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '12',
+    'weight' => '14',
     'children' => array(
       0 => 'field_stanford_event_add_to_cal',
       1 => 'field_stanford_event_audience',
