@@ -62,10 +62,10 @@ function stanford_events_vpsa_layouts_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'views-stanford_events_views-block_2' => array(
+        'views-934c9b9d8d2d2f2b37f050dcd3bba83c' => array(
           'module' => 'views',
-          'delta' => 'stanford_events_views-block_2',
-          'region' => 'content',
+          'delta' => '934c9b9d8d2d2f2b37f050dcd3bba83c',
+          'region' => 'sidebar_second',
           'weight' => '-10',
         ),
       ),

@@ -566,7 +566,8 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
@@ -1659,6 +1660,7 @@ function stanford_events_views_views_default_views() {
   /* Display: 5 Item Upcoming - List Block */
   $handler = $view->new_display('block', '5 Item Upcoming - List Block', 'block_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['display_description'] = 'Includes images';
@@ -1727,6 +1729,16 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_location']['alter']['max_length'] = '40';
   $handler->display->display_options['fields']['field_stanford_event_location']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_location']['element_label_colon'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['max_length'] = '300';
+  $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['html'] = TRUE;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -1742,6 +1754,7 @@ function stanford_events_views_views_default_views() {
   <div class="event-date-long">[field_stanford_event_datetime_2]</div>
   <div class="event-location">[field_stanford_event_location]</div>
   </div>
+<div class="event-description">[body]</div>
   </div>
   </div>';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
