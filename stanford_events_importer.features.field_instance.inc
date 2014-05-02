@@ -602,7 +602,7 @@ function stanford_events_importer_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'large-scaled',
         ),
         'type' => 'image',
         'weight' => 1,
