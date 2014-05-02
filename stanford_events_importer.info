@@ -15,6 +15,7 @@ dependencies[] = feeds_xpathparser
 dependencies[] = field_group
 dependencies[] = image
 dependencies[] = link
+dependencies[] = options
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text
