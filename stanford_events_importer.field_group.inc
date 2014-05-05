@@ -77,6 +77,130 @@ function stanford_events_importer_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_addimage_border_style|field_collection_item|field_s_image_additional|stanford_large_scaled';
+  $field_group->group_name = 'group_s_addimage_border_style';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_s_image_additional';
+  $field_group->mode = 'stanford_large_scaled';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Image Border Style',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_s_addimage_image',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Image Border Style',
+      'instance_settings' => array(
+        'classes' => 'border-simple-nowidth border-shadow',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_addimage_border_style|field_collection_item|field_s_image_additional|stanford_large_scaled'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_addimage_caption_div|field_collection_item|field_s_image_additional|stanford_large_scaled';
+  $field_group->group_name = 'group_s_addimage_caption_div';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_s_image_additional';
+  $field_group->mode = 'stanford_large_scaled';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Caption Style',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_s_addimage_caption',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Caption Style',
+      'instance_settings' => array(
+        'classes' => 'caption',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_addimage_caption_div|field_collection_item|field_s_image_additional|stanford_large_scaled'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_addimage_credits_style|field_collection_item|field_s_image_additional|stanford_large_scaled';
+  $field_group->group_name = 'group_s_addimage_credits_style';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_s_image_additional';
+  $field_group->mode = 'stanford_large_scaled';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Credits Style',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_s_addimage_credits',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Credits Style',
+      'instance_settings' => array(
+        'classes' => 'credits',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_addimage_credits_style|field_collection_item|field_s_image_additional|stanford_large_scaled'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_addimage|field_collection_item|field_s_image_additional|form';
+  $field_group->group_name = 'group_s_addimage';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_s_image_additional';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Add/Edit Additional Image(s)',
+    'weight' => '0',
+    'children' => array(
+      0 => 'field_s_addimage_image',
+      1 => 'field_s_addimage_credits',
+      2 => 'field_s_addimage_source_info',
+      3 => 'field_s_addimage_caption',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Add/Edit Additional Image(s)',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_s_addimage|field_collection_item|field_s_image_additional|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_stanford_event_advanced|node|stanford_event|form';
   $field_group->group_name = 'group_stanford_event_advanced';
   $field_group->entity_type = 'node';

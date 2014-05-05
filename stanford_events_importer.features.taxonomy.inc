@@ -56,7 +56,7 @@ function stanford_events_importer_taxonomy_default_vocabularies() {
       ),
     ),
     'stanford_event_type' => array(
-      'name' => 'Event Type',
+      'name' => 'Art - Event Type',
       'machine_name' => 'stanford_event_type',
       'description' => '',
       'hierarchy' => 0,

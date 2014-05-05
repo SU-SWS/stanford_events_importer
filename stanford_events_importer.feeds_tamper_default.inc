@@ -17,7 +17,7 @@ function stanford_events_importer_feeds_tamper_default() {
   $feeds_tamper->importer = 'stanford_event_importer';
   $feeds_tamper->source = 'xpathparser:0';
   $feeds_tamper->plugin_id = 'html_entity_decode';
-  $feeds_tamper->settings = '';
+  $feeds_tamper->settings = array();
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'HTML entity decode';
   $export['stanford_event_importer-xpathparser_0-html_entity_decode'] = $feeds_tamper;
@@ -29,7 +29,7 @@ function stanford_events_importer_feeds_tamper_default() {
   $feeds_tamper->importer = 'stanford_event_importer';
   $feeds_tamper->source = 'xpathparser:15';
   $feeds_tamper->plugin_id = 'strtotime';
-  $feeds_tamper->settings = '';
+  $feeds_tamper->settings = array();
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'String to Unix timestamp';
   $export['stanford_event_importer-xpathparser_15-string_to_unix_timestamp'] = $feeds_tamper;
@@ -41,7 +41,7 @@ function stanford_events_importer_feeds_tamper_default() {
   $feeds_tamper->importer = 'stanford_event_importer';
   $feeds_tamper->source = 'xpathparser:3';
   $feeds_tamper->plugin_id = 'strtotime';
-  $feeds_tamper->settings = '';
+  $feeds_tamper->settings = array();
   $feeds_tamper->weight = 0;
   $feeds_tamper->description = 'String to Unix timestamp';
   $export['stanford_event_importer-xpathparser_3-string_to_unix_timestamp'] = $feeds_tamper;
