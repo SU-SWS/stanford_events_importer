@@ -1010,7 +1010,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_event_type_tid']['value'] = '';
   $handler->display->display_options['filters']['field_s_event_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator_id'] = 'field_s_event_type_tid_op';
-  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Event Type';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Event type';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator'] = 'field_s_event_type_tid_op';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['identifier'] = 'field_s_event_type_tid';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['remember_roles'] = array(
@@ -1024,7 +1024,7 @@ function stanford_events_views_views_default_views() {
     8 => 0,
     9 => 0,
   );
-  $handler->display->display_options['filters']['field_s_event_type_tid']['group_info']['label'] = 'Event Type (field_s_event_type)';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['group_info']['label'] = 'Event type (field_s_event_type)';
   $handler->display->display_options['filters']['field_s_event_type_tid']['group_info']['identifier'] = 'field_s_event_type_tid';
   $handler->display->display_options['filters']['field_s_event_type_tid']['group_info']['remember'] = FALSE;
   $handler->display->display_options['filters']['field_s_event_type_tid']['group_info']['group_items'] = array(
@@ -1280,7 +1280,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_event_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_s_event_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator_id'] = 'field_s_event_type_tid_op';
-  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Filter by event Type ';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Filter by event type ';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator'] = 'field_s_event_type_tid_op';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['identifier'] = 'field_s_event_type_tid';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['remember_roles'] = array(

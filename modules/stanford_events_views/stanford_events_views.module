@@ -33,8 +33,6 @@ function stanford_events_views_views_pre_view(&$view, &$display_id, $args) {
     );
     $view->display_handler->set_option('footer', array('text' => $options));
 
-
-
   }
 
 }
