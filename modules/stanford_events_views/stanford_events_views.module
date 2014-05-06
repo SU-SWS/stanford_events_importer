@@ -5,3 +5,36 @@
  */
 
 include_once 'stanford_events_views.features.inc';
+
+
+/**
+ * Alters the see all upcoming events link to point to search.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function stanford_events_views_views_pre_view(&$view, &$display_id, $args) {
+
+  // Upcoming events views page
+  if ($view->name == "stanford_events_views" && $view->current_display == "page") {
+
+    // This will not work until https://drupal.org/node/1427854 is resolved.
+    // $view->display_handler->set_option('link_display', 'exhibitions_search');
+    // $view->display_handler->options['link_display'] = 'exhibitions_search';
+    // $view->display['page']->handler->set_option('link_display', 'exhibitions_search');
+
+     $options = array(
+      'id' => 'area',
+      'table' => 'views',
+      'field' => 'area',
+      'empty' => FALSE,
+      'content' => "<div class=\"more-link\">" . l('See all upcoming events', 'events/upcoming-events/search') . "</div>",
+      'format' => 'full_html',
+      'tokenize' => 0,
+    );
+    $view->display_handler->set_option('footer', array('text' => $options));
+
+
+
+  }
+
+}
