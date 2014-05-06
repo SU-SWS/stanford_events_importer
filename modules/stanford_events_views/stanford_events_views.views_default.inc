@@ -907,6 +907,12 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_event_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_s_event_type']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_s_event_type']['multi_type'] = 'ul';
+  /* Field: Content: Associated Program */
+  $handler->display->display_options['fields']['field_stanford_event_program']['id'] = 'field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['table'] = 'field_data_field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['field'] = 'field_stanford_event_program';
+  $handler->display->display_options['fields']['field_stanford_event_program']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_program']['delta_offset'] = '0';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
