@@ -96,7 +96,7 @@ function stanford_events_importer_field_group_info() {
     'format_settings' => array(
       'label' => 'Postcard Content',
       'instance_settings' => array(
-        'classes' => 'group-postcard-content field-group-div postcard-content span9',
+        'classes' => 'group-postcard-content field-group-div postcard-content',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -127,7 +127,7 @@ function stanford_events_importer_field_group_info() {
     'format_settings' => array(
       'label' => 'Postcard Image',
       'instance_settings' => array(
-        'classes' => 'group-postcard-image field-group-div postcard-image span3',
+        'classes' => 'group-postcard-image field-group-div postcard-image',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -283,7 +283,7 @@ function stanford_events_importer_field_group_info() {
     'format_settings' => array(
       'label' => 'Postcard',
       'instance_settings' => array(
-        'classes' => 'group-s-postcard field-group-div postcard clear-both',
+        'classes' => 'group-s-postcard field-group-div postcard clear-both postcard-left',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
