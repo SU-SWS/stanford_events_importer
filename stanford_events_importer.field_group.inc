@@ -77,6 +77,71 @@ function stanford_events_importer_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_postcard_content|node|stanford_event|teaser';
+  $field_group->group_name = 'group_postcard_content';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = 'group_s_postcard';
+  $field_group->data = array(
+    'label' => 'Postcard Content',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_stanford_event_admission',
+      1 => 'field_stanford_event_datetime',
+      2 => 'field_stanford_event_location',
+      3 => 'title',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard Content',
+      'instance_settings' => array(
+        'classes' => 'group-postcard-content field-group-div postcard-content span9',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_postcard_content|node|stanford_event|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_postcard_image|node|stanford_event|teaser';
+  $field_group->group_name = 'group_postcard_image';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = 'group_s_postcard';
+  $field_group->data = array(
+    'label' => 'Postcard Image',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_stanford_event_image',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard Image',
+      'instance_settings' => array(
+        'classes' => 'group-postcard-image field-group-div postcard-image span3',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_postcard_image|node|stanford_event|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_s_addimage_border_style|field_collection_item|field_s_image_additional|stanford_large_scaled';
   $field_group->group_name = 'group_s_addimage_border_style';
   $field_group->entity_type = 'field_collection_item';
@@ -201,6 +266,38 @@ function stanford_events_importer_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_postcard|node|stanford_event|teaser';
+  $field_group->group_name = 'group_s_postcard';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Postcard',
+    'weight' => '0',
+    'children' => array(
+      0 => 'group_postcard_image',
+      1 => 'group_postcard_content',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard',
+      'instance_settings' => array(
+        'classes' => 'group-s-postcard field-group-div postcard clear-both',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_postcard|node|stanford_event|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_stanford_event_advanced|node|stanford_event|form';
   $field_group->group_name = 'group_stanford_event_advanced';
   $field_group->entity_type = 'node';
@@ -214,6 +311,7 @@ function stanford_events_importer_field_group_info() {
       0 => 'field_stanford_event_add_to_cal',
       1 => 'field_stanford_event_audience',
       2 => 'field_stanford_event_categories',
+      3 => 'field_event_related_person',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
