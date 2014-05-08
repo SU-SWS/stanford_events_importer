@@ -1780,7 +1780,7 @@ function stanford_events_views_views_default_views() {
   /* Display: Upcoming Events Search */
   $handler = $view->new_display('page', 'Upcoming Events Search', 'upcoming_events_search');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Search Events';
+  $handler->display->display_options['title'] = 'Search Upcoming Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['display_description'] = 'Upcoming Events Search';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
