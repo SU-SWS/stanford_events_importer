@@ -845,7 +845,7 @@ function stanford_events_importer_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => 'content',
-          'image_style' => 'med-square',
+          'image_style' => 'sm-square',
         ),
         'type' => 'image',
         'weight' => 25,
