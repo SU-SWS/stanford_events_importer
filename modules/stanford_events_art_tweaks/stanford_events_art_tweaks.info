@@ -1,0 +1,7 @@
+name = Stanford Events Custom Tweaks for Art
+description = Several alters blocks and javascripts oh my!
+core = 7.x
+package = Stanford
+version = 7.x-1.0
+project = stanford_events_art_tweaks
+scripts[] = js/stanford_events_art_tweaks.js
