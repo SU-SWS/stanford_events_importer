@@ -25,8 +25,8 @@ function stanford_events_art_tweaks_init() {
   }
 
   // Landing page
-  if ($a0 == "events" && $a1 == "calendar" && empty($a2) && !empty($mini)) {
-    drupal_goto($a0 . "/" . $a1 . "/month/" . $mini);
+  if (request_path() == "events/calendar" && !empty($mini)) {
+    drupal_goto(request_path() . "/month/" . $mini);
   }
 
 }
@@ -69,7 +69,7 @@ function stanford_events_art_tweaks_add_js_settings() {
   }
 
   // On the landing page as well i guess.
-  if ($a1 == "calendar" && $a0 == "events" && empty($a2)) {
+  if (request_path() == "events/calendar") {
     $settings['seatvpb']['runrun'] = "run";
   }
 
