@@ -64,7 +64,7 @@ function stanford_events_art_tweaks_add_js_settings() {
   );
 
   // Tell the javascript to execute or 'run'.
-  if ($a2 == "month" || $a2 == "day") && $a0 == "events") {
+  if (($a2 == "month" || $a2 == "day") && $a0 == "events") {
     $settings['seatvpb']['runrun'] = "run";
   }
 
