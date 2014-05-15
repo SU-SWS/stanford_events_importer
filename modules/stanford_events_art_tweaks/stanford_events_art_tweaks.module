@@ -14,12 +14,19 @@ function stanford_events_art_tweaks_init() {
   $a2 = arg(2);
   $mini = isset($_REQUEST['mini']) ? check_plain($_REQUEST['mini']) : NULL;
 
-    if ($a0 == "events" && $a1 == "calendar" && $a2 == "day" && !empty($mini)) {
+  // Day views
+  if ($a0 == "events" && $a1 == "calendar" && $a2 == "day" && !empty($mini)) {
     drupal_goto($a0 . "/" . $a1 . "/month/" . $mini);
   }
 
+  // Month views
   if ($a0 == "events" && $a1 == "calendar" && $a2 == "month" && !empty($mini)) {
     drupal_goto($a0 . "/" . $a1 . "/" . $a2 . "/" . $mini);
+  }
+
+  // Landing page
+  if ($a0 == "events" && $a1 == "calendar" && empty($a2) && !empty($mini)) {
+    drupal_goto($a0 . "/" . $a1 . "/month/" . $mini);
   }
 
 }
@@ -44,16 +51,25 @@ function stanford_events_art_tweaks_views_pre_build(&$view) {
  * @return [type] [description]
  */
 function stanford_events_art_tweaks_add_js_settings() {
+  $a0 = arg(0);
+  $a1 = arg(1);
+  $a2 = arg(2);
+
   // Add some helper JS.
   $settings = array(
     'seatvpb' => array(
-      'arg0' => arg(0),
-      'arg1' => arg(1),
+      'arg0' => $a0,
+      'arg1' => $a1,
     )
   );
 
   // Tell the javascript to execute or 'run'.
-  if ((arg(2) == "month" || arg(2) == "day") && arg(0) == "events") {
+  if ($a2 == "month" || $a2 == "day") && $a0 == "events") {
+    $settings['seatvpb']['runrun'] = "run";
+  }
+
+  // On the landing page as well i guess.
+  if ($a1 == "calendar" && $a0 == "events" && empty($a2)) {
     $settings['seatvpb']['runrun'] = "run";
   }
 
