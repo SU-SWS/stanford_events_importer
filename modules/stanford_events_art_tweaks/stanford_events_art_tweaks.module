@@ -92,3 +92,20 @@ function stanford_events_art_tweaks_pass_args(&$view) {
 
   $view->set_arguments(array($date));
 }
+
+/**
+ * [hook_views_query_alter description]
+ * @param  [type] $view  [description]
+ * @param  [type] $query [description]
+ * @return [type]        [description]
+ */
+function stanford_events_art_tweaks_views_query_alter(&$view, &$query) {
+  // Find all combine fields and make them case insensitive.
+  foreach ($query->where as $group_key => $group) {
+    foreach ($group['conditions'] as $key => $condition) {
+      if (is_string($condition['field']) && (preg_match('/:views_combine/', $condition['field']))) {
+        $query->where[$group_key]['conditions'][$key]['field'] = $condition['field'] . ' COLLATE utf8_general_ci';
+      }
+    }
+  }
+}
