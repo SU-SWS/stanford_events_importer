@@ -1,6 +1,14 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha2, 2014-05-16
+--------------------------------------------------
+- BASIC-795: removed no results text
+- BASIC-806: Change image display to large-scaled
+- BASIC-729 | Changed date format on event display
+- Cleaned UP 2.x Autopop pull request
+- Cleaned up some formatting
+
 Stanford Events Importer 7.x-3.0-alpha1, 2014-03-11
 --------------------------------------------------
 - Features 2.x Compatible feature
