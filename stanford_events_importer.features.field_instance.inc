@@ -943,7 +943,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -954,6 +954,7 @@ function stanford_events_importer_field_default_field_instances() {
         'weight' => 5,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_stanford_event_location',
     'label' => 'Location',
@@ -964,6 +965,7 @@ function stanford_events_importer_field_default_field_instances() {
           'content_editor_text_format' => 'content_editor_text_format',
           'filtered_html' => 'filtered_html',
           'full_html' => 'full_html',
+          'php_code' => 0,
           'plain_text' => 'plain_text',
         ),
         'allowed_formats_toggle' => 0,
@@ -979,6 +981,9 @@ function stanford_events_importer_field_default_field_instances() {
             'full_html' => array(
               'weight' => 1,
             ),
+            'php_code' => array(
+              'weight' => 11,
+            ),
             'plain_text' => array(
               'weight' => 10,
             ),
@@ -992,9 +997,9 @@ function stanford_events_importer_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 5,
       ),
-      'type' => 'text_textfield',
+      'type' => 'text_textarea',
       'weight' => 7,
     ),
   );
