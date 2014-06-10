@@ -10,7 +10,6 @@ dependencies[] = features
 dependencies[] = stanford_events_importer
 dependencies[] = strongarm
 dependencies[] = views
-features[context][] = vpsa_events_node
 features[context][] = vpsa_events_past
 features[context][] = vpsa_events_upcoming
 features[ctools][] = context:context:3
