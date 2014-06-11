@@ -1953,6 +1953,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Search Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['display_description'] = 'Events Search';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -2098,7 +2099,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['group'] = 1;
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['operator_id'] = 'field_stanford_event_datetime_value_op';
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['label'] = 'Start date';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['label'] = 'Find events after';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['operator'] = 'field_stanford_event_datetime_value_op';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['identifier'] = 'field_stanford_event_datetime_value';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['remember_roles'] = array(
@@ -2115,7 +2116,7 @@ function stanford_events_views_views_default_views() {
     13 => 0,
   );
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'first day of this month';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'today';
   /* Filter criterion: Content: Date and Time - end date (field_stanford_event_datetime:value2) */
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['id'] = 'field_stanford_event_datetime_value2';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['table'] = 'field_data_field_stanford_event_datetime';
@@ -2124,7 +2125,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group'] = 1;
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['operator_id'] = 'field_stanford_event_datetime_value2_op';
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['label'] = 'End date';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['label'] = 'Find events before';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['operator'] = 'field_stanford_event_datetime_value2_op';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['identifier'] = 'field_stanford_event_datetime_value2';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['remember_roles'] = array(
@@ -2140,8 +2141,15 @@ function stanford_events_views_views_default_views() {
     11 => 0,
     13 => 0,
   );
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group_info']['label'] = 'Date and Time - end date (field_stanford_event_datetime:value2)';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group_info']['identifier'] = 'field_stanford_event_datetime_value2';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group_info']['remember'] = FALSE;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group_info']['group_items'] = array(
+    1 => array(),
+    2 => array(),
+    3 => array(),
+  );
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['default_date'] = '+90 days';
   $handler->display->display_options['path'] = 'events/search-events';
   $handler->display->display_options['menu']['title'] = 'Upcoming Events';
   $handler->display->display_options['menu']['weight'] = '0';
