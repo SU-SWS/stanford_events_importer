@@ -424,3 +424,19 @@ function stanford_events_importer_date_popup_process_alter(&$element, &$form_sta
   }
 
 }
+
+/**
+ * Add nl2br to all plain text fields on events
+ * @param  [type] $vars [description]
+ * @return [type]       [description]
+ */
+function stanford_events_importer_preprocess_field(&$vars) {
+  if ($vars['element']['#field_type'] == 'text_long' && $vars['element']['#bundle'] == "stanford_event") {
+    $field_name = $vars['element']['#field_name'];
+    foreach ($vars['items'] as $key => &$item) {
+      if ($vars['element']['#object']->{$field_name}[LANGUAGE_NONE][$key]['format'] == NULL) {
+        $item['#markup'] = nl2br($item['#markup']);
+      }
+    }
+  }
+}

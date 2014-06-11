@@ -500,3 +500,50 @@ function stanford_events_importer_update_7201(&$sandbox) {
 
 
 }
+
+/**
+ * Update location text field to textarea
+ *
+ *
+ *
+ */
+function stanford_events_importer_update_7301(&$sandbox) {
+
+  $config = db_select('field_config', 'fc')
+    ->fields('fc', array('data'))
+    ->condition('field_name', 'field_stanford_event_location')
+    ->execute()
+    ->fetchAssoc();
+
+  // Get existing config.
+  $data = unserialize($config['data']);
+  unset($data['settings']['max_length']);
+
+  // Change field config values
+  db_update('field_config')
+    ->fields(array(
+      'type' => 'text_long',
+      'data' => serialize($data),
+    ))
+    ->condition('field_name', 'field_stanford_event_location')
+    ->execute();
+
+  // From text.install for long text fields
+  $textarea_spec = array(
+    'type' => 'text',
+    'size' => 'big',
+    'not null' => FALSE,
+  );
+
+  db_change_field('field_data_field_stanford_event_location', 'field_stanford_event_location_value', 'field_stanford_event_location_value', $textarea_spec);
+
+  db_change_field('field_revision_field_stanford_event_location', 'field_stanford_event_location_value', 'field_stanford_event_location_value', $textarea_spec);
+
+  field_cache_clear(TRUE);
+
+  features_revert(array(
+    'stanford_events_importer' => array('field_base', 'field_instance'),
+  ));
+
+}
+
