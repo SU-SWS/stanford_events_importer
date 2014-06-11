@@ -507,7 +507,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 3,
       ),
       'teaser' => array(
@@ -557,7 +557,7 @@ function stanford_events_importer_field_default_field_instances() {
       'settings' => array(
         'size' => 60,
       ),
-      'type' => 'text_textfield',
+      'type' => 'text_textarea',
       'weight' => 5,
     ),
   );
