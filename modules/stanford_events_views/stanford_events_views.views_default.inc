@@ -749,7 +749,9 @@ function stanford_events_views_views_default_views() {
     'changed' => 'changed',
     'field_stanford_event_datetime' => 'field_stanford_event_datetime',
     'field_stanford_event_location' => 'field_stanford_event_location',
-    'field_stanford_event_sponsor' => 'field_stanford_event_sponsor',
+    'field_stanford_event_featured' => 'field_stanford_event_featured',
+    'field_s_event_type' => 'field_s_event_type',
+    'field_stanford_event_program' => 'field_stanford_event_program',
     'nid' => 'nid',
     'edit_node' => 'edit_node',
     'view_node' => 'edit_node',
@@ -814,9 +816,19 @@ function stanford_events_views_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_stanford_event_sponsor' => array(
+    'field_stanford_event_featured' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_s_event_type' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_stanford_event_program' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -854,6 +866,134 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
+    'action::node_assign_owner_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_delete_item' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 1,
+      'label' => 'Delete',
+    ),
+    'action::views_bulk_operations_delete_revision' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_script_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_make_sticky_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_make_unsticky_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::views_bulk_operations_modify_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 1,
+      'label' => 'Modify',
+      'settings' => array(
+        'show_all_tokens' => 1,
+        'display_values' => array(
+          'stanford_event::field_s_event_type' => 'stanford_event::field_s_event_type',
+          'stanford_event::field_stanford_event_program' => 'stanford_event::field_stanford_event_program',
+          'stanford_event::field_stanford_event_featured' => 'stanford_event::field_stanford_event_featured',
+        ),
+      ),
+    ),
+    'action::views_bulk_operations_argument_selector_action' => array(
+      'selected' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+      'settings' => array(
+        'url' => '',
+      ),
+    ),
+    'action::node_promote_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_publish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 1,
+      'label' => 'Publish',
+    ),
+    'action::node_unpromote_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_save_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::system_send_email_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::node_unpublish_action' => array(
+      'selected' => 1,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 1,
+      'label' => 'Unpublish',
+    ),
+    'action::node_unpublish_by_keyword_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+    'action::pathauto_node_update_action' => array(
+      'selected' => 0,
+      'postpone_processing' => 0,
+      'skip_confirmation' => 0,
+      'override_label' => 0,
+      'label' => '',
+    ),
+  );
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_stanford_event_image']['id'] = 'field_stanford_event_image';
   $handler->display->display_options['fields']['field_stanford_event_image']['table'] = 'field_data_field_stanford_event_image';
@@ -900,6 +1040,10 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_location']['id'] = 'field_stanford_event_location';
   $handler->display->display_options['fields']['field_stanford_event_location']['table'] = 'field_data_field_stanford_event_location';
   $handler->display->display_options['fields']['field_stanford_event_location']['field'] = 'field_stanford_event_location';
+  /* Field: Content: Featured */
+  $handler->display->display_options['fields']['field_stanford_event_featured']['id'] = 'field_stanford_event_featured';
+  $handler->display->display_options['fields']['field_stanford_event_featured']['table'] = 'field_data_field_stanford_event_featured';
+  $handler->display->display_options['fields']['field_stanford_event_featured']['field'] = 'field_stanford_event_featured';
   /* Field: Content: Event Type */
   $handler->display->display_options['fields']['field_s_event_type']['id'] = 'field_s_event_type';
   $handler->display->display_options['fields']['field_s_event_type']['table'] = 'field_data_field_s_event_type';
@@ -988,11 +1132,35 @@ function stanford_events_views_views_default_views() {
     15 => 0,
     17 => 0,
   );
+  /* Filter criterion: Content: Featured (field_stanford_event_featured) */
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['id'] = 'field_stanford_event_featured_value';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['table'] = 'field_data_field_stanford_event_featured';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['field'] = 'field_stanford_event_featured_value';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['expose']['operator_id'] = 'field_stanford_event_featured_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['expose']['label'] = 'Featured';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['expose']['operator'] = 'field_stanford_event_featured_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['expose']['identifier'] = 'field_stanford_event_featured_value';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
   /* Filter criterion: Content: Location (field_stanford_event_location) */
   $handler->display->display_options['filters']['field_stanford_event_location_value']['id'] = 'field_stanford_event_location_value';
   $handler->display->display_options['filters']['field_stanford_event_location_value']['table'] = 'field_data_field_stanford_event_location';
   $handler->display->display_options['filters']['field_stanford_event_location_value']['field'] = 'field_stanford_event_location_value';
   $handler->display->display_options['filters']['field_stanford_event_location_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['group'] = 1;
   $handler->display->display_options['filters']['field_stanford_event_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['operator_id'] = 'field_stanford_event_location_value_op';
   $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['label'] = 'Location';
@@ -1014,6 +1182,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_event_type_tid']['table'] = 'field_data_field_s_event_type';
   $handler->display->display_options['filters']['field_s_event_type_tid']['field'] = 'field_s_event_type_tid';
   $handler->display->display_options['filters']['field_s_event_type_tid']['value'] = '';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_s_event_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator_id'] = 'field_s_event_type_tid_op';
   $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Event type';
@@ -1110,7 +1279,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime']['alter']['text'] = '<div class="clearfix">[field_stanford_event_datetime]</div>';
   $handler->display->display_options['fields']['field_stanford_event_datetime']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['settings'] = array(
-    'format_type' => 'stanford_long_day_date_year_time',
+    'format_type' => 'stanford_date_year_time',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1344,9 +1513,11 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['path'] = 'events/upcoming-events';
@@ -1367,7 +1538,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'See More Events';
+  $handler->display->display_options['use_more_text'] = 'See more events';
   $handler->display->display_options['link_url'] = 'events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
@@ -1514,18 +1685,18 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['display_description'] = 'Includes images';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'View Past Events';
+  $handler->display->display_options['use_more_text'] = 'See all upcoming events';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
-  $handler->display->display_options['link_display'] = 'custom_url';
+  $handler->display->display_options['link_display'] = 'page';
   $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Image */
@@ -1777,12 +1948,12 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'now';
 
-  /* Display: Upcoming Events Search */
-  $handler = $view->new_display('page', 'Upcoming Events Search', 'upcoming_events_search');
+  /* Display: Events Search */
+  $handler = $view->new_display('page', 'Events Search', 'upcoming_events_search');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Search Upcoming Events';
+  $handler->display->display_options['title'] = 'Search Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
-  $handler->display->display_options['display_description'] = 'Upcoming Events Search';
+  $handler->display->display_options['display_description'] = 'Events Search';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -1810,12 +1981,432 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['empty']['area']['content'] = '<p>Sorry, no future events for that search are scheduled.</p>
  <p><a class="more-link" href="/events/past-events">View Past Events</a></p>';
   $handler->display->display_options['empty']['area']['format'] = 'content_editor_text_format';
-  $handler->display->display_options['path'] = 'events/upcoming-events/search';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'stanford_event' => 'stanford_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Search by title';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  /* Filter criterion: Content: Location (field_stanford_event_location) */
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['id'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['table'] = 'field_data_field_stanford_event_location';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['field'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['operator_id'] = 'field_stanford_event_location_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['label'] = 'Search by location';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['operator'] = 'field_stanford_event_location_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['identifier'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  /* Filter criterion: Content: Event Type (field_s_event_type) */
+  $handler->display->display_options['filters']['field_s_event_type_tid']['id'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['table'] = 'field_data_field_s_event_type';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['field'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_event_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator_id'] = 'field_s_event_type_tid_op';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Filter by event type ';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator'] = 'field_s_event_type_tid_op';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['identifier'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_event_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['vocabulary'] = 'stanford_event_type';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Associated Program (field_stanford_event_program) */
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['id'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['table'] = 'field_data_field_stanford_event_program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['field'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator_id'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['label'] = 'Filter by program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['identifier'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['vocabulary'] = 'stanford_program_type';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Date and Time -  start date (field_stanford_event_datetime) */
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['operator_id'] = 'field_stanford_event_datetime_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['label'] = 'Start date';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['operator'] = 'field_stanford_event_datetime_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['identifier'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'first day of this month';
+  /* Filter criterion: Content: Date and Time - end date (field_stanford_event_datetime:value2) */
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['id'] = 'field_stanford_event_datetime_value2';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['field'] = 'field_stanford_event_datetime_value2';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['operator_id'] = 'field_stanford_event_datetime_value2_op';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['label'] = 'End date';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['operator'] = 'field_stanford_event_datetime_value2_op';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['identifier'] = 'field_stanford_event_datetime_value2';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['default_date'] = '+90 days';
+  $handler->display->display_options['path'] = 'events/search-events';
   $handler->display->display_options['menu']['title'] = 'Upcoming Events';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+
+  /* Display: 2 Item Featured Upcoming Block - Date Stacked */
+  $handler = $view->new_display('block', '2 Item Featured Upcoming Block - Date Stacked', 'block_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Featured Events';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'See more events';
+  $handler->display->display_options['link_url'] = 'events';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '2';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['text'] = '[title]
+  [field_stanford_event_datetime_2] ';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Date and Time */
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['id'] = 'field_stanford_event_datetime_2';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['field'] = 'field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['label'] = '';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['text'] = '[title]
+  [field_stanford_event_datetime_2]';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
+    'format_type' => 'stanford_time',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Date and Time */
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['id'] = 'field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['field'] = 'field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['label'] = '';
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['alter']['text'] = '<div class="clearfix">[field_stanford_event_datetime]</div>';
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime']['settings'] = array(
+    'format_type' => 'stanford_short_month',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Date and Time */
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['id'] = 'field_stanford_event_datetime_1';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['field'] = 'field_stanford_event_datetime';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['label'] = '';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['alter']['text'] = '[field_stanford_event_datetime]
+  [field_stanford_event_datetime_1]';
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['alter']['nl2br'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_datetime_1']['settings'] = array(
+    'format_type' => 'stanford_two_digit_day',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_stanford_event_location']['id'] = 'field_stanford_event_location';
+  $handler->display->display_options['fields']['field_stanford_event_location']['table'] = 'field_data_field_stanford_event_location';
+  $handler->display->display_options['fields']['field_stanford_event_location']['field'] = 'field_stanford_event_location';
+  $handler->display->display_options['fields']['field_stanford_event_location']['label'] = '';
+  $handler->display->display_options['fields']['field_stanford_event_location']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_location']['alter']['max_length'] = '40';
+  $handler->display->display_options['fields']['field_stanford_event_location']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['field_stanford_event_location']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_stanford_event_location']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['field_stanford_event_location']['element_default_classes'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="postcard-left">
+
+  <div class="date-stacked">
+  <div class="date-month">[field_stanford_event_datetime]</div>
+  <div class="date-day">[field_stanford_event_datetime_1]</div>
+  </div>
+
+  <div>
+  <div class="event-title normal-link"><h3>[title]</h3></div>
+  <div class="event-location descriptor">[field_stanford_event_location]</div>
+  <div class="event-date-long descriptor">[field_stanford_event_datetime_2]</div>
+  <div class="edit-link">[edit_node]</div>
+  </div>
+
+  </div>';
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date and Time -  start date (field_stanford_event_datetime) */
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'stanford_event' => 'stanford_event',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Date and Time -  start date (field_stanford_event_datetime) */
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'today';
+  /* Filter criterion: Content: Featured (field_stanford_event_featured) */
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['id'] = 'field_stanford_event_featured_value';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['table'] = 'field_data_field_stanford_event_featured';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['field'] = 'field_stanford_event_featured_value';
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['value'] = array(
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_stanford_event_featured_value']['group'] = 1;
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title']['id'] = 'title';
+  $handler->display->display_options['filters']['title']['table'] = 'node';
+  $handler->display->display_options['filters']['title']['field'] = 'title';
+  $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
+  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Search by title';
+  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
+  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  /* Filter criterion: Content: Location (field_stanford_event_location) */
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['id'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['table'] = 'field_data_field_stanford_event_location';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['field'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['operator_id'] = 'field_stanford_event_location_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['label'] = 'Search by location';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['operator'] = 'field_stanford_event_location_value_op';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['identifier'] = 'field_stanford_event_location_value';
+  $handler->display->display_options['filters']['field_stanford_event_location_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  /* Filter criterion: Content: Event Type (field_s_event_type) */
+  $handler->display->display_options['filters']['field_s_event_type_tid']['id'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['table'] = 'field_data_field_s_event_type';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['field'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_event_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator_id'] = 'field_s_event_type_tid_op';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['label'] = 'Filter by event type ';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['operator'] = 'field_s_event_type_tid_op';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['identifier'] = 'field_s_event_type_tid';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_event_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['vocabulary'] = 'stanford_event_type';
+  $handler->display->display_options['filters']['field_s_event_type_tid']['hierarchy'] = 1;
+  /* Filter criterion: Content: Associated Program (field_stanford_event_program) */
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['id'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['table'] = 'field_data_field_stanford_event_program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['field'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator_id'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['label'] = 'Filter by program';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['operator'] = 'field_stanford_event_program_tid_op';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['identifier'] = 'field_stanford_event_program_tid';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['vocabulary'] = 'stanford_program_type';
+  $handler->display->display_options['filters']['field_stanford_event_program_tid']['hierarchy'] = 1;
   $export['stanford_events_views'] = $view;
 
   return $export;
