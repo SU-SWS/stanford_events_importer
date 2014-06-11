@@ -10,7 +10,6 @@
       {
           // Ensure we find something or die.
           var found = $('.view-stanford-events-calendar, .view-stanford-events-exhibitions-calendar');
-          console.log(found);
 
           if (found.length >= 1) {
             seet_kill_calendar_ajax(found);

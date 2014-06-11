@@ -1,0 +1,11 @@
+/**
+ * Some small tweaks.
+ */
+
+.page-events-calendar #block-system-main .view-id-stanford_events_exhibitions_calendar .date-nav {
+  display: none;
+}
+
+.page-events-calendar #block-system-main .view-id-stanford_events_exhibitions_calendar .date-heading {
+  text-align: left;
+}

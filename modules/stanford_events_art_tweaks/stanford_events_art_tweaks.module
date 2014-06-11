@@ -40,9 +40,12 @@ function stanford_events_art_tweaks_init() {
 function stanford_events_art_tweaks_views_pre_build(&$view) {
 
   if ($view->name == "stanford_events_exhibitions_calendar" && $view->current_display == "events_exhibitions_calendar_block") {
+    drupal_add_css(drupal_get_path('module', 'stanford_events_art_tweaks') . "/css/stanford_events_art_tweaks.css");
     stanford_events_art_tweaks_add_js_settings();
     stanford_events_art_tweaks_pass_args($view);
   }
+
+  stanford_events_art_tweaks_replace_header_text($view);
 
 }
 
@@ -92,6 +95,22 @@ function stanford_events_art_tweaks_pass_args(&$view) {
 
   $view->set_arguments(array($date));
 }
+
+/**
+ * Replaces text with real dates
+ * @return [type] [description]
+ */
+function stanford_events_art_tweaks_replace_header_text(&$view) {
+
+  if (!isset($view->header["area_text_custom"]->options['content'])) {
+    return;
+  }
+
+  $date_text = date('F', strtotime($view->args[0]));
+  $view->header["area_text_custom"]->options['content'] = str_replace('[month-replace]', $date_text, $view->header["area_text_custom"]->options['content']);
+
+}
+
 
 /**
  * [hook_views_query_alter description]
