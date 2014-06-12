@@ -106,8 +106,11 @@ function stanford_events_art_tweaks_replace_header_text(&$view) {
     return;
   }
 
-  $date_text = date('F', strtotime($view->args[0]));
-  $view->header["area_text_custom"]->options['content'] = str_replace('[month-replace]', $date_text, $view->header["area_text_custom"]->options['content']);
+  $month_text = date('F', strtotime($view->args[0]));
+  $day_text = date('F d', strtotime($view->args[0]));
+  $view->header["area_text_custom"]->options['content'] = str_replace('[month-replace]', $month_text, $view->header["area_text_custom"]->options['content']);
+  $view->header["area_text_custom"]->options['content'] = str_replace('[day-replace]', $day_text, $view->header["area_text_custom"]->options['content']);
+
 
 }
 
