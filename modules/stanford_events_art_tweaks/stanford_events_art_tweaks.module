@@ -26,7 +26,7 @@ function stanford_events_art_tweaks_init() {
 
   // Landing page
   if (request_path() == "calendar" && !empty($mini)) {
-    drupal_goto(request_path() . "/month/" . $mini);
+    drupal_goto("events/calendar/month/" . $mini);
   }
 
 }
