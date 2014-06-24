@@ -13,6 +13,13 @@ function stanford_events_importer_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'additional_settings__active_tab_stanford_event';
+  $strongarm->value = 'edit-xmlsitemap';
+  $export['additional_settings__active_tab_stanford_event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'ant_pattern_stanford_event';
   $strongarm->value = '';
   $export['ant_pattern_stanford_event'] = $strongarm;
@@ -156,6 +163,20 @@ function stanford_events_importer_strongarm() {
   $strongarm->name = 'date_format_stanford_event';
   $strongarm->value = 'l, F j, Y - g:ia';
   $export['date_format_stanford_event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_enable_revisions_page_node_stanford_event';
+  $strongarm->value = 1;
+  $export['diff_enable_revisions_page_node_stanford_event'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'diff_show_preview_changes_node_stanford_event';
+  $strongarm->value = 1;
+  $export['diff_show_preview_changes_node_stanford_event'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -412,8 +433,8 @@ function stanford_events_importer_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_stanford_event';
   $strongarm->value = array(
+    0 => 'moderation',
     1 => 'revision',
-    2 => 'moderation',
   );
   $export['node_options_stanford_event'] = $strongarm;
 
