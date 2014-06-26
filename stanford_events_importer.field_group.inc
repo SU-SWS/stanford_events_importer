@@ -118,9 +118,10 @@ function stanford_events_importer_field_group_info() {
     'label' => 'Advanced',
     'weight' => '14',
     'children' => array(
-      0 => 'field_stanford_event_add_to_cal',
-      1 => 'field_stanford_event_audience',
-      2 => 'field_stanford_event_categories',
+      0 => 'field_s_event_type',
+      1 => 'field_stanford_event_add_to_cal',
+      2 => 'field_stanford_event_audience',
+      3 => 'field_stanford_event_categories',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
