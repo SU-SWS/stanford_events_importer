@@ -252,6 +252,18 @@ function stanford_events_importer_update_7200(&$sandbox) {
   // Get helper functions and utilities.
   module_load_include('php', 'stanford_events_importer', 'inc/stanford_events_importer.util.inc');
 
+  // check for new dependencies.
+  $path = drupal_get_path('module', 'stanford_events_importer') . '/stanford_events_importer.info';
+  $info = drupal_parse_info_file($path);
+
+  foreach ($info['dependencies'] as $dependency) {
+    $parsed = drupal_parse_dependency($dependency);
+    if (!module_exists($parsed['name'])) {
+      throw new DrupalUpdateException('Missing dependency: ' . $parsed['name'] . ". Please enable it to continue with upgrades.");
+      return;
+    }
+  }
+
   // First batch of updates. Schema checks and such.
   $success = stanford_events_importer_update_7200a();
 
