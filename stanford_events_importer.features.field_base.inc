@@ -191,7 +191,7 @@ function stanford_events_importer_field_default_field_bases() {
       ),
       'timezone_db' => 'UTC',
       'todate' => 'optional',
-      'tz_handling' => 'site',
+      'tz_handling' => 'none',
     ),
     'translatable' => 0,
     'type' => 'datetime',
