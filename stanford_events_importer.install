@@ -510,5 +510,27 @@ function stanford_events_importer_update_7201(&$sandbox) {
       ->execute();
   }
 
+}
 
+/**
+ * Update from 2.x -> 3.x features
+ */
+function stanford_events_importer_update_7300(&$sandbox) {
+  // Programically revert the feature so the user doesnt have to.
+  features_revert(
+    array(
+      'stanford_events_importer' => array(
+        'field_base',
+        'field_instance',
+        'ctools',
+        'feeds_importer',
+        'feeds_tamper',
+        'node',
+        'variable',
+        'field_group',
+        'taxonomy',
+        'variable',
+      )
+    )
+  );
 }
