@@ -133,7 +133,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -344,7 +344,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -600,7 +600,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['hide_alter_empty'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1358,7 +1358,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
-    'format_type' => 'stanford_long_day_date_year_time',
+    'format_type' => 'stanford_long_day_date_year_time_space',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1714,7 +1714,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1821,7 +1821,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1986,7 +1986,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_date_year_time_space',
     'fromto' => 'value',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -2091,7 +2091,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_stanford_event_datetime_2']['settings'] = array(
-    'format_type' => 'stanford_long_day_date_year_time',
+    'format_type' => 'stanford_long_day_date_year_time_space',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
