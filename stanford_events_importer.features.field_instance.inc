@@ -330,7 +330,7 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 13,
+      'weight' => 17,
     ),
   );
 
