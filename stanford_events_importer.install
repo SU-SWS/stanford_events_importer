@@ -42,6 +42,21 @@ function stanford_events_importer_requirements($phase) {
       }
       break;
 
+      // Ensure that stanford_date_formats module is enabled before updating.
+      if (!module_exists('stanford_date_formats')) {
+        // Be nice and try to enable it for the user.
+        if (!module_enable(array('stanford_date_formats'))) {
+          // Still no dice. Throw out requirement.
+          $requirements['stanford_date_formats_enabled'] = array(
+            'title' => 'Stanford Date Formats Module Required',
+            'value' => 'Not installed',
+            'description' => 'The Stanford Date Formats module is required for version 3.x of the Stanford Events Importer module.',
+            'severity' => REQUIREMENT_ERROR,
+          );
+        }
+      }
+      break;
+
     default:
   }
 
@@ -240,6 +255,9 @@ function stanford_events_importer_schema() {
  */
 function stanford_events_importer_update_7100(&$sandbox) {
   // Legacy Placeholder
+  if (!module_exists('stanford_date_formats')) {
+    module_enable(array('stanford_date_formats'));
+  }
   return;
 }
 
@@ -363,21 +381,21 @@ function stanford_events_importer_update_7200a() {
 function stanford_events_importer_update_7200b() {
 
   // We have to db MYSQL for this to work. Sorry other guys.
-  $type = db_driver();
-  if ($type !== "mysql") {
-    $msg = t('Could not update existing stanford_event nodes. Database connection must be mysql.');
-    drupal_set_message($msg, 'error');
-    watchdog('stanford_events_importer', $msg, array(), WATCHDOG_ERROR);
-    return FALSE;
-  }
+  // $type = db_driver();
+  // if ($type !== "mysql") {
+  //   $msg = t('Could not update existing stanford_event nodes. Database connection must be mysql.');
+  //   drupal_set_message($msg, 'error');
+  //   watchdog('stanford_events_importer', $msg, array(), WATCHDOG_ERROR);
+  //   return FALSE;
+  // }
 
-  // Update the data field first.
-  $result = db_query("UPDATE {field_data_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
-            ->execute();
+  // // Update the data field first.
+  // $result = db_query("UPDATE {field_data_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+  //           ->execute();
 
-  // Update the revisions field.
-  $result = db_query("UPDATE {field_revision_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
-            ->execute();
+  // // Update the revisions field.
+  // $result = db_query("UPDATE {field_revision_field_stanford_event_datetime} SET `field_stanford_event_datetime_value` = (SELECT DATE_SUB(field_stanford_event_datetime_value, INTERVAL 8 HOUR)) WHERE `bundle` = 'stanford_event'")
+  //           ->execute();
 
   return TRUE;
 }
