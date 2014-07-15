@@ -276,9 +276,13 @@ function stanford_events_importer_update_7200(&$sandbox) {
 
   foreach ($info['dependencies'] as $dependency) {
     $parsed = drupal_parse_dependency($dependency);
+    // ensure that dependencies are installed before trying to update
     if (!module_exists($parsed['name'])) {
-      throw new DrupalUpdateException('Missing dependency: ' . $parsed['name'] . ". Please enable it to continue with upgrades.");
-      return;
+      // be nice and try to enable it for the user
+      if (!module_enable($parsed['name'])) {
+        throw new DrupalUpdateException('Missing dependency: ' . $parsed['name'] . ". Please install it to continue with upgrades.");
+        return;
+      }
     }
   }
 
