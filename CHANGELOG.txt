@@ -1,8 +1,15 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha3, 2014-07-15
+---------------------------------------------------
+By sheamck:
+  - Set date field to use site's time zone handling
+  - remove 8-hour offset
+  - Change update hook to calculates the difference between timezone field set from UTC to site's
+
 Stanford Events Importer 7.x-3.0-alpha2, 2014-05-16
---------------------------------------------------
+---------------------------------------------------
 - BASIC-795: removed no results text
 - BASIC-806: Change image display to large-scaled
 - BASIC-729 | Changed date format on event display
