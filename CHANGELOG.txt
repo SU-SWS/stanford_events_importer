@@ -1,6 +1,11 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha4, 2014-07-22
+---------------------------------------------------
+By sheamck:
+  - Fix in update hook to deal with Daylight Saving Time
+
 Stanford Events Importer 7.x-3.0-alpha3, 2014-07-15
 ---------------------------------------------------
 By sheamck:
