@@ -401,10 +401,52 @@ function stanford_events_importer_update_7200b() {
     ->fetchAllAssoc('entity_id');
 
   foreach ($data_results as $k => $v) {
+
     $entity_id = $v->entity_id;
     $revision_id = $v->revision_id;
+
     $original_time = $v->field_stanford_event_datetime_value;
     $original_time2 = $v->field_stanford_event_datetime_value2;
+
+    if (empty($original_time2)) {
+      $original_time2 = $original_time;
+    }
+
+    // Handle DST
+    // if event time is between november 2 and march 9 we need to add an hour.
+    $day = date('d', strtotime($original_time));
+    $month = date('m', strtotime($original_time));
+    $day2 = date('d', strtotime($original_time2));
+    $month2 = date('m', strtotime($original_time2));
+
+    // Check span
+    $addone = 0;
+    if ($month >= 11 || $month <= 3) {
+      if ($month == 11 && $day >= 2) { $addone = 1; }
+      if ($month == 3 && $day <= 9) { $addone = 1; }
+      if ($month !== 11 && $month != 3) { $addone = 1; }
+    }
+
+    // Check span
+    $addone2 = 0;
+    if ($month2 >= 11 || $month2 <= 3) {
+      if ($month2 == 11 && $day2 >= 2) { $addone2 = 1; }
+      if ($month2 == 3 && $day2 <= 9) { $addone2 = 1; }
+      if ($month2 !== 11 && $month2 != 3) { $addone2 = 1; }
+    }
+
+    // If in DST we need to add an hour.
+    if ($addone) {
+      $original_time = new DateTime($original_time);
+      $original_time->add(new DateInterval('PT1H'));
+      $original_time = $original_time->format('Y-m-d H:i:s');
+    }
+
+    if ($addone2) {
+      $original_time2 = new DateTime($original_time2);
+      $original_time2->add(new DateInterval('PT1H'));
+      $original_time2 = $original_time2->format('Y-m-d H:i:s');
+    }
 
     $new_time = new DateTime($original_time, $utc);
     $new_time2 = new DateTime($original_time2, $utc);
