@@ -40,7 +40,6 @@ function stanford_events_importer_requirements($phase) {
           );
         }
       }
-      break;
 
       // Ensure that stanford_date_formats module is enabled before updating.
       if (!module_exists('stanford_date_formats')) {
@@ -55,8 +54,22 @@ function stanford_events_importer_requirements($phase) {
           );
         }
       }
-      break;
 
+      // This should be a duh moment but sometimes this may not be. If the
+      // module has been installed and then disabled along with features the
+      // update hooks will still run.
+
+      if (!module_exists('features')) {
+        // Still no dice. Throw out requirement.
+        $requirements['features_enabled'] = array(
+          'title' => 'Features Module Required',
+          'value' => 'Not installed',
+          'description' => 'The Features module is required for version 3.x of the Stanford Events Importer module.',
+          'severity' => REQUIREMENT_ERROR,
+        );
+      }
+
+    break;
     default:
   }
 
@@ -550,6 +563,10 @@ function stanford_events_importer_update_7201(&$sandbox) {
     drupal_install_schema('stanford_events_importer');
   }
 
+  if (!module_exists("features")) {
+    throw new DrupalUpdateException('ERROR: Missing Features module. Please enable to complete update 7201.');
+  }
+
   // Programically revert the feature so the user doesnt have to.
   features_revert(
     array(
@@ -618,6 +635,11 @@ function stanford_events_importer_update_7201(&$sandbox) {
  * Update from 2.x -> 3.x features
  */
 function stanford_events_importer_update_7300(&$sandbox) {
+
+  if (!module_exists("features")) {
+    throw new DrupalUpdateException('ERROR: Missing Features module. Please enable to complete update 7300.');
+  }
+
   // Programically revert the feature so the user doesnt have to.
   features_revert(
     array(
