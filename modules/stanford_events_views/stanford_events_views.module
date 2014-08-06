@@ -36,3 +36,22 @@ function stanford_events_views_views_pre_view(&$view, &$display_id, $args) {
   }
 
 }
+
+/**
+ * Switches sort ordering when on search page and user selects one date over the
+ * other.
+ * @param  [type] $view  [description]
+ * @param  [type] $query [description]
+ * @return [type]        [description]
+ */
+function stanford_events_views_views_query_alter(&$view, &$query) {
+
+  // Automatically Adjust the sorting for the search page based on the
+  // date parameters so that it is logically sorted.
+  if ($view->name == "stanford_events_views" && $view->current_display == "upcoming_events_search") {
+    if (empty($view->exposed_data["field_stanford_event_datetime_value"]['value']) && !empty($view->exposed_data['field_stanford_event_datetime_value2']['value'])) {
+      $query->orderby[0]['direction'] = "DESC";
+    }
+  }
+
+}
