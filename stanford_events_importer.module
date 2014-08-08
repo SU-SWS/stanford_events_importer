@@ -143,6 +143,13 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#description' => t('Select an organization'),
     '#empty_option' => '-- ' . t('None') . ' --',
   );
+  $form['s_events_cat_org']['s_events_private'] = array(
+    '#type' => 'checkboxes',
+    '#options' => array('Published', 'Private', 'Custom'),
+    '#title' => t('Event Type'),
+    '#description' => t('Select the subset(s) of events from the Department or Organization'),
+    '#empty_option' => '-- ' . t('None') . ' --',
+  );
   //disable the default feed URL form field
   //We'll supply our own options, then convert to a feed URL.
   $form['feeds']['#access'] = FALSE;
