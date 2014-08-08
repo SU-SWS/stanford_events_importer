@@ -27,21 +27,21 @@ to another.
 **[Stanford Events Views](modules/stanford_events_views)**   
 This module provides default Views for use with the Stanford Events Importer module.
 
-*Manage Events Page   
+* Manage Events Page   
 This contains a view for the stanford_manage feature. It provides a bulk operation view where content authors can make changes to multiple events in one task.
-*Events Calendar Page (month/day/year)   
+* Events Calendar Page (month/day/year)   
 This view contains pages for viewing events by month, day, or year.
-*Upcoming Events Block   
+* Upcoming Events Block   
 The upcoming events block displays a formatted list of 5 upcoming events.
-*5 Item Upcoming Events List Page   
+* 5 Item Upcoming Events List Page   
 The upcoming events list page display a formatted list of the next 5 upcoming events with a pager option. The formatted list contains a title, image, date, and location. 
-*5 Item Upcoming Events List Block   
+* 5 Item Upcoming Events List Block   
 The upcoming events list block displays a formatted list of the next 5 upcoming events with a pager. 
-*2 Item Upcoming Events List Block   
+* 2 Item Upcoming Events List Block   
 The two item upcoming events list block displays a formatted list of the next 2 upcoming events. This view contains a title, date, and location. 
-*Upcoming Feed   
+* Upcoming Feed   
 The upcoming events list feed is an xml feed of events data. This is a good way for other sites to pull event information from your website. 
-*5 Item Past Events List (block)   
+* 5 Item Past Events List (block)   
 This block provides a formatted list of past events. The five most recent past events are displayed with a pager at the bottom of the list. This view allows users to view recently completed events.
 
 Installation
