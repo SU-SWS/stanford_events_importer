@@ -204,20 +204,38 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     //today is a beautiful and unique snowflake
     if ($current_selection == 'today') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $today_id;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //featured also is a beautiful and unique snowflake
     elseif ($current_selection == 'featured') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $featured_id;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //if it's a category, pull the category id and make that the default in the dropdown
     elseif (preg_match('/category\=/', $current_selection) == 1) {
       $current_selection = preg_replace('/category\=/', '', $current_selection);
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $current_selection;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //if it's an organization, pull the organization id and make that the default in the dropdown
     elseif (preg_match('/organization\=/', $current_selection) == 1) {
-      $current_selection = preg_replace('/organization\=/', '', $current_selection);
-      $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+      // check if we have an ampersand query parameter appended to our feed URL
+      if (preg_match('/\&.*$/', $current_selection, $feedtype) == 1) {
+        // If so, use it to populate the radio button
+        $feedtype = preg_replace('/\&/', '', $feedtype[0]);
+        $current_selection = preg_replace("/\&$feedtype/", '', $current_selection);
+        $current_selection = preg_replace('/organization\=/', '', $current_selection);
+        $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+        $form['s_events_cat_org']['s_events_feedtype']['#default_value'] = $feedtype;
+        $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'organization';
+      }
+      else {
+        // If not, do the default
+        $current_selection = preg_replace('/organization\=/', '', $current_selection);
+        $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+        $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'organization';
+        $form['s_events_cat_org']['s_events_feedtype']['#default_value'] = 'published';
+      }
     }
   }
   //make our validation function run first
