@@ -253,13 +253,15 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
  * Validate user input.
  */
 function stanford_events_importer_validate($form, &$form_state) {
-  // Check that the user did not select both a Category and an Organization.
-  if (($form_state['values']['s_events_category'] != '') && ($form_state['values']['s_events_organization'] != '')) {
-    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization, not one of each.'));
-  }
-  // Check that the user did not select both a Category and an Organization.
-  if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
-    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
+  if ($form_state['submit_handlers'][0] !== 'node_form_delete_submit') {
+    // Check that the user did not select both a Category and an Organization.
+    if (($form_state['values']['s_events_category'] != '') && ($form_state['values']['s_events_organization'] != '')) {
+      form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization, not one of each.'));
+    }
+    // Check that the user did not select both a Category and an Organization.
+    if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
+      form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
+    }
   }
 }
 
