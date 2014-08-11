@@ -125,14 +125,14 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   asort($organizations);
   $form['s_events_cat_org'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Category or Organization'),
+    '#title' => t('Importer Information'),
     '#collapsible' => FALSE,
 //    '#description' => t('Select <strong>either</strong> a Category <strong>or</strong> an Organization.'),
   );
   $form['s_events_cat_org']['s_events_choose_cat_org'] = array(
     '#type' => 'radios',
     '#options' => array('organization' => t('Organization'), 'category' => t('Category')),
-//    '#title' => t('Category or Organization'),
+    '#title' => t('Category or Organization'),
     '#description' => t('Do you want to import events by Category, or Organization?'),
     '#default_value' => 'organization',
   );
