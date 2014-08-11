@@ -162,7 +162,7 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   );
   $form['s_events_cat_org']['s_events_feedtype'] = array(
     '#type' => 'radios',
-    '#options' => array('published' => t('Published'), 'private' => t('Private'), 'custom' => ('Custom')),
+    '#options' => array('published' => t('Published'), 'unlisted' => t('Unlisted'), 'bookmarked' => ('Bookmarked')),
     '#title' => t('Event Type'),
     '#description' => t('Select the subset(s) of events from the Department or Organization'),
     '#default_value' => 'published',
@@ -282,11 +282,11 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
       case 'published' :
         $feed_url .= 'organization=' . $organization;
         break;
-      case 'private' :
-        $feed_url .= 'organization=' . $organization . '&private';
+      case 'unlisted' :
+        $feed_url .= 'organization=' . $organization . '&unlisted';
         break;
-      case 'custom' :
-        $feed_url .= 'organization=' . $organization . '&custom';
+      case 'bookmarked' :
+        $feed_url .= 'organization=' . $organization . '&bookmarked';
         break;
     }
   }
