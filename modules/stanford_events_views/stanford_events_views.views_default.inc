@@ -1070,10 +1070,6 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = 'Node ID';
   $handler->display->display_options['fields']['nid']['link_to_node'] = TRUE;
-  /* Field: Feeds item: Owner feed nid */
-  $handler->display->display_options['fields']['feed_nid']['id'] = 'feed_nid';
-  $handler->display->display_options['fields']['feed_nid']['table'] = 'feeds_item';
-  $handler->display->display_options['fields']['feed_nid']['field'] = 'feed_nid';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -1194,24 +1190,6 @@ function stanford_events_views_views_default_views() {
     3 => array(),
   );
   $handler->display->display_options['filters']['field_s_event_type_tid']['vocabulary'] = 'stanford_event_type';
-  /* Filter criterion: Feeds item: Owner feed nid */
-  $handler->display->display_options['filters']['feed_nid']['id'] = 'feed_nid';
-  $handler->display->display_options['filters']['feed_nid']['table'] = 'feeds_item';
-  $handler->display->display_options['filters']['feed_nid']['field'] = 'feed_nid';
-  $handler->display->display_options['filters']['feed_nid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['feed_nid']['expose']['operator_id'] = 'feed_nid_op';
-  $handler->display->display_options['filters']['feed_nid']['expose']['label'] = 'Owner feed nid';
-  $handler->display->display_options['filters']['feed_nid']['expose']['operator'] = 'feed_nid_op';
-  $handler->display->display_options['filters']['feed_nid']['expose']['identifier'] = 'feed_nid';
-  $handler->display->display_options['filters']['feed_nid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    6 => 0,
-    5 => 0,
-    4 => 0,
-    3 => 0,
-    7 => 0,
-  );
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title_1']['id'] = 'title_1';
   $handler->display->display_options['filters']['title_1']['table'] = 'node';
@@ -1220,7 +1198,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['title_1']['operator'] = 'contains';
   $handler->display->display_options['filters']['title_1']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title_1']['expose']['operator_id'] = 'title_1_op';
-  $handler->display->display_options['filters']['title_1']['expose']['label'] = 'Search by owner feed title';
+  $handler->display->display_options['filters']['title_1']['expose']['label'] = 'Owner feed title';
   $handler->display->display_options['filters']['title_1']['expose']['operator'] = 'title_1_op';
   $handler->display->display_options['filters']['title_1']['expose']['identifier'] = 'title_1';
   $handler->display->display_options['filters']['title_1']['expose']['remember_roles'] = array(
@@ -1242,6 +1220,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-manage-content-by-type';
   $handler->display->display_options['menu']['context'] = 0;
+
   $export['stanford_events_manage'] = $view;
 
   $view = new view();
