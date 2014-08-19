@@ -27,7 +27,11 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['link_display'] = 'page_1';
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['cache']['type'] = 'time';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
+  $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
+  $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -1239,9 +1243,9 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'time';
-  $handler->display->display_options['cache']['results_lifespan'] = '3600';
+  $handler->display->display_options['cache']['results_lifespan'] = '21600';
   $handler->display->display_options['cache']['results_lifespan_custom'] = '0';
-  $handler->display->display_options['cache']['output_lifespan'] = '3600';
+  $handler->display->display_options['cache']['output_lifespan'] = '21600';
   $handler->display->display_options['cache']['output_lifespan_custom'] = '0';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -1358,8 +1362,6 @@ function stanford_events_views_views_default_views() {
     <div class="descriptor">
     <div class="event-date-long">[field_stanford_event_datetime]</div>
     <div class="event-location">[field_stanford_event_location]</div>
-    <div class="program-type">[field_stanford_event_program]</div>
-    <div>[field_s_event_type_1][field_s_event_type]</div>
   </div>
   </div>
   </div>';
@@ -1382,6 +1384,8 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
   $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
   $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['exposed'] = TRUE;
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['expose']['label'] = 'Date and Time -  start date (field_stanford_event_datetime)';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1664,6 +1668,8 @@ function stanford_events_views_views_default_views() {
 
   /* Display: Upcoming Feed */
   $handler = $view->new_display('feed', 'Upcoming Feed', 'feed_1');
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '0';
   $handler->display->display_options['pager']['options']['offset'] = '0';
@@ -1693,6 +1699,8 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['use_more_text'] = 'See all upcoming events';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'page';
+  $handler->display->display_options['defaults']['cache'] = FALSE;
+  $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
@@ -1979,8 +1987,8 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['empty']['area']['table'] = 'views';
   $handler->display->display_options['empty']['area']['field'] = 'area';
   $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = '<p>Sorry, no future events for that search are scheduled.</p>
- <p><a class="more-link" href="/events/past-events">View Past Events</a></p>';
+  $handler->display->display_options['empty']['area']['content'] = '<p>Your search did not yield any results.&nbsp;
+<a class="more-link" href="/events/search-events">View all events</a></p>';
   $handler->display->display_options['empty']['area']['format'] = 'content_editor_text_format';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
@@ -2084,7 +2092,7 @@ function stanford_events_views_views_default_views() {
     <div class="event-date-long">[field_stanford_event_datetime]</div>
     <div class="event-location">[field_stanford_event_location]</div>
     <div class="program-type">[field_stanford_event_program]</div>
-    <div>[field_s_event_type_1][field_s_event_type]</div>
+    <div>[field_s_event_type] [field_s_event_type_1]</div>
   </div>
   </div>
   </div>';
@@ -2110,6 +2118,12 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Date and Time -  start date (field_stanford_event_datetime) */
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
+  $handler->display->display_options['sorts']['field_stanford_event_datetime_value']['expose']['label'] = 'Sort by date';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -2251,6 +2265,7 @@ function stanford_events_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['form_type'] = 'date_popup';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'today';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['year_range'] = '-10:+5';
   /* Filter criterion: Content: Date and Time - end date (field_stanford_event_datetime:value2) */
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['id'] = 'field_stanford_event_datetime_value2';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['table'] = 'field_data_field_stanford_event_datetime';
@@ -2284,6 +2299,7 @@ function stanford_events_views_views_default_views() {
     3 => array(),
   );
   $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value2']['year_range'] = '-10:+5';
   $handler->display->display_options['path'] = 'events/search-events';
   $handler->display->display_options['menu']['title'] = 'Upcoming Events';
   $handler->display->display_options['menu']['weight'] = '0';
