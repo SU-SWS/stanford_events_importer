@@ -749,8 +749,10 @@ function stanford_events_views_views_default_views() {
     'changed' => 'changed',
     'field_stanford_event_datetime' => 'field_stanford_event_datetime',
     'field_stanford_event_location' => 'field_stanford_event_location',
-    'field_stanford_event_sponsor' => 'field_stanford_event_sponsor',
+    'field_s_event_type' => 'field_s_event_type',
+    'title_1' => 'title_1',
     'nid' => 'nid',
+    'feed_nid' => 'feed_nid',
     'edit_node' => 'edit_node',
     'view_node' => 'edit_node',
     'delete_node' => 'edit_node',
@@ -814,7 +816,12 @@ function stanford_events_views_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_stanford_event_sponsor' => array(
+    'field_s_event_type' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title_1' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -826,6 +833,13 @@ function stanford_events_views_views_default_views() {
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => ' ',
+      'empty_column' => 0,
+    ),
+    'feed_nid' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
       'empty_column' => 0,
     ),
     'edit_node' => array(
@@ -844,6 +858,10 @@ function stanford_events_views_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Relationship: Feeds item: Owner feed */
+  $handler->display->display_options['relationships']['feed_nid']['id'] = 'feed_nid';
+  $handler->display->display_options['relationships']['feed_nid']['table'] = 'feeds_item';
+  $handler->display->display_options['relationships']['feed_nid']['field'] = 'feed_nid';
   /* Field: Global: View result counter */
   $handler->display->display_options['fields']['counter']['id'] = 'counter';
   $handler->display->display_options['fields']['counter']['table'] = 'views';
@@ -854,53 +872,55 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['operations'] = array(
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
     'action::node_assign_owner_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 1,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Delete',
+      'postpone_processing' => 0,
     ),
     'action::system_message_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_script_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_make_sticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_make_unsticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_modify_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Modify',
@@ -910,6 +930,7 @@ function stanford_events_views_views_default_views() {
           'stanford_event::field_s_event_type' => 'stanford_event::field_s_event_type',
         ),
       ),
+      'postpone_processing' => 0,
     ),
     'action::views_bulk_operations_argument_selector_action' => array(
       'selected' => 0,
@@ -922,73 +943,68 @@ function stanford_events_views_views_default_views() {
     ),
     'action::node_promote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_publish_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Publish',
+      'postpone_processing' => 0,
     ),
     'action::system_goto_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_unpromote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_save_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::system_send_email_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::node_unpublish_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Unpublish',
+      'postpone_processing' => 0,
     ),
     'action::node_unpublish_by_keyword_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
     'action::pathauto_node_update_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
+      'postpone_processing' => 0,
     ),
   );
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['enable_select_all_pages'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_result'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['merge_single_action'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['force_single'] = 0;
   /* Field: Content: Image */
   $handler->display->display_options['fields']['field_stanford_event_image']['id'] = 'field_stanford_event_image';
   $handler->display->display_options['fields']['field_stanford_event_image']['table'] = 'field_data_field_stanford_event_image';
@@ -1042,12 +1058,22 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_event_type']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_s_event_type']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_s_event_type']['multi_type'] = 'ul';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'feed_nid';
+  $handler->display->display_options['fields']['title_1']['label'] = 'Feed Title';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['label'] = 'Node ID';
   $handler->display->display_options['fields']['nid']['link_to_node'] = TRUE;
+  /* Field: Feeds item: Owner feed nid */
+  $handler->display->display_options['fields']['feed_nid']['id'] = 'feed_nid';
+  $handler->display->display_options['fields']['feed_nid']['table'] = 'feeds_item';
+  $handler->display->display_options['fields']['feed_nid']['field'] = 'feed_nid';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -1168,6 +1194,44 @@ function stanford_events_views_views_default_views() {
     3 => array(),
   );
   $handler->display->display_options['filters']['field_s_event_type_tid']['vocabulary'] = 'stanford_event_type';
+  /* Filter criterion: Feeds item: Owner feed nid */
+  $handler->display->display_options['filters']['feed_nid']['id'] = 'feed_nid';
+  $handler->display->display_options['filters']['feed_nid']['table'] = 'feeds_item';
+  $handler->display->display_options['filters']['feed_nid']['field'] = 'feed_nid';
+  $handler->display->display_options['filters']['feed_nid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['feed_nid']['expose']['operator_id'] = 'feed_nid_op';
+  $handler->display->display_options['filters']['feed_nid']['expose']['label'] = 'Owner feed nid';
+  $handler->display->display_options['filters']['feed_nid']['expose']['operator'] = 'feed_nid_op';
+  $handler->display->display_options['filters']['feed_nid']['expose']['identifier'] = 'feed_nid';
+  $handler->display->display_options['filters']['feed_nid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    7 => 0,
+  );
+  /* Filter criterion: Content: Title */
+  $handler->display->display_options['filters']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['filters']['title_1']['table'] = 'node';
+  $handler->display->display_options['filters']['title_1']['field'] = 'title';
+  $handler->display->display_options['filters']['title_1']['relationship'] = 'feed_nid';
+  $handler->display->display_options['filters']['title_1']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['title_1']['expose']['operator_id'] = 'title_1_op';
+  $handler->display->display_options['filters']['title_1']['expose']['label'] = 'Search by owner feed title';
+  $handler->display->display_options['filters']['title_1']['expose']['operator'] = 'title_1_op';
+  $handler->display->display_options['filters']['title_1']['expose']['identifier'] = 'title_1';
+  $handler->display->display_options['filters']['title_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    7 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
