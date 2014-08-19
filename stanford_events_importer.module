@@ -125,9 +125,16 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   asort($organizations);
   $form['s_events_cat_org'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Category or Organization'),
+    '#title' => t('Importer Information'),
     '#collapsible' => FALSE,
-    '#description' => t('Select <strong>either</strong> a Category <strong>or</strong> an Organization.'),
+//    '#description' => t('Select <strong>either</strong> a Category <strong>or</strong> an Organization.'),
+  );
+  $form['s_events_cat_org']['s_events_choose_cat_org'] = array(
+    '#type' => 'radios',
+    '#options' => array('organization' => t('Organization'), 'category' => t('Category')),
+    '#title' => t('Category or Organization'),
+    '#description' => t('Do you want to import events by Category, or Organization?'),
+    '#default_value' => 'organization',
   );
   $form['s_events_cat_org']['s_events_category'] = array(
     '#type' => 'select',
@@ -135,6 +142,11 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#title' => t('Category'),
     '#description' => t('Select a category'),
     '#empty_option' => '-- ' . t('None') . ' --',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="s_events_choose_cat_org"]' => array('value' => 'category'),
+      ),
+    ),
   );
   $form['s_events_cat_org']['s_events_organization'] = array(
     '#type' => 'select',
@@ -142,6 +154,23 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#title' => t('Organization'),
     '#description' => t('Select an organization'),
     '#empty_option' => '-- ' . t('None') . ' --',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="s_events_choose_cat_org"]' => array('value' => 'organization'),
+      ),
+    ),
+  );
+  $form['s_events_cat_org']['s_events_feedtype'] = array(
+    '#type' => 'radios',
+    '#options' => array('published' => t('Published'), 'unlisted' => t('Unlisted'), 'bookmarked' => ('Bookmarked')),
+    '#title' => t('Event Type'),
+    '#description' => t('Select the subset(s) of events from the Department or Organization'),
+    '#default_value' => 'published',
+    '#states' => array(
+      'visible' => array(
+        ':input[name="s_events_choose_cat_org"]' => array('value' => 'organization'),
+      ),
+    ),
   );
   //disable the default feed URL form field
   //We'll supply our own options, then convert to a feed URL.
@@ -175,20 +204,38 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     //today is a beautiful and unique snowflake
     if ($current_selection == 'today') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $today_id;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //featured also is a beautiful and unique snowflake
     elseif ($current_selection == 'featured') {
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $featured_id;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //if it's a category, pull the category id and make that the default in the dropdown
     elseif (preg_match('/category\=/', $current_selection) == 1) {
       $current_selection = preg_replace('/category\=/', '', $current_selection);
       $form['s_events_cat_org']['s_events_category']['#default_value'] = $current_selection;
+      $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'category';
     }
     //if it's an organization, pull the organization id and make that the default in the dropdown
     elseif (preg_match('/organization\=/', $current_selection) == 1) {
-      $current_selection = preg_replace('/organization\=/', '', $current_selection);
-      $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+      // check if we have an ampersand query parameter appended to our feed URL
+      if (preg_match('/\&.*$/', $current_selection, $feedtype) == 1) {
+        // If so, use it to populate the radio button
+        $feedtype = preg_replace('/\&/', '', $feedtype[0]);
+        $current_selection = preg_replace("/\&$feedtype/", '', $current_selection);
+        $current_selection = preg_replace('/organization\=/', '', $current_selection);
+        $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+        $form['s_events_cat_org']['s_events_feedtype']['#default_value'] = $feedtype;
+        $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'organization';
+      }
+      else {
+        // If not, do the default
+        $current_selection = preg_replace('/organization\=/', '', $current_selection);
+        $form['s_events_cat_org']['s_events_organization']['#default_value'] = $current_selection;
+        $form['s_events_cat_org']['s_events_choose_cat_org']['#default_value'] = 'organization';
+        $form['s_events_cat_org']['s_events_feedtype']['#default_value'] = 'published';
+      }
     }
   }
   //make our validation function run first
@@ -206,13 +253,15 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
  * Validate user input.
  */
 function stanford_events_importer_validate($form, &$form_state) {
-  // Check that the user did not select both a Category and an Organization.
-  if (($form_state['values']['s_events_category'] != '') && ($form_state['values']['s_events_organization'] != '')) {
-    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization, not one of each.'));
-  }
-  // Check that the user did not select both a Category and an Organization.
-  if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
-    form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
+  if ($form_state['submit_handlers'][0] !== 'node_form_delete_submit') {
+    // Check that the user did not select both a Category and an Organization.
+    if (($form_state['values']['s_events_category'] != '') && ($form_state['values']['s_events_organization'] != '')) {
+      form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization, not one of each.'));
+    }
+    // Check that the user did not select both a Category and an Organization.
+    if (($form_state['values']['s_events_category'] == '') && ($form_state['values']['s_events_organization'] == '')) {
+      form_set_error('s_events_cat_org', t('You must choose either a Category or an Organization.'));
+    }
   }
 }
 
@@ -225,10 +274,21 @@ function stanford_events_importer_build_feed_url($form, &$form_state) {
   //grab the user-entered values, which have already been validated
   $category = $form_state['values']['s_events_category'];
   $organization = $form_state['values']['s_events_organization'];
+  $event_feedtype = $form_state['values']['s_events_feedtype'];
   //append the correct category or organization number to the feed URL
   //the array of options that we presented to the user in $form['s_events_cat_org']['s_events_category'] returns a numeric value (the numeric key)
   if ($organization != '') {
-    $feed_url .= 'organization=' . $organization;
+    switch($event_feedtype) {
+      case 'published' :
+        $feed_url .= 'organization=' . $organization;
+        break;
+      case 'unlisted' :
+        $feed_url .= 'organization=' . $organization . '&unlisted';
+        break;
+      case 'bookmarked' :
+        $feed_url .= 'organization=' . $organization . '&bookmarked';
+        break;
+    }
   }
   elseif ($category != '') {
     //get the id/numeric key of our beautiful and unique snowflakes, Featured and Today
