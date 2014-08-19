@@ -37,6 +37,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_stanford_event_full_group_descriptor_info',
       ),
       'formatter' => 'open',
     ),
@@ -68,6 +69,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_stanford_event_full_group_floatright',
       ),
       'formatter' => 'open',
     ),
@@ -102,6 +104,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_stanford_event_teaser_group_postcard_content',
       ),
       'formatter' => 'open',
     ),
@@ -133,6 +136,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_stanford_event_teaser_group_postcard_image',
       ),
       'formatter' => 'open',
     ),
@@ -164,6 +168,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'field_collection_item_field_s_image_additional_stanford_large_scaled_group_s_addimage_border_style',
       ),
       'formatter' => 'open',
     ),
@@ -195,6 +200,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'field_collection_item_field_s_image_additional_stanford_large_scaled_group_s_addimage_caption_div',
       ),
       'formatter' => 'open',
     ),
@@ -226,6 +232,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'field_collection_item_field_s_image_additional_stanford_large_scaled_group_s_addimage_credits_style',
       ),
       'formatter' => 'open',
     ),
@@ -266,6 +273,36 @@ function stanford_events_importer_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_event_associations|node|stanford_event|form';
+  $field_group->group_name = 'group_s_event_associations';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_event';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Associations and Categories',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_s_event_type',
+      1 => 'field_stanford_event_program',
+      2 => 'field_event_related_person',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Associations and Categories',
+      'instance_settings' => array(
+        'required_fields' => 0,
+        'classes' => 'group-s-event-associations field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_s_event_associations|node|stanford_event|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_s_postcard|node|stanford_event|teaser';
   $field_group->group_name = 'group_s_postcard';
   $field_group->entity_type = 'node';
@@ -289,6 +326,7 @@ function stanford_events_importer_field_group_info() {
         'label_element' => 'h3',
         'effect' => 'none',
         'speed' => 'fast',
+        'id' => 'node_stanford_event_teaser_group_s_postcard',
       ),
       'formatter' => 'open',
     ),
