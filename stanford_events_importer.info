@@ -56,6 +56,7 @@ features[field_group][] = group_s_addimage_border_style|field_collection_item|fi
 features[field_group][] = group_s_addimage_caption_div|field_collection_item|field_s_image_additional|stanford_large_scaled
 features[field_group][] = group_s_addimage_credits_style|field_collection_item|field_s_image_additional|stanford_large_scaled
 features[field_group][] = group_s_addimage|field_collection_item|field_s_image_additional|form
+features[field_group][] = group_s_event_associations|node|stanford_event|form
 features[field_group][] = group_s_postcard|node|stanford_event|teaser
 features[field_group][] = group_stanford_event_advanced|node|stanford_event|form
 features[field_instance][] = field_collection_item-field_s_image_additional-field_s_addimage_caption
