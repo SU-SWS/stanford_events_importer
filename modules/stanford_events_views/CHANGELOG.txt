@@ -1,4 +1,8 @@
 Stanford Events Views x.x-x.x xxxx-xx-xx
 --------------------------------------
 
+Stanford Events Views 7.x-3.0-alpha6
+------------------------------------
+By cjwest: Updates to the Manage Events View
+
 Initial Release 2014-03-11

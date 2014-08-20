@@ -1,6 +1,15 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha6, 2014-08-20
+---------------------------------------------------
+By sheamck:
+  - Added missing features dependency protection for update hooks
+  - Added views-row-lines to 5 item upcoming block
+By jbickar:
+  -Added ability to choose Published, Unlisted, or Bookmarked events feeds
+  -Minor improvement to UI for choosing between Category and Organization in UI
+
 Stanford Events Importer 7.x-3.0-alpha4, 2014-07-22
 ---------------------------------------------------
 By sheamck:
