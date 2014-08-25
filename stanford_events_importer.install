@@ -641,22 +641,22 @@ function stanford_events_importer_update_7300(&$sandbox) {
   }
 
   // Programically revert the feature so the user doesnt have to.
-  features_revert(
-    array(
-      'stanford_events_importer' => array(
-        'field_base',
-        'field_instance',
-        'ctools',
-        'feeds_importer',
-        'feeds_tamper',
-        'node',
-        'variable',
-        'field_group',
-        'taxonomy',
-        'variable',
-      )
-    )
-  );
+  // features_revert(
+  //   array(
+  //     'stanford_events_importer' => array(
+  //       'field_base',
+  //       'field_instance',
+  //       'ctools',
+  //       'feeds_importer',
+  //       'feeds_tamper',
+  //       'node',
+  //       'variable',
+  //       'field_group',
+  //       'taxonomy',
+  //       'variable',
+  //     )
+  //   )
+  // );
 }
 
 
@@ -695,13 +695,23 @@ function stanford_events_importer_update_7301(&$sandbox) {
   );
 
   db_change_field('field_data_field_stanford_event_location', 'field_stanford_event_location_value', 'field_stanford_event_location_value', $textarea_spec);
-
   db_change_field('field_revision_field_stanford_event_location', 'field_stanford_event_location_value', 'field_stanford_event_location_value', $textarea_spec);
 
   field_cache_clear(TRUE);
 
   features_revert(array(
-    'stanford_events_importer' => array('field_base', 'field_instance'),
+    'stanford_events_importer' => array(
+      'field_base',
+      'field_instance',
+      'ctools',
+      'feeds_importer',
+      'feeds_tamper',
+      'node',
+      'variable',
+      'field_group',
+      'taxonomy',
+      'variable',
+      ),
   ));
 
 }
