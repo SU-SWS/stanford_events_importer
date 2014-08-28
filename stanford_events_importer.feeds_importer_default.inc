@@ -46,6 +46,7 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:14' => 'contactEmail',
           'xpathparser:15' => 'isoEventEndDate',
           'xpathparser:16' => 'concat(\'http://events.stanford.edu/ical/download.php?id=\',eventID)',
+          'xpathparser:17' => 'mapUrl',
         ),
         'rawXML' => array(
           'xpathparser:0' => 0,
@@ -64,6 +65,7 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:14' => 0,
           'xpathparser:15' => 0,
           'xpathparser:16' => 0,
+          'xpathparser:17' => 0,
         ),
         'context' => '//EventList/Event',
         'exp' => array(
@@ -86,6 +88,7 @@ function stanford_events_importer_feeds_importer_default() {
             'xpathparser:14' => 0,
             'xpathparser:15' => 0,
             'xpathparser:16' => 0,
+            'xpathparser:17' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -175,6 +178,11 @@ function stanford_events_importer_feeds_importer_default() {
           15 => array(
             'source' => 'xpathparser:16',
             'target' => 'field_stanford_event_add_to_cal:url',
+            'unique' => FALSE,
+          ),
+          16 => array(
+            'source' => 'xpathparser:17',
+            'target' => 'field_s_event_map_link:url',
             'unique' => FALSE,
           ),
         ),
