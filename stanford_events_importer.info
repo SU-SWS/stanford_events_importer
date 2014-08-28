@@ -4,6 +4,7 @@ core = 7.x
 package = Stanford
 version = 7.x-3.0-alpha7
 project = stanford_events_importer
+scripts[] = js/stanford_event_nodes.js
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
