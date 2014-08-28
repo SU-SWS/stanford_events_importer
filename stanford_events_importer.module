@@ -164,7 +164,7 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
     '#type' => 'radios',
     '#options' => array('published' => t('Published'), 'unlisted' => t('Unlisted'), 'bookmarked' => ('Bookmarked')),
     '#title' => t('Event Type'),
-    '#description' => t('Select the subset(s) of events from the Department or Organization'),
+    '#description' => t('Select the subset of events from the Department or Organization'),
     '#default_value' => 'published',
     '#states' => array(
       'visible' => array(
