@@ -1,6 +1,14 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha7, 2014-08-28
+---------------------------------------------------
+By sheamck:
+  -Fixed bug in upgrade path from 2.x -> 3.x
+By jbickar:
+  -Updated field_group classes to match 1.4
+  -Added map link field
+
 Stanford Events Importer 7.x-3.0-alpha6, 2014-08-20
 ---------------------------------------------------
 By sheamck:
