@@ -1,6 +1,10 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha8, 2014-08-29
+---------------------------------------------------
+By jbickar: styling on map link
+
 Stanford Events Importer 7.x-3.0-alpha7, 2014-08-28
 ---------------------------------------------------
 By sheamck:
