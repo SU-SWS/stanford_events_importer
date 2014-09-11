@@ -661,7 +661,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This text field is for the event sponsor (e.g., Stanford Web Services).',
+    'description' => 'This text field is for the event sponsor (e.g., University Communications).',
     'display' => array(
       'default' => array(
         'label' => 'above',
