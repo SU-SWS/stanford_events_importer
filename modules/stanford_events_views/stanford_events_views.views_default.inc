@@ -2081,6 +2081,7 @@ function stanford_events_views_views_default_views() {
   $handler = $view->new_display('page', 'Upcoming Events List Page', 'upcoming_event_list_page');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Events';
+  $handler->display->display_options['enabled'] = FALSE;
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
