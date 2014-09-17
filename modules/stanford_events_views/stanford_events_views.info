@@ -9,6 +9,7 @@ dependencies[] = date_views
 dependencies[] = stanford_date_formats
 dependencies[] = stanford_events_importer
 dependencies[] = views
+dependencies[] = stanford_image_styles 
 dependencies[] = views_bulk_operations
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
