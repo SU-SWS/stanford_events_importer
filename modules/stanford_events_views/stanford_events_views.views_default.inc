@@ -1567,7 +1567,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'See More Events';
+  $handler->display->display_options['use_more_text'] = 'See more events';
   $handler->display->display_options['link_url'] = 'events';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
