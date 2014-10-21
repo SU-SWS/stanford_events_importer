@@ -464,7 +464,7 @@ function stanford_events_importer_update_cat_org() {
 function stanford_events_importer_cron() {
 
   $last = variable_get("stanford_events_importer_last_cron", 0);
-  $next = $last + (60 * 60 * 23); // 23 hours
+  $next = $last + 86400; // (60 * 60 * 23) // 23 hours
   $now = time();
 
   // Run only once every 23 hours.
