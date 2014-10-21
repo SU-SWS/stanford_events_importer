@@ -331,7 +331,7 @@ function stanford_events_importer_get_categories() {
   //get the XML url, either user-defined, or fall back to a default.
   $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
   //Pull in the XML file from a URL
-  $categories = drupal_http_request($category_url);
+  $categories = drupal_http_request($category_url, array('timeout' => '15.0'));
   //check that drupal_http_request didn't return an error and that we have data
   if (!isset($categories->error) && isset($categories->data)) {
     //Put just the XML data into a variable
@@ -388,7 +388,7 @@ function stanford_events_importer_get_organizations() {
   //get the XML url, either user-defined, or fall back to a default.
   $organization_url = variable_get('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
   //Pull in the XML file from a URL
-  $organizations = drupal_http_request($organization_url);
+  $organizations = drupal_http_request($organization_url, array('timeout' => '15.0'));
   //check that drupal_http_request didn't return an error and that we have data
   if (!isset($organizations->error) && isset($organizations->data)) {
     //Put just the XML data into a variable
@@ -462,7 +462,18 @@ function stanford_events_importer_update_cat_org() {
  * Implements hook_cron().
  */
 function stanford_events_importer_cron() {
-  stanford_events_importer_update_cat_org();
+
+  $last = variable_get("stanford_events_importer_last_cron", 0);
+  $next = $last + 86400; // (60 * 60 * 23) // 23 hours
+  $now = time();
+
+  // Run only once every 23 hours.
+  if ($now >= $next) {
+    variable_set('stanford_events_importer_last_cron', $now);
+    stanford_events_importer_update_cat_org();
+    watchdog('stanford_events_importer', 'Updated category and organization info');
+  }
+
 }
 
 
