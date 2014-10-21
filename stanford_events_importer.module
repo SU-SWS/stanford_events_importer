@@ -471,6 +471,7 @@ function stanford_events_importer_cron() {
   if ($now >= $next) {
     variable_set('stanford_events_importer_last_cron', $now);
     stanford_events_importer_update_cat_org();
+    watchdog('stanford_events_importer', 'Updated category and organization info');
   }
 
 }
