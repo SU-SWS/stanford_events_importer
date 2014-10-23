@@ -1,6 +1,13 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0-alpha9, 2014-10-23
+---------------------------------------------------
+Changes since 7.x-3.0-alpha8:
+By sheamck:
+  - Set drupal_http_request limit to 15.0 seconds
+  - Changed cron to run only once every 23 hours
+
 Stanford Events Importer 7.x-3.0-alpha8, 2014-08-29
 ---------------------------------------------------
 By jbickar: styling on map link
