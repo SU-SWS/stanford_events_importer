@@ -23,10 +23,10 @@ function stanford_events_importer_field_group_info() {
     'label' => 'Descriptor group',
     'weight' => '1',
     'children' => array(
-      0 => 'field_stanford_event_admission',
-      1 => 'field_stanford_event_datetime',
-      2 => 'field_stanford_event_location',
-      3 => 'field_s_event_map_link',
+      0 => 'field_s_event_map_link',
+      1 => 'field_stanford_event_admission',
+      2 => 'field_stanford_event_datetime',
+      3 => 'field_stanford_event_location',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -91,6 +91,7 @@ function stanford_events_importer_field_group_info() {
       0 => 'field_stanford_event_add_to_cal',
       1 => 'field_stanford_event_audience',
       2 => 'field_stanford_event_categories',
+      3 => 'field_s_event_feed_type',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
