@@ -383,6 +383,20 @@ function stanford_events_importer_strongarm() {
       'title' => 'Event Type',
       'hidden' => 0,
     ),
+    'field_s_event_map_link' => array(
+      'region' => 'main',
+      'weight' => '6',
+      'has_required' => FALSE,
+      'title' => 'Map Link',
+      'hidden' => 0,
+    ),
+    'field_s_event_feed_type' => array(
+      'region' => 'main',
+      'weight' => '14.9',
+      'has_required' => FALSE,
+      'title' => 'Event Feed Type',
+      'hidden' => 0,
+    ),
   );
   $export['nodeformscols_field_placements_stanford_event_default'] = $strongarm;
 

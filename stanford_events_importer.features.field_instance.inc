@@ -81,6 +81,45 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-stanford_event-field_s_event_feed_type'
+  $field_instances['node-stanford_event-field_s_event_feed_type'] = array(
+    'bundle' => 'stanford_event',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This field is structural and you should not need to edit it. It describes the status of the event on events.stanford.edu (Published, Unlisted, Bookmarked, Canceled)',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_event_feed_type',
+    'label' => 'Event Feed Type',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-stanford_event-field_s_event_map_link'
   $field_instances['node-stanford_event-field_s_event_map_link'] = array(
     'bundle' => 'stanford_event',
@@ -787,6 +826,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('Contact Phone');
   t('Date and Time');
   t('Enter an iCal link to add this event to a personal calendar');
+  t('Event Feed Type');
   t('Event Sponsor');
   t('Event Type');
   t('Image');
@@ -794,11 +834,12 @@ function stanford_events_importer_field_default_field_instances() {
   t('Map Link');
   t('More Information');
   t('This content is imported from events.stanford.edu.');
+  t('This field is structural and you should not need to edit it. It describes the status of the event on events.stanford.edu (Published, Unlisted, Bookmarked, Canceled)');
   t('This filtered text field is event description (e.g., this event is etc. etc.).');
   t('This formatted text field is for the event admission information (e.g., Free and open to the public).');
   t('This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).');
   t('This text field is for the email address of the contact person for the event (e.g., email-address@stanford.edu).');
-  t('This text field is for the event sponsor (e.g., Stanford Web Services).');
+  t('This text field is for the event sponsor (e.g., University Communications).');
   t('This text field is for the phone number of the contact person for the event (e.g., 650-725-1234).');
   t('This text field is the location for the event (e.g., Redwood Hall, Room 308).');
 
