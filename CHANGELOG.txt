@@ -1,6 +1,19 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.0, 2014-10-23
+---------------------------------------------------
+Changes since 7.x-3.0-alpha9:
+
+ - Add fields to .info file
+ - Updating strongarm to add event feed type field
+ - Updating field group to add event feed type field
+ - Updating feeds_importer to map event feed type field
+ - Updating features.inc to add event feed type field
+ - Updating field_instance to add event feed type field
+ - Updating field_base to add event feed type field
+
+
 Stanford Events Importer 7.x-3.0-alpha9, 2014-10-23
 ---------------------------------------------------
 Changes since 7.x-3.0-alpha8:

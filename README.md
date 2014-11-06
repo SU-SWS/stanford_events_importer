@@ -1,5 +1,5 @@
 #[Stanford Events Importer](https://github.com/SU-SWS/stanford_events_importer)
-##### Version: 7.x-3.0-alpha8
+##### Version: 7.x-3.0
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
 [Changelog.txt](CHANGELOG.txt)
