@@ -518,8 +518,9 @@ function stanford_events_importer_preprocess_field(&$vars) {
 */
 function stanford_events_importer_feeds_presave(FeedsSource $source, $entity, $item) {
   $formats = filter_formats();
-  // If the content_editor_text_format is available, AND if the entity has a body field set.
-  if (!empty($formats['content_editor_text_format']) && node_type_get_type($entity) == "stanford_event" && isset($entity->body)) {
+  $node_type = node_type_get_type($entity);
+  // IF the content_editor_text_format is available, AND it's a stanford_event entity, AND if the entity has a body field set.
+  if (!empty($formats['content_editor_text_format']) && $node_type->type == "stanford_event" && isset($entity->body)) {
     // Set our allowed tags for filter_xss().
     $allowed_tags = array('a', 'em', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p');
     // Loop through our languages.
