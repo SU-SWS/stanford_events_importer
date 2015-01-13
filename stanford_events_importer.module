@@ -511,3 +511,14 @@ function stanford_events_importer_preprocess_field(&$vars) {
     }
   }
 }
+
+/**
+* Implements hook_feeds_presave().
+* Set the body field input format to content_editor_text_format if the format is available.
+*/
+function stanford_events_importer_feeds_presave(FeedsSource $source, $entity, $item) {
+  $formats = filter_formats();
+  if(!empty($formats['content_editor_text_format'])) {
+    $entity->body['und'][0]['format'] = 'content_editor_text_format';
+  }
+}
