@@ -529,7 +529,7 @@ function stanford_events_importer_feeds_presave(FeedsSource $source, $entity, $i
         // Set the format to content_editor_text_format.
         $entity->body[$lang][$index]['format'] = 'content_editor_text_format';
         // Filter out XSS tags in the body field.
-        $entity->body[$lang][$index]['value'] = filter_xss($lang['0']['value'], $allowed_tags);
+        $entity->body[$lang][$index]['value'] = filter_xss($values['value'], $allowed_tags);
       }
     }
   }
