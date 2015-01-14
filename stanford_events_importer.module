@@ -511,3 +511,45 @@ function stanford_events_importer_preprocess_field(&$vars) {
     }
   }
 }
+
+/**
+* Implements hook_feeds_presave().
+* Set the body field input format to content_editor_text_format if the format is available.
+*/
+function stanford_events_importer_feeds_presave(FeedsSource $source, $entity, $item) {
+  $formats = filter_formats();
+  $node_type = node_type_get_type($entity);
+  // IF the content_editor_text_format is available, AND it's a stanford_event entity.
+  if (!empty($formats['content_editor_text_format']) && $node_type->type == "stanford_event") {
+    // If the entity has a body field set.
+    if (isset($entity->body)) {
+      // Set our allowed tags for filter_xss().
+      $allowed_tags = array('a', 'em', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p');
+      // Loop through our languages.
+      foreach ($entity->body as $lang => $indices) {
+        // Loop through our indices.
+        foreach ($indices as $index => $values) {
+          // Set the format to content_editor_text_format.
+          $entity->body[$lang][$index]['format'] = 'content_editor_text_format';
+          // Filter out XSS tags in the body field.
+          $entity->body[$lang][$index]['value'] = filter_xss($values['value'], $allowed_tags);
+        }
+      }
+    }
+    // If the entity has the stanford_event_admission field set.
+    if (isset($entity->field_stanford_event_admission)) {
+      // Set our allowed tags for filter_xss().
+      $allowed_tags = array('a', 'em', 'strong', 'cite', 'blockquote', 'code', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'p');
+      // Loop through our languages.
+      foreach ($entity->field_stanford_event_admission as $lang => $indices) {
+        // Loop through our indices.
+        foreach ($indices as $index => $values) {
+          // Set the format to content_editor_text_format.
+          $entity->field_stanford_event_admission[$lang][$index]['format'] = 'content_editor_text_format';
+          // Filter out XSS tags in the body field.
+          $entity->field_stanford_event_admission[$lang][$index]['value'] = filter_xss($values['value'], $allowed_tags);
+        }
+      }
+    }
+  }
+}
