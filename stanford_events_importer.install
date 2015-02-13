@@ -715,3 +715,20 @@ function stanford_events_importer_update_7301(&$sandbox) {
   ));
 
 }
+
+/**
+ * Update the Feeds process limit to 200 at a time.
+ *
+ */
+
+function stanford_events_importer_update_7302(&$sandbox) {
+  $feeds_process_limit = variable_get('feeds_process_limit');
+  // Don't set this if the user already has set it.
+  if(!isset($feeds_process_limit)) {
+    variable_set("feeds_process_limit", "200");
+    watchdog('stanford_events_importer', 'feeds_process_limit set to 200 during update 7302');
+  }
+  else {
+    watchdog('stanford_events_importer', 'feeds_process_limit left as-is during update 7302');
+  }
+}
