@@ -88,6 +88,15 @@ function stanford_events_importer_install() {
   stanford_events_importer_update_cat_org();
   // Clear the cache, because we're adding a new menu item.
   menu_cache_clear_all();
+  $feeds_process_limit = variable_get('feeds_process_limit');
+  // Don't set this if the user already has set it.
+  if(!isset($feeds_process_limit)) {
+    variable_set("feeds_process_limit", 200);
+    watchdog('stanford_events_importer', 'feeds_process_limit set to 200 during install');
+  }
+  else {
+    watchdog('stanford_events_importer', 'feeds_process_limit left as %limit during install', array('limit' => $feeds_process_limit));
+  }
 }
 
 /**
