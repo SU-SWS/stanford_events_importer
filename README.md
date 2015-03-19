@@ -1,7 +1,8 @@
 #[Stanford Events Importer](https://github.com/SU-SWS/stanford_events_importer)
-##### Version: 7.x-3.0
+##### Version: 7.x-3.1
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
+
 [Changelog.txt](CHANGELOG.txt)
 
 The Stanford Events Importer provides custom functionality for importing from events.stanford.edu XML feeds. A new feed API is available that is customized to work with this importer. It is available at: http://events.stanford.edu/xml/drupal/v2.php

@@ -1,6 +1,19 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+7.x-3.1                                  2015-03-19
+---------------------------------------------------
+
+ - Added project status url so that module gets update info from ERUS.
+ - Set the body field input format to content_editor_text_format if the format is available
+ - Check for body field. Loop through languages. Loop through indices. filter_xss() on body field
+ - Added check for stanford_event type on feeds_presave().
+ - Set the admissions field input format to content_editor_text_format if the format is available
+ - BASIC-852 | Added Past Events page display
+ - BASIC-852 | Changed no results text on past events view
+ - Updated sub module version numbers
+
+
 Stanford Events Importer 7.x-3.0, 2014-10-23
 ---------------------------------------------------
 Changes since 7.x-3.0-alpha9:
