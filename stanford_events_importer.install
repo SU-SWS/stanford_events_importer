@@ -4,6 +4,8 @@
  * Schema definitions. Install/update/uninstall hooks.
  */
 
+define("SU_EVENTS_FEEDS_PROCESS_LIMIT", 200);
+
 /**
  * Implements hook_requirements().
  */
@@ -88,6 +90,15 @@ function stanford_events_importer_install() {
   stanford_events_importer_update_cat_org();
   // Clear the cache, because we're adding a new menu item.
   menu_cache_clear_all();
+  $feeds_process_limit = variable_get('feeds_process_limit');
+  // Don't set this if the user already has set it.
+  if (!is_numeric($feeds_process_limit) || $feeds_process_limit < SU_EVENTS_FEEDS_PROCESS_LIMIT) {
+    variable_set("feeds_process_limit", SU_EVENTS_FEEDS_PROCESS_LIMIT);
+    watchdog('stanford_events_importer', 'feeds_process_limit set to %limit during install', array("%limit" => SU_EVENTS_FEEDS_PROCESS_LIMIT));
+  }
+  else {
+    watchdog('stanford_events_importer', 'feeds_process_limit left as %limit during install', array('%limit' => $feeds_process_limit));
+  }
 }
 
 /**
@@ -678,7 +689,7 @@ function stanford_events_importer_update_7301(&$sandbox) {
   $data = unserialize($config['data']);
   unset($data['settings']['max_length']);
 
-  // Change field config values
+  // Change field config values.
   db_update('field_config')
     ->fields(array(
       'type' => 'text_long',
@@ -687,7 +698,7 @@ function stanford_events_importer_update_7301(&$sandbox) {
     ->condition('field_name', 'field_stanford_event_location')
     ->execute();
 
-  // From text.install for long text fields
+  // From text.install for long text fields.
   $textarea_spec = array(
     'type' => 'text',
     'size' => 'big',
@@ -714,4 +725,21 @@ function stanford_events_importer_update_7301(&$sandbox) {
       ),
   ));
 
+}
+
+/**
+ * Update the Feeds process limit to 200 at a time.
+ *
+ */
+
+function stanford_events_importer_update_7302(&$sandbox) {
+  $feeds_process_limit = variable_get('feeds_process_limit');
+  // Don't set this if the user already has set it.
+  if(!is_numeric($feeds_process_limit) || $feeds_process_limit < SU_EVENTS_FEEDS_PROCESS_LIMIT) {
+    variable_set("feeds_process_limit", SU_EVENTS_FEEDS_PROCESS_LIMIT);
+    watchdog('stanford_events_importer', 'feeds_process_limit set to %limit during update 7302', array("%limit" => SU_EVENTS_FEEDS_PROCESS_LIMIT));
+  }
+  else {
+    watchdog('stanford_events_importer', 'feeds_process_limit left as %limit during update 7302', array('%limit' => $feeds_process_limit));
+  }
 }
