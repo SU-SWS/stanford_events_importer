@@ -493,19 +493,6 @@ function stanford_events_importer_cron() {
     }
   }
 
-  // Can I access files?
-  $path = 'public://';
-  $realpath = drupal_realpath($path);
-  watchdog('stanford_events_importer', 'Files directory real path: %path', array("%path" => $realpath), WATCHDOG_DEBUG);
-
-  // Can I write to dem?
-  $writable = file_prepare_directory($path);
-  $check = ($writable) ? "YES!" : "NO!";
-  watchdog('stanford_events_importer', 'Files directory is writable? %check', array("%check" => $check), WATCHDOG_DEBUG);
-
-
-
-
 }
 
 
