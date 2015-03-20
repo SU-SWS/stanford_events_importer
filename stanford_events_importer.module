@@ -474,25 +474,6 @@ function stanford_events_importer_cron() {
     watchdog('stanford_events_importer', 'Updated category and organization info');
   }
 
-
-  // Ensure that all stanford_event_importers get jobs created.
-  $jobs = db_select('job_schedule', NULL, array('fetch' => PDO::FETCH_ASSOC))
-    ->fields('job_schedule')
-    ->condition('type', 'stanford_event_importer')
-    ->condition('scheduled', 0)
-    ->execute();
-
-  foreach ($jobs as $job) {
-    try {
-      JobScheduler::get($job['name'])->dispatch($job);
-    }
-    catch (Exception $e) {
-      watchdog('job_scheduler', $e->getMessage(), array(), WATCHDOG_ERROR);
-      // Drop jobs that have caused exceptions.
-      JobScheduler::get($job['name'])->remove($job);
-    }
-  }
-
 }
 
 
