@@ -6,6 +6,7 @@ version = 7.x-3.1
 project = stanford_events_importer
 project status url = https://github.com/SU-SWS/stanford_events_importer
 scripts[] = js/stanford_event_nodes.js
+scripts[] = js/stanford_events_calendar.js
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
