@@ -231,37 +231,36 @@
 // -----------------------------------------------------------------------------
 
   if(typeof $.fn.quiet_highlight !== "function") {
-      /**
+    /**
      * A quick yellow highlight that fades out.
      */
     $.fn.quiet_highlight = function() {
 
       $(this).each(function () {
-          var el = $(this);
-      el.css({position:"relative",zIndex:'1',background:"transparent"});
-      el.parent().css({position:"relative"});
+        var el = $(this);
+        el.css({position:"relative",zIndex:'1',background:"transparent"});
+        el.parent().css({position:"relative"});
 
-      var div = $("<div/>")
-      .addClass('su-highlighter')
-      .width(el.outerWidth())
-      .height(el.outerHeight())
-      .css({
-          "position": "absolute",
-          "left": 0,
-          "top": 24,
-          "background-color": "#ffff99",
-          "opacity": ".7",
-          "z-index": "0"
+        var div = $("<div/>")
+        .addClass('su-highlighter')
+        .width(el.outerWidth())
+        .height(el.outerHeight())
+        .css({
+            "position": "absolute",
+            "left": 0,
+            "top": 24,
+            "background-color": "#ffff99",
+            "opacity": ".7",
+            "z-index": "0"
+        });
+
+        $(this).before(div);
+        div.fadeOut(1000)
+        .queue(function () {
+          $(this).remove();
+          el.css({background:"#FFFFFF"});
+        });
       });
-
-      $(this).before(div);
-      div.fadeOut(1000)
-      .queue(function () {
-        $(this).remove();
-        el.css({background:"#FFFFFF"});
-      });
-
-    });
-  };
-}
+    };
+  }
 })(jQuery);
