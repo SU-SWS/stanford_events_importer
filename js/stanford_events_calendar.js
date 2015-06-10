@@ -14,11 +14,11 @@ Drupal.behaviors.stanford_events_calendar_aria = {
         var prev = block.find(".date-prev a");
         var next = block.find(".date-next a");
         block.attr("role", "navigation");
-        block.attr("aria-label", "Events calendar");
-        prev.attr("aria-label", "Previous month");
-        next.attr("aria-label", "Next month");
+        block.attr("aria-label", Drupal.t("Events calendar"));
+        prev.attr("aria-label", Drupal.t("Previous month"));
+        next.attr("aria-label", Drupal.t("Next month"));
         $.each(block.find(".mini-day-on a"), function(i, v) {
-          var mylabel = "See all events on " + $(v).parents(".events-calendar-aria").find(".date-heading a").text() + " " + $(v).text();
+          var mylabel = Drupal.t("See all events on ") + $(v).parents(".events-calendar-aria").find(".date-heading a").text() + " " + $(v).text();
           $(v).attr("aria-label", mylabel);
         });
         // Prevent space bar from jumping down page!
