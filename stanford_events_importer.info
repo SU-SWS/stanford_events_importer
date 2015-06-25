@@ -18,6 +18,7 @@ dependencies[] = field_group
 dependencies[] = image
 dependencies[] = link
 dependencies[] = options
+dependencies[] = stanford_date_formats (>=1.0-alpha2)
 dependencies[] = stanford_image_styles
 dependencies[] = strongarm
 dependencies[] = taxonomy
