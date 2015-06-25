@@ -280,7 +280,7 @@ function stanford_events_importer_strongarm() {
     ),
     'additional_settings' => array(
       'region' => 'main',
-      'weight' => '16',
+      'weight' => '18',
       'has_required' => FALSE,
       'title' => 'Vertical tabs',
       'hidden' => 0,
@@ -301,7 +301,7 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_add_to_cal' => array(
       'region' => 'main',
-      'weight' => '13',
+      'weight' => '14',
       'has_required' => FALSE,
       'title' => 'Add to Calendar',
       'hidden' => 1,
@@ -315,14 +315,14 @@ function stanford_events_importer_strongarm() {
     ),
     'field_stanford_event_audience' => array(
       'region' => 'main',
-      'weight' => '14',
+      'weight' => '15',
       'has_required' => FALSE,
       'title' => 'Audience',
       'hidden' => 0,
     ),
     'field_stanford_event_categories' => array(
       'region' => 'main',
-      'weight' => '15',
+      'weight' => '16',
       'has_required' => FALSE,
       'title' => 'Categories',
       'hidden' => 0,
@@ -399,7 +399,7 @@ function stanford_events_importer_strongarm() {
     ),
     'field_s_event_series' => array(
       'region' => 'main',
-      'weight' => '18',
+      'weight' => '13',
       'has_required' => FALSE,
       'title' => 'Event Series',
       'hidden' => 0,
