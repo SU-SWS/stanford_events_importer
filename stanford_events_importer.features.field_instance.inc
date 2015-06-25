@@ -15,7 +15,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This filtered text field is event description (e.g., this event is etc. etc.).',
+    'description' => 'This filtered text field is the description of the event (e.g., this event is...).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -835,7 +835,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('More Information');
   t('This content is imported from events.stanford.edu.');
   t('This field is structural and you should not need to edit it. It describes the status of the event on events.stanford.edu (Published, Unlisted, Bookmarked, Canceled)');
-  t('This filtered text field is event description (e.g., this event is etc. etc.).');
+  t('This filtered text field is the description of the event (e.g., this event is...).');
   t('This formatted text field is for the event admission information (e.g., Free and open to the public).');
   t('This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).');
   t('This text field is for the email address of the contact person for the event (e.g., email-address@stanford.edu).');
