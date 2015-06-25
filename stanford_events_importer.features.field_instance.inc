@@ -92,7 +92,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -117,6 +117,99 @@ function stanford_events_importer_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 18,
+    ),
+  );
+
+  // Exported field_instance: 'node-stanford_event-field_s_event_image_insert'
+  $field_instances['node-stanford_event-field_s_event_image_insert'] = array(
+    'bundle' => 'stanford_event',
+    'deleted' => 0,
+    'description' => 'Upload image to insert into the body content.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_event_image_insert',
+    'label' => 'Image Insert',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 1,
+      'default_image' => 0,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'insert' => 1,
+        'insert_absolute' => 0,
+        'insert_class' => '',
+        'insert_default' => 'auto',
+        'insert_styles' => array(
+          'auto' => 'auto',
+          'icon_link' => 0,
+          'image' => 'image',
+          'image_3-col-header' => 0,
+          'image_4-col-header' => 0,
+          'image_6-col-banner' => 0,
+          'image_6-col-banner-short' => 0,
+          'image_6-col-banner-tall' => 0,
+          'image_6-col-photo-landscape' => 0,
+          'image_8-col-banner' => 0,
+          'image_8-col-banner-short' => 0,
+          'image_8-col-banner-tall' => 0,
+          'image_9-col-banner' => 0,
+          'image_9-col-banner-short' => 0,
+          'image_12-col-banner' => 0,
+          'image_12-col-banner-tall' => 0,
+          'image_icon-profile' => 0,
+          'image_icon-square' => 0,
+          'image_large' => 0,
+          'image_large-landscape' => 0,
+          'image_large-landscape-scaled' => 'image_large-landscape-scaled',
+          'image_large-profile' => 0,
+          'image_large-profile-scaled' => 'image_large-profile-scaled',
+          'image_large-scaled' => 'image_large-scaled',
+          'image_large-square' => 'image_large-square',
+          'image_med-landscape' => 0,
+          'image_med-landscape-scaled' => 'image_med-landscape-scaled',
+          'image_med-profile' => 0,
+          'image_med-profile-scaled' => 'image_med-profile-scaled',
+          'image_med-square' => 'image_med-square',
+          'image_medium' => 0,
+          'image_page-width' => 'image_page-width',
+          'image_sm-landscape' => 'image_sm-landscape',
+          'image_sm-profile' => 'image_sm-profile',
+          'image_sm-square' => 'image_sm-square',
+          'image_thmb-landscape' => 0,
+          'image_thmb-profile' => 0,
+          'image_thmb-square' => 0,
+          'image_thumbnail' => 0,
+          'link' => 0,
+        ),
+        'insert_width' => '',
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 4,
     ),
   );
 
@@ -146,6 +239,7 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Map Link',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -159,6 +253,7 @@ function stanford_events_importer_field_default_field_instances() {
       'enable_tokens' => 1,
       'rel_remove' => 'default',
       'title' => 'value',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => 'Map',
       'url' => 0,
@@ -170,7 +265,7 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 6,
+      'weight' => 7,
     ),
   );
 
@@ -185,7 +280,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -206,11 +301,12 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_add_to_cal'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_add_to_cal'
   $field_instances['node-stanford_event-field_stanford_event_add_to_cal'] = array(
     'bundle' => 'stanford_event',
     'default_value' => NULL,
@@ -221,7 +317,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -235,6 +331,7 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'Add to Calendar',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -247,6 +344,7 @@ function stanford_events_importer_field_default_field_instances() {
       ),
       'enable_tokens' => 0,
       'title' => 'value',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => 'Add this event to my calendar',
       'url' => 0,
@@ -262,7 +360,8 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_admission'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_admission'
   $field_instances['node-stanford_event-field_stanford_event_admission'] = array(
     'bundle' => 'stanford_event',
     'default_value' => NULL,
@@ -324,11 +423,12 @@ function stanford_events_importer_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_audience'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_audience'
   $field_instances['node-stanford_event-field_stanford_event_audience'] = array(
     'bundle' => 'stanford_event',
     'default_value' => NULL,
@@ -339,7 +439,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -367,7 +467,8 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_categories'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_categories'
   $field_instances['node-stanford_event-field_stanford_event_categories'] = array(
     'bundle' => 'stanford_event',
     'default_value' => NULL,
@@ -378,7 +479,7 @@ function stanford_events_importer_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -406,7 +507,8 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_datetime'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_datetime'
   $field_instances['node-stanford_event-field_stanford_event_datetime'] = array(
     'bundle' => 'stanford_event',
     'deleted' => 0,
@@ -421,6 +523,7 @@ function stanford_events_importer_field_default_field_instances() {
           'multiple_from' => '',
           'multiple_number' => '',
           'multiple_to' => '',
+          'show_remaining_days' => FALSE,
         ),
         'type' => 'date_default',
         'weight' => 2,
@@ -456,7 +559,7 @@ function stanford_events_importer_field_default_field_instances() {
         'year_range' => '-3:+3',
       ),
       'type' => 'date_popup',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -522,7 +625,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -589,7 +692,8 @@ function stanford_events_importer_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-stanford_event-field_stanford_event_location'
+  // Exported field_instance:
+  // 'node-stanford_event-field_stanford_event_location'
   $field_instances['node-stanford_event-field_stanford_event_location'] = array(
     'bundle' => 'stanford_event',
     'default_value' => NULL,
@@ -625,7 +729,7 @@ function stanford_events_importer_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -691,7 +795,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -757,7 +861,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 7,
+      'weight' => 8,
     ),
   );
 
@@ -787,6 +891,7 @@ function stanford_events_importer_field_default_field_instances() {
     'label' => 'More Information',
     'required' => 0,
     'settings' => array(
+      'absolute_url' => 1,
       'attributes' => array(
         'class' => '',
         'configurable_title' => 0,
@@ -799,6 +904,7 @@ function stanford_events_importer_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'title' => 'optional',
+      'title_label_use_field_label' => FALSE,
       'title_maxlength' => 128,
       'title_value' => '',
       'url' => 0,
@@ -810,7 +916,7 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -830,6 +936,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('Event Sponsor');
   t('Event Type');
   t('Image');
+  t('Image Insert');
   t('Location');
   t('Map Link');
   t('More Information');
@@ -842,6 +949,7 @@ function stanford_events_importer_field_default_field_instances() {
   t('This text field is for the event sponsor (e.g., University Communications).');
   t('This text field is for the phone number of the contact person for the event (e.g., 650-725-1234).');
   t('This text field is the location for the event (e.g., Redwood Hall, Room 308).');
+  t('Upload image to insert into the body content.');
 
   return $field_instances;
 }
