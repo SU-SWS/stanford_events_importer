@@ -2,7 +2,7 @@ name = Stanford Events Importer
 description = Imports events from events.stanford.edu and creates a "Stanford Event" node for each event record
 core = 7.x
 package = Stanford
-version = 7.x-3.2-alpha1
+version = 7.x-3.x-dev
 project = stanford_events_importer
 project status url = https://github.com/SU-SWS/stanford_events_importer
 dependencies[] = ctools
@@ -11,7 +11,6 @@ dependencies[] = date_all_day
 dependencies[] = date_popup
 dependencies[] = features (>=2.0)
 dependencies[] = feeds (>=2.0-alpha8)
-dependencies[] = feeds
 dependencies[] = feeds_tamper
 dependencies[] = feeds_xpathparser
 dependencies[] = field_group
