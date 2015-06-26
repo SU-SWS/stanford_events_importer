@@ -1,6 +1,18 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+7.x-3.2                                  2015-06-26
+---------------------------------------------------
+- Removed logging
+- Removed the extra cron settings
+- Removed foreign keys
+- CAW-537: Events calendar block nav javascript aria fixes
+- BASIC-1269: Added image insert field
+- BASIC-1269: Updates to .info file and form weight order
+- Body field help text
+- ADding stanford_date_formats dependency
+
+
 7.x-3.1                                  2015-03-19
 ---------------------------------------------------
 
