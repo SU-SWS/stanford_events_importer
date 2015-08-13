@@ -54,15 +54,16 @@ function stanford_events_importer_field_group_info() {
     'label' => 'Descriptor group',
     'weight' => '1',
     'children' => array(
-      0 => 'field_stanford_event_admission',
-      1 => 'field_stanford_event_datetime',
-      2 => 'field_stanford_event_location',
+      0 => 'field_s_event_map_link',
+      1 => 'field_stanford_event_admission',
+      2 => 'field_stanford_event_datetime',
+      3 => 'field_stanford_event_location',
     ),
     'format_type' => 'div',
     'format_settings' => array(
       'label' => 'Descriptor group',
       'instance_settings' => array(
-        'classes' => 'descriptor',
+        'classes' => 'descriptor group-descriptor-info field-group-div',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -93,7 +94,7 @@ function stanford_events_importer_field_group_info() {
     'format_settings' => array(
       'label' => 'Float Right',
       'instance_settings' => array(
-        'classes' => 'float-right border-simple-nowidth border-shadow',
+        'classes' => 'float-right border-simple-nowidth border-shadow group-floatright field-group-div',
         'description' => '',
         'show_label' => '0',
         'label_element' => 'h3',
@@ -116,7 +117,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '14',
+    'weight' => '16',
     'children' => array(
       0 => 'field_s_event_type',
       1 => 'field_stanford_event_add_to_cal',
@@ -128,7 +129,7 @@ function stanford_events_importer_field_group_info() {
       'label' => 'Advanced',
       'instance_settings' => array(
         'required_fields' => 1,
-        'classes' => '',
+        'classes' => ' group-stanford-event-advanced field-group-fieldset',
         'description' => '',
       ),
       'formatter' => 'collapsed',
