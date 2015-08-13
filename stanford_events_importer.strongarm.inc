@@ -423,6 +423,33 @@ function stanford_events_importer_strongarm() {
       'weight' => '7',
       'has_required' => FALSE,
       'title' => 'RSVP Email',
+    ),
+    'field_s_event_map_link' => array(
+      'region' => 'main',
+      'weight' => '7',
+      'has_required' => FALSE,
+      'title' => 'Map Link',
+      'hidden' => 0,
+    ),
+    'field_s_event_feed_type' => array(
+      'region' => 'main',
+      'weight' => '17',
+      'has_required' => FALSE,
+      'title' => 'Event Feed Type',
+      'hidden' => 0,
+    ),
+    'field_s_event_series' => array(
+      'region' => 'main',
+      'weight' => '13',
+      'has_required' => FALSE,
+      'title' => 'Event Series',
+      'hidden' => 0,
+    ),
+    'field_s_event_image_insert' => array(
+      'region' => 'main',
+      'weight' => '6',
+      'has_required' => FALSE,
+      'title' => 'Image Insert',
       'hidden' => 0,
     ),
   );
