@@ -1244,7 +1244,6 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-manage-content-by-type';
   $handler->display->display_options['menu']['context'] = 0;
-
   $export['stanford_events_manage'] = $view;
 
   $view = new view();
@@ -1996,8 +1995,8 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'now';
 
-  /* Display: 3 Item Upcoming - List Block with no pager */
-  $handler = $view->new_display('block', '3 Item Upcoming - List Block with no pager', 'block_3');
+  /* Display: 5 Item Upcoming - List Block with no pager */
+  $handler = $view->new_display('block', '5 Item Upcoming - List Block with no pager', 'block_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Upcoming Events';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
@@ -2009,12 +2008,12 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'View More Events';
+  $handler->display->display_options['use_more_text'] = 'View more events';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'custom_url';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '3';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
@@ -2313,7 +2312,6 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
-
   $export['stanford_events_views'] = $view;
 
   return $export;
