@@ -117,12 +117,13 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '16',
+    'weight' => '17',
     'children' => array(
-      0 => 'field_s_event_type',
-      1 => 'field_stanford_event_add_to_cal',
-      2 => 'field_stanford_event_audience',
-      3 => 'field_stanford_event_categories',
+      0 => 'field_s_event_feed_type',
+      1 => 'field_s_event_type',
+      2 => 'field_stanford_event_add_to_cal',
+      3 => 'field_stanford_event_audience',
+      4 => 'field_stanford_event_categories',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
