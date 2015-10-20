@@ -100,7 +100,7 @@ function stanford_events_importer_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -197,7 +197,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Include caption information for the event image.',
+    'description' => 'Include caption information for the event featured image.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -266,7 +266,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -359,7 +359,7 @@ function stanford_events_importer_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -980,7 +980,7 @@ function stanford_events_importer_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_stanford_event_image',
-    'label' => 'Image',
+    'label' => 'Featured Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
@@ -998,7 +998,7 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'image',
       'settings' => array(
         'insert' => 0,
-        'insert_absolute' => FALSE,
+        'insert_absolute' => 0,
         'insert_class' => '',
         'insert_default' => 'auto',
         'insert_styles' => array(
@@ -1014,7 +1014,7 @@ function stanford_events_importer_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -1339,9 +1339,9 @@ function stanford_events_importer_field_default_field_instances() {
   t('Event Grouping');
   t('Event Sponsor');
   t('Event Type');
-  t('Image');
+  t('Featured Image');
   t('Image Insert');
-  t('Include caption information for the event image.');
+  t('Include caption information for the event featured image.');
   t('Location');
   t('Map Link');
   t('More Information');

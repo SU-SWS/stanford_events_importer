@@ -117,7 +117,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '17',
+    'weight' => '16',
     'children' => array(
       0 => 'field_s_event_feed_type',
       1 => 'field_s_event_type',
