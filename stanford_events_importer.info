@@ -9,8 +9,8 @@ dependencies[] = date
 dependencies[] = date_all_day
 dependencies[] = date_popup
 dependencies[] = email
-dependencies[] = features (>=2.0)
-dependencies[] = feeds (>=2.0-alpha8)
+dependencies[] = features
+dependencies[] = feeds
 dependencies[] = feeds_tamper
 dependencies[] = feeds_xpathparser
 dependencies[] = field_group
@@ -19,7 +19,6 @@ dependencies[] = link
 dependencies[] = list
 dependencies[] = options
 dependencies[] = stanford_image_styles
-dependencies[] = stanford_date_formats (>=1.0-alpha2)
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = text

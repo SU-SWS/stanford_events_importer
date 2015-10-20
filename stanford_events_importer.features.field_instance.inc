@@ -100,7 +100,7 @@ function stanford_events_importer_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 7,
+      'weight' => 6,
     ),
   );
 
@@ -197,7 +197,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Include caption information for the event image.',
+    'description' => 'Include caption information for the event featured image.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -266,7 +266,7 @@ function stanford_events_importer_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 6,
+      'weight' => 5,
     ),
   );
 
@@ -359,7 +359,7 @@ function stanford_events_importer_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 4,
+      'weight' => 7,
     ),
   );
 
@@ -980,7 +980,7 @@ function stanford_events_importer_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_stanford_event_image',
-    'label' => 'Image',
+    'label' => 'Featured Image',
     'required' => 0,
     'settings' => array(
       'alt_field' => 1,
@@ -998,14 +998,96 @@ function stanford_events_importer_field_default_field_instances() {
       'module' => 'image',
       'settings' => array(
         'insert' => 0,
-        'insert_absolute' => FALSE,
+        'insert_absolute' => 0,
         'insert_class' => '',
         'insert_default' => 'auto',
         'insert_styles' => array(
           'auto' => 'auto',
+          'colorbox__3-col-header' => 0,
+          'colorbox__4-col-header' => 0,
+          'colorbox__6-col-banner' => 0,
+          'colorbox__6-col-banner-short' => 0,
+          'colorbox__6-col-banner-tall' => 0,
+          'colorbox__6-col-photo-landscape' => 0,
+          'colorbox__8-col-banner' => 0,
+          'colorbox__8-col-banner-short' => 0,
+          'colorbox__8-col-banner-tall' => 0,
+          'colorbox__9-col-banner' => 0,
+          'colorbox__9-col-banner-short' => 0,
+          'colorbox__12-col-banner' => 0,
+          'colorbox__12-col-banner-tall' => 0,
+          'colorbox__full-width-banner' => 0,
+          'colorbox__full-width-banner-short' => 0,
+          'colorbox__half-page-profile' => 0,
+          'colorbox__huge-landscape' => 0,
+          'colorbox__icon-profile' => 0,
+          'colorbox__icon-scaled' => 0,
+          'colorbox__icon-square' => 0,
+          'colorbox__large' => 0,
+          'colorbox__large-landscape' => 0,
+          'colorbox__large-landscape-scaled' => 0,
+          'colorbox__large-profile' => 0,
+          'colorbox__large-profile-scaled' => 0,
+          'colorbox__large-scaled' => 0,
+          'colorbox__large-square' => 0,
+          'colorbox__med-landscape' => 0,
+          'colorbox__med-landscape-scaled' => 0,
+          'colorbox__med-profile' => 0,
+          'colorbox__med-profile-scaled' => 0,
+          'colorbox__med-square' => 0,
+          'colorbox__medium' => 0,
+          'colorbox__page-width' => 0,
+          'colorbox__sm-landscape' => 0,
+          'colorbox__sm-profile' => 0,
+          'colorbox__sm-scaled' => 0,
+          'colorbox__sm-square' => 0,
+          'colorbox__thmb-landscape' => 0,
+          'colorbox__thmb-profile' => 0,
+          'colorbox__thmb-square' => 0,
+          'colorbox__thumbnail' => 0,
+          'icon_link' => 0,
           'image' => 0,
+          'image_3-col-header' => 0,
+          'image_4-col-header' => 0,
+          'image_6-col-banner' => 0,
+          'image_6-col-banner-short' => 0,
+          'image_6-col-banner-tall' => 0,
+          'image_6-col-photo-landscape' => 0,
+          'image_8-col-banner' => 0,
+          'image_8-col-banner-short' => 0,
+          'image_8-col-banner-tall' => 0,
+          'image_9-col-banner' => 0,
+          'image_9-col-banner-short' => 0,
+          'image_12-col-banner' => 0,
+          'image_12-col-banner-tall' => 0,
+          'image_full-width-banner' => 0,
+          'image_full-width-banner-short' => 0,
+          'image_half-page-profile' => 0,
+          'image_huge-landscape' => 0,
+          'image_icon-profile' => 0,
+          'image_icon-scaled' => 0,
+          'image_icon-square' => 0,
           'image_large' => 0,
+          'image_large-landscape' => 0,
+          'image_large-landscape-scaled' => 0,
+          'image_large-profile' => 0,
+          'image_large-profile-scaled' => 0,
+          'image_large-scaled' => 0,
+          'image_large-square' => 0,
+          'image_med-landscape' => 0,
+          'image_med-landscape-scaled' => 0,
+          'image_med-profile' => 0,
+          'image_med-profile-scaled' => 0,
+          'image_med-square' => 0,
           'image_medium' => 0,
+          'image_page-width' => 0,
+          'image_sm-landscape' => 0,
+          'image_sm-profile' => 0,
+          'image_sm-scaled' => 0,
+          'image_sm-square' => 0,
+          'image_thmb-landscape' => 0,
+          'image_thmb-profile' => 0,
+          'image_thmb-square' => 0,
           'image_thumbnail' => 0,
           'link' => 0,
         ),
@@ -1014,7 +1096,7 @@ function stanford_events_importer_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 5,
+      'weight' => 4,
     ),
   );
 
@@ -1339,9 +1421,9 @@ function stanford_events_importer_field_default_field_instances() {
   t('Event Grouping');
   t('Event Sponsor');
   t('Event Type');
-  t('Image');
+  t('Featured Image');
   t('Image Insert');
-  t('Include caption information for the event image.');
+  t('Include caption information for the event featured image.');
   t('Location');
   t('Map Link');
   t('More Information');

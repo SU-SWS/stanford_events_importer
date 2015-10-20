@@ -221,16 +221,16 @@ function stanford_events_importer_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '19',
-        ),
-        'metatags' => array(
           'weight' => '18',
         ),
+        'metatags' => array(
+          'weight' => '17',
+        ),
         'redirect' => array(
-          'weight' => '20',
+          'weight' => '19',
         ),
         'xmlsitemap' => array(
-          'weight' => '21',
+          'weight' => '20',
         ),
       ),
       'display' => array(),
@@ -318,14 +318,14 @@ function stanford_events_importer_strongarm() {
     ),
     'body' => array(
       'region' => 'main',
-      'weight' => '7',
+      'weight' => '6',
       'has_required' => FALSE,
       'title' => 'Body',
       'hidden' => 0,
     ),
     'field_stanford_event_add_to_cal' => array(
       'region' => 'main',
-      'weight' => '16',
+      'weight' => '17',
       'has_required' => FALSE,
       'title' => 'Add to Calendar',
       'hidden' => 1,
@@ -369,7 +369,7 @@ function stanford_events_importer_strongarm() {
       'region' => 'main',
       'weight' => '4',
       'has_required' => FALSE,
-      'title' => 'Image',
+      'title' => 'Featured Image',
       'hidden' => 0,
     ),
     'field_stanford_event_location' => array(
@@ -402,7 +402,7 @@ function stanford_events_importer_strongarm() {
     ),
     'field_s_event_type' => array(
       'region' => 'main',
-      'weight' => '15',
+      'weight' => '16',
       'has_required' => FALSE,
       'title' => 'Event Type',
       'hidden' => 0,
@@ -444,14 +444,14 @@ function stanford_events_importer_strongarm() {
     ),
     'field_s_event_image_insert' => array(
       'region' => 'main',
-      'weight' => '6',
+      'weight' => '7',
       'has_required' => FALSE,
       'title' => 'Image Insert',
       'hidden' => 0,
     ),
     'field_s_event_grouping' => array(
       'region' => 'main',
-      'weight' => '17',
+      'weight' => '15',
       'has_required' => FALSE,
       'title' => 'Event Grouping',
       'hidden' => 0,
