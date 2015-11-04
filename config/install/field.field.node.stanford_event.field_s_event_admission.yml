@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_s_event_admission
+    - node.type.stanford_event
+  module:
+    - text
+id: node.stanford_event.field_s_event_admission
+field_name: field_s_event_admission
+entity_type: node
+bundle: stanford_event
+label: Admission
+description: 'This formatted text field is for the event admission information (e.g., Free and open to the public).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

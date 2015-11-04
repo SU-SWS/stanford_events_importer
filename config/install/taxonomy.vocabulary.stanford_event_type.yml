@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Event Type'
+vid: stanford_event_type
+description: 'Type of event, e.g., Conference, Lecture, Seminar'
+hierarchy: 0
+weight: 0

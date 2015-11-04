@@ -1,0 +1,24 @@
+name: 'Stanford Events Importer'
+description: 'Imports events from events.stanford.edu and creates a "Stanford Event" node for each event record'
+type: module
+core: 8.x
+version: 8.x-1.0-alpha1
+features:
+  required:
+    - core.base_field_override.node.stanford_event.promote
+    - node.type.stanford_event
+    - core.entity_form_display.node.stanford_event.default
+    - core.entity_view_display.node.stanford_event.default
+    - core.entity_view_display.node.stanford_event.teaser
+    - field.field.node.stanford_event.body
+    - field.field.node.stanford_event.field_s_event_admission
+    - field.field.node.stanford_event.field_s_event_datetime
+    - field.field.node.stanford_event.field_s_event_email
+    - field.field.node.stanford_event.field_s_event_image
+    - field.field.node.stanford_event.field_s_event_location
+    - field.field.node.stanford_event.field_s_event_map_link
+    - field.field.node.stanford_event.field_s_event_phone
+    - field.field.node.stanford_event.field_s_event_sponsor
+    - field.field.node.stanford_event.field_s_event_type
+    - field.field.node.stanford_event.field_s_event_url
+    - taxonomy.vocabulary.stanford_event_type

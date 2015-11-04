@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_s_event_type
+    - node.type.stanford_event
+    - taxonomy.vocabulary.stanford_event_type
+id: node.stanford_event.field_s_event_type
+field_name: field_s_event_type
+entity_type: node
+bundle: stanford_event
+label: 'Event Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      stanford_event_type: stanford_event_type
+    sort:
+      field: _none
+    auto_create: true
+field_type: entity_reference
