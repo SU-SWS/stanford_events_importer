@@ -33,12 +33,18 @@ function stanford_events_importer_help($path, $arg) {
  * Implements hook_menu().
  */
 function stanford_events_importer_menu() {
+  $items = array();
   $items['admin/config/stanford/events'] = array(
     'title' => 'Stanford Events Importer',
+    'description' => "Configure category and organization feed settings.",
     'type' => MENU_NORMAL_ITEM,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('stanford_events_importer_config_form'),
     'access arguments' =>  array('administer site configuration'),
+  );
+  $items['admin/config/stanford/events/settings'] = array(
+    'title' => 'Stanford Events Importer',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
   );
   return $items;
 }

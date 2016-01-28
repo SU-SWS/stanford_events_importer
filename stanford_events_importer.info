@@ -110,3 +110,5 @@ features[variable][] = pathauto_node_stanford_event_importer_pattern
 features[variable][] = pathauto_node_stanford_event_pattern
 features_exclude[field_base][body] = body
 project status url = http://github.com/SU-SWS/stanford_events_importer
+configure = admin/config/stanford/events
+
