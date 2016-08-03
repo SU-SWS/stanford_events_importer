@@ -1,6 +1,10 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+Stanford Events Importer 7.x-3.3, 2016-08-03
+--------------------------------------------
+- Changed path of configuration page so that it's a sub-menu-item
+
 7.x-3.2                                  2015-06-26
 ---------------------------------------------------
 - Removed logging
