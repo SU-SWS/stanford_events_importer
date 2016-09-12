@@ -427,6 +427,10 @@ function stanford_events_importer_write_organizations($organization_xml) {
     $name = $valuesarray[$value]['value'];
     $value = $value + 1;
     $type = $valuesarray[$value]['value'];
+    // $type must be 1 or 2
+    if (!in_array($type, array("1","2"))) {
+      break;
+    }
     $value = $value + 1;
     //email can be empty sometimes; set it to the value if it's set, blank if it's not set.
     $email = isset($valuesarray[$value]['value']) ? $valuesarray[$value]['value'] : '';
