@@ -429,6 +429,7 @@ function stanford_events_importer_write_organizations($organization_xml) {
     $type = $valuesarray[$value]['value'];
     // $type must be 1 or 2
     if (!in_array($type, array("1","2"))) {
+      watchdog('stanford_events_importer', 'Invalid option in XML feed for the type of organization. Did not save organization info to the database.');
       break;
     }
     $value = $value + 1;
