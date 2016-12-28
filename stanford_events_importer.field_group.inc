@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function stanford_events_importer_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -27,6 +27,7 @@ function stanford_events_importer_field_group_info() {
       1 => 'field_stanford_event_admission',
       2 => 'field_stanford_event_datetime',
       3 => 'field_stanford_event_location',
+      4 => 'field_s_event_speakers',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -86,7 +87,7 @@ function stanford_events_importer_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '16',
+    'weight' => '17',
     'children' => array(
       0 => 'field_s_event_feed_type',
       1 => 'field_stanford_event_add_to_cal',
@@ -106,5 +107,11 @@ function stanford_events_importer_field_group_info() {
   );
   $export['group_stanford_event_advanced|node|stanford_event|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Advanced');
+  t('Descriptor group');
+  t('Float Right');
+
+  return $field_groups;
 }
