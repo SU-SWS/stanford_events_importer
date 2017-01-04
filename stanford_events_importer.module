@@ -623,5 +623,6 @@ function stanford_events_importer_field_attach_view_alter(&$output, $context) {
     $text = &$output['field_s_event_speakers_name'][0]['#markup'];
     $text = l(t($text), $url);
     unset($output['field_s_event_speakers_url']);
+    drupal_add_css(drupal_get_path('module', 'stanford_events_importer') . '/css/stanford_events_importer.css');
   }
 }
