@@ -1015,10 +1015,10 @@ function stanford_events_importer_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'rows' => 2,
       ),
-      'type' => 'text_textfield',
-      'weight' => 9,
+      'type' => 'text_textarea',
+      'weight' => 8,
     ),
   );
 

@@ -743,3 +743,44 @@ function stanford_events_importer_update_7302(&$sandbox) {
     watchdog('stanford_events_importer', 'feeds_process_limit left as %limit during update 7302', array('%limit' => $feeds_process_limit));
   }
 }
+
+/**
+ * Increase size of sponsor field.
+ */
+function stanford_events_importer_update_7304(&$sandbox) {
+  // http://thedombroshow.com/drupal-7-converting-a-text-field-to-a-long-text-aka-textarea-field/
+  $field_name = "field_stanford_event_sponsor";
+
+  $rows = db_query("SELECT id,data FROM {field_config} WHERE field_name = '{$field_name}' ")->fetchAll(PDO::FETCH_OBJ);
+
+  foreach ($rows as $row) {
+    $row->data = unserialize($row->data);
+    unset($row->data['settings']['max_length']);
+    $row->type = "text_long";
+    drupal_write_record("field_config", $row, "id");
+  }
+
+  // Update field_config_instance.
+  $rows = db_query("SELECT id,data FROM {field_config_instance} WHERE field_name = '{$field_name}'")->fetchAll(PDO::FETCH_OBJ);
+
+  foreach ($rows as $row) {
+    $row->data = unserialize($row->data);
+    $row->data['widget']['type'] = 'text_textarea';
+    unset($row->data['widget']['settings']['size']);
+    $row->data['widget']['settings']['rows'] = 2;
+    drupal_write_record("field_config_instance", $row, "id");
+  }
+
+  // Update the field table.
+  db_change_field("field_data_{$field_name}", "{$field_name}_value", "{$field_name}_value", array(
+    "type" => "varchar",
+    "length" => "20000",
+  ));
+  db_change_field("field_revision_{$field_name}", "{$field_name}_value", "{$field_name}_value", array(
+    "type" => "varchar",
+    "length" => "20000",
+  ));
+
+  // Clear caches.
+  field_cache_clear();
+}
