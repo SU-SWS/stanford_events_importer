@@ -43,7 +43,7 @@ function stanford_events_importer_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_descriptor_info|node|stanford_event|default'] = $field_group;
+  $field_groups['group_descriptor_info|node|stanford_event|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -74,7 +74,7 @@ function stanford_events_importer_field_group_info() {
       'formatter' => 'open',
     ),
   );
-  $export['group_floatright|node|stanford_event|default'] = $field_group;
+  $field_groups['group_floatright|node|stanford_event|default'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -105,7 +105,7 @@ function stanford_events_importer_field_group_info() {
       'formatter' => 'collapsed',
     ),
   );
-  $export['group_stanford_event_advanced|node|stanford_event|form'] = $field_group;
+  $field_groups['group_stanford_event_advanced|node|stanford_event|form'] = $field_group;
 
   // Translatables
   // Included for use with string extractors like potx.
