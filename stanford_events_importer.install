@@ -747,7 +747,7 @@ function stanford_events_importer_update_7302(&$sandbox) {
 /**
  * Increase size of sponsor field.
  */
-function stanford_events_importer_update_7304(&$sandbox){
+function stanford_events_importer_update_7304(&$sandbox) {
   // http://thedombroshow.com/drupal-7-converting-a-text-field-to-a-long-text-aka-textarea-field/
   $field_name = "field_stanford_event_sponsor";
 
@@ -760,7 +760,7 @@ function stanford_events_importer_update_7304(&$sandbox){
     drupal_write_record("field_config", $row, "id");
   }
 
-  // Update field_config_instance
+  // Update field_config_instance.
   $rows = db_query("SELECT id,data FROM {field_config_instance} WHERE field_name = '{$field_name}'")->fetchAll(PDO::FETCH_OBJ);
 
   foreach ($rows as $row) {
@@ -771,7 +771,7 @@ function stanford_events_importer_update_7304(&$sandbox){
     drupal_write_record("field_config_instance", $row, "id");
   }
 
-  // Update the field table
+  // Update the field table.
   db_change_field("field_data_{$field_name}", "{$field_name}_value", "{$field_name}_value", array(
     "type" => "varchar",
     "length" => "20000",
