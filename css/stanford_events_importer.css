@@ -5,3 +5,7 @@
 #main .field-name-field-s-event-speakers {
   margin-bottom: 20px;
 }
+
+.descriptor.group-descriptor-info > .field-collection-container {
+  display: inline-block;
+}
