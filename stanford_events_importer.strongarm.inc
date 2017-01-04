@@ -193,12 +193,6 @@ function stanford_events_importer_strongarm() {
       'stanford_8_col_banner' => array(
         'custom_settings' => FALSE,
       ),
-      'stanford_cap' => array(
-        'custom_settings' => FALSE,
-      ),
-      'stanford_video_half_width' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -209,10 +203,10 @@ function stanford_events_importer_strongarm() {
           'weight' => '1',
         ),
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '14',
         ),
         'redirect' => array(
-          'weight' => '18',
+          'weight' => '17',
         ),
       ),
       'display' => array(),
