@@ -8,6 +8,8 @@
 
 .descriptor.group-descriptor-info > .field-collection-container {
   display: inline-block;
+  display: -moz-box;
+  display: -webkit-box;
 }
 
 .field-name-field-s-event-speakers > .field-items {
