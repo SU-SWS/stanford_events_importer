@@ -49,7 +49,7 @@
 env:
   global:
 #    - PRODUCT_NAME=""
-    - ENABLE_MODULES="stanford_events_importer stanford_events_export stanford_events_views stanford_events_and_deadlines_calendar"
+    - ENABLE_MODULES="stanford_events_importer stanford_events_export stanford_events_views stanford_events_and_deadlines_calendar feeds_ui"
     - DISABLE_MODULES="webauth"
 #    - DEPLOYER_BRANCH=""
 #    - DRUPAL_PROFILE_BRANCH=""
