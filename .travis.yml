@@ -49,7 +49,7 @@
 env:
   global:
 #    - PRODUCT_NAME=""
-    - ENABLE_MODULES="stanford_bean_types ds_bean_fields stanford_bean_types_permissions"
+    - ENABLE_MODULES="stanford_events_importer stanford_events_export stanford_events_views stanford_events_and_deadlines_calendar"
     - DISABLE_MODULES="webauth"
 #    - DEPLOYER_BRANCH=""
 #    - DRUPAL_PROFILE_BRANCH=""
