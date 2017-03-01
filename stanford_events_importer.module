@@ -387,6 +387,11 @@ function stanford_events_importer_write_categories($category_xml) {
     $name = $valuesarray[$value]['value'];
     $value = $value + 1;
     $type = $valuesarray[$value]['value'];
+    // $type must be positive.
+    if ((int) $type < 1) {
+      watchdog('stanford_events_importer', 'Invalid option in XML feed for the type of category. Did not save category info for %name.', array('%name' => $name));
+      continue;
+    }
     $value = $value + 1;
     $description = $valuesarray[$value]['value'];
     $value = $value + 1;
@@ -445,6 +450,11 @@ function stanford_events_importer_write_organizations($organization_xml) {
     $name = $valuesarray[$value]['value'];
     $value = $value + 1;
     $type = $valuesarray[$value]['value'];
+    // $type must be 1 or 2.
+    if (!in_array($type, array("1", "2"))) {
+      watchdog('stanford_events_importer', 'Invalid option in XML feed for the type of organization. Did not save organization for %name.', array('%name' => $name));
+      continue;
+    }
     $value = $value + 1;
     // Email can be empty sometimes; set it to the value if it's set, blank if
     // it's not set.
