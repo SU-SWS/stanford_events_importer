@@ -8,6 +8,7 @@ dependencies[] = ctools
 dependencies[] = date
 dependencies[] = date_all_day
 dependencies[] = date_popup
+dependencies[] = features
 dependencies[] = features (>=2.0)
 dependencies[] = feeds (>=2.0-alpha8)
 dependencies[] = feeds_tamper
@@ -31,7 +32,11 @@ features[ctools][] = feeds_tamper:feeds_tamper_default:2
 features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features[feeds_importer][] = stanford_event_archived_importer
 features[feeds_importer][] = stanford_event_importer
+features[feeds_tamper][] = stanford_event_archived_importer-xpathparser_0-html_entity_decode
+features[feeds_tamper][] = stanford_event_archived_importer-xpathparser_15-string_to_unix_timestamp
+features[feeds_tamper][] = stanford_event_archived_importer-xpathparser_3-string_to_unix_timestamp
 features[feeds_tamper][] = stanford_event_importer-xpathparser_0-html_entity_decode
 features[feeds_tamper][] = stanford_event_importer-xpathparser_15-string_to_unix_timestamp
 features[feeds_tamper][] = stanford_event_importer-xpathparser_3-string_to_unix_timestamp
