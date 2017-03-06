@@ -141,8 +141,8 @@ function stanford_events_importer_feeds_importer_default() {
           5 => array(
             'source' => 'xpathparser:5',
             'target' => 'field_stanford_event_audience',
-            'unique' => FALSE,
-            'language' => 'und',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
           6 => array(
             'source' => 'xpathparser:7',
@@ -183,8 +183,8 @@ function stanford_events_importer_feeds_importer_default() {
           12 => array(
             'source' => 'xpathparser:13',
             'target' => 'field_stanford_event_categories',
-            'unique' => FALSE,
-            'language' => 'und',
+            'term_search' => '0',
+            'autocreate' => 1,
           ),
           13 => array(
             'source' => 'xpathparser:14',
@@ -220,6 +220,7 @@ function stanford_events_importer_feeds_importer_default() {
             'source' => 'xpathparser:19',
             'target' => 'field_s_event_speakers:field_s_event_speakers_name',
             'unique' => FALSE,
+            'language' => 'und',
           ),
         ),
         'update_existing' => '2',
