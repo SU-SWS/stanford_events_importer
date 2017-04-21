@@ -1,4 +1,4 @@
-#[Stanford Events Importer](https://github.com/SU-SWS/stanford_events_importer)
+# [Stanford Events Importer](https://github.com/SU-SWS/stanford_events_importer)
 ##### Version: 7.x-3.6-dev
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
