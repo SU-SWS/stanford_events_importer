@@ -18,7 +18,7 @@ env:
   # Leave blank to use the default Stanford-Drupal-Profile branch
   - DRUPAL_PROFILE_BRANCH=""
   # Leave blank to use the default linky_clicky branch
-  - CLICKY_BRANCH=""
+  - CLICKY_BRANCH="HSDO-593-recap-tests"
   # Leave blank to use the default stanford_travisci_scripts branch
   - SCRIPTS_BRANCH=""
 
