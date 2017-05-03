@@ -18,7 +18,7 @@ function stanford_events_recap_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -38,7 +38,7 @@ function stanford_events_recap_field_default_field_instances() {
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
-        'class' => '',
+        'class' => 'btn',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
@@ -75,7 +75,7 @@ function stanford_events_recap_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -95,7 +95,7 @@ function stanford_events_recap_field_default_field_instances() {
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
-        'class' => '',
+        'class' => 'btn',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
@@ -132,7 +132,7 @@ function stanford_events_recap_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_default',
@@ -152,7 +152,7 @@ function stanford_events_recap_field_default_field_instances() {
     'settings' => array(
       'absolute_url' => 1,
       'attributes' => array(
-        'class' => '',
+        'class' => 'btn',
         'configurable_class' => 0,
         'configurable_title' => 0,
         'rel' => '',
@@ -189,7 +189,7 @@ function stanford_events_recap_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'video_embed_field',
         'settings' => array(
           'description' => 1,
