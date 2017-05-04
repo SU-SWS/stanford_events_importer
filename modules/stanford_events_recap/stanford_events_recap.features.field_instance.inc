@@ -110,7 +110,7 @@ function stanford_events_recap_field_default_field_instances() {
       'title' => 'value',
       'title_label_use_field_label' => 0,
       'title_maxlength' => 128,
-      'title_value' => 'View a gallery of images.',
+      'title_value' => 'View gallery',
       'url' => 0,
       'user_register_form' => FALSE,
       'validate_url' => 1,
@@ -197,7 +197,7 @@ function stanford_events_recap_field_default_field_instances() {
           'video_style' => 'normal',
         ),
         'type' => 'video_embed_field',
-        'weight' => 14,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
