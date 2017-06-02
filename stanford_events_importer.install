@@ -287,8 +287,7 @@ function stanford_events_importer_update_7100(&$sandbox) {
 
 
 /**
- * Install two new database tables for holding category and organization
- * information.
+ * Install two new database tables for holding category and organization info.
  */
 function stanford_events_importer_update_7200(&$sandbox) {
 
@@ -654,10 +653,9 @@ function stanford_events_importer_update_7201(&$sandbox) {
 
     db_update('feeds_source')
       ->fields(array(
-          'config' => serialize($importer_configuration),
-          'source' => $source,
-        )
-      )
+        'config' => serialize($importer_configuration),
+        'source' => $source,
+      ))
       ->condition('feed_nid', $nid)
       ->execute();
   }
