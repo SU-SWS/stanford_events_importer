@@ -18,4 +18,3 @@ features[features_api][] = api:2
 features[views_view][] = stanford_events_calendar
 features[views_view][] = stanford_events_manage
 features[views_view][] = stanford_events_views
-mtime = 1424288898
