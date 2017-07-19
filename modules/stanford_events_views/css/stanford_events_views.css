@@ -1,19 +1,47 @@
-.view-display-id-paragraphs_block .date-stacked {
-  display: inline-block;
+.view-display-id-paragraphs_events_block .date-stacked {
   position: relative;
   top: -40px;
+  margin-bottom: -40px;
+  width: 50px;
 }
-.view-display-id-paragraphs_block .date-stacked.no-image {
+.view-display-id-paragraphs_events_block .date-stacked.no-image {
   top: 0;
+  margin-bottom: 14px;
   width: 100%;
-  height: 300px;
+  padding: 45px 0;
 }
-.view-display-id-paragraphs_block .date-stacked.no-image .date-month {
-  padding-top: 100px;
+.view-display-id-paragraphs_events_block .date-stacked.no-image .date-month {
   font-size: 40px;
   line-height: 40px;
 }
-.view-display-id-paragraphs_block .date-stacked.no-image .date-day {
+.view-display-id-paragraphs_events_block .date-stacked.no-image .date-day {
   font-size: 50px;
   line-height: 50px;
+}
+.view-display-id-paragraphs_events_block .view-content {
+  display: flex;
+}
+@media (max-width: 765px) {
+  .view-display-id-paragraphs_events_block .view-content {
+    display: block;
+  }
+}
+.view-display-id-paragraphs_events_block .views-row {
+  flex-grow: 1;
+  flex-basis: 0;
+  margin-right: 20px;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px #888888;
+}
+.view-display-id-paragraphs_events_block .views-row.views-row-last {
+  margin-right: 0;
+  border: 1px solid black;
+}
+@media (max-width: 765px) {
+  .view-display-id-paragraphs_events_block .views-row, .view-display-id-paragraphs_events_block .views-row.views-row-last {
+    margin: 20px;
+  }
+}
+.view-display-id-paragraphs_events_block .views-field:not(:first-child) {
+  margin: 10px 20px;
 }
