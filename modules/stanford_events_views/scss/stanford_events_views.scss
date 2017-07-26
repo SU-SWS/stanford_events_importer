@@ -1,6 +1,19 @@
 $breakpoint: 765px;
 
 .view-display-id-paragraphs_events_block {
+
+  .views-field-field-stanford-event-image {
+    height: 300px;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+      object-position: center center;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .date-stacked {
     position: relative;
     top: -40px;
@@ -28,12 +41,10 @@ $breakpoint: 765px;
   .view-content {
     display: flex;
 
-    @media(max-width:$breakpoint){
-      display:block;
+    @media(max-width: $breakpoint) {
+      display: block;
     }
   }
-
-
 
   .views-row {
     flex-grow: 1;
@@ -47,9 +58,9 @@ $breakpoint: 765px;
       border: 1px solid black;
     }
 
-    @media(max-width:$breakpoint){
-      &, &.views-row-last{
-        margin:20px;
+    @media(max-width: $breakpoint) {
+      &, &.views-row-last {
+        margin: 20px;
       }
     }
   }

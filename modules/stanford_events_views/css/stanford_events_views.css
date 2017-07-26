@@ -1,3 +1,13 @@
+.view-display-id-paragraphs_events_block .views-field-field-stanford-event-image {
+  height: 300px;
+  width: 100%;
+}
+.view-display-id-paragraphs_events_block .views-field-field-stanford-event-image img {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 100%;
+}
 .view-display-id-paragraphs_events_block .date-stacked {
   position: relative;
   top: -40px;

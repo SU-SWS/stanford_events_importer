@@ -2525,7 +2525,7 @@ function stanford_events_views_views_default_views() {
 </a>';
   $handler->display->display_options['fields']['field_stanford_event_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_stanford_event_image']['settings'] = array(
-    'image_style' => 'banner-850x400',
+    'image_style' => 'huge-landscape',
     'image_link' => 'content',
   );
   /* Field: Time */
@@ -2560,7 +2560,14 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['nl2br'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_type'] = 'h2';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
   $export['stanford_events_views'] = $view;
 
   return $export;
