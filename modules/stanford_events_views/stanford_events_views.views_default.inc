@@ -2517,7 +2517,7 @@ function stanford_events_views_views_default_views() {
 </a>';
   $handler->display->display_options['fields']['field_stanford_event_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_stanford_event_image']['settings'] = array(
-    'image_style' => 'large-square',
+    'image_style' => 'square_370_x_370',
     'image_link' => 'content',
   );
   /* Field: Time */
