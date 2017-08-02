@@ -1,9 +1,27 @@
 .view-display-id-paragraphs_events_block {
-  .views-row.column {
+
+  .view-content {
+    @media(min-width: 766px) {
+      display: flex;
+    }
+  }
+
+  .views-row {
+    flex-grow: 1;
+    flex-basis: 0;
     background: #ffffff;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 3% 0 0;
+
+    &:last-child {
+      margin: 0;
+    }
+
+    @media(max-width: 767px) {
+      margin: 0 0 3% 0;
+    }
   }
 
   .paragraphs-events-container {
@@ -11,9 +29,7 @@
       position: relative;
 
       img {
-        @media (max-width: 580px) {
-          width: 100%;
-        }
+        width: 100%;
       }
 
       .date-stacked {
@@ -41,7 +57,7 @@
 
     .date-stacked.no-image {
       margin-right: 0;
-      padding: 20px 25px;
+      padding: 0 25px;
       background: #333333;
 
       .date-month {
