@@ -18,7 +18,7 @@
         });
       };
 
-      setNoImageHeight();
+      $(window).load(setNoImageHeight);
       $(window).resize(setNoImageHeight);
     }
   }
