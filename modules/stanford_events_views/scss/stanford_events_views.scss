@@ -17,12 +17,14 @@
     &:last-child {
       margin: 0;
     }
+
     @media(max-width: 767px) {
       margin: 0 0 3%;
     }
   }
 
   .paragraphs-events-container {
+
     .paragraphs-events-img {
       position: relative;
 
@@ -58,6 +60,7 @@
       margin-right: 0;
       padding: 0;
       background: #333333;
+
       @media (max-width: 767px) {
         padding: 0 20px 25px;
       }
@@ -69,6 +72,7 @@
         font-size: 2.9em;
         font-weight: 100;
         line-height: 1.5em;
+
         @media (max-width: 767px) {
           position: static;
         }
@@ -80,6 +84,7 @@
         width: 100%;
         font-size: 3em;
         font-weight: 400;
+
         @media (max-width: 767px) {
           position: static;
         }
