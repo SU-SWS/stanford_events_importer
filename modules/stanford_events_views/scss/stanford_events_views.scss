@@ -1,5 +1,4 @@
 .view-display-id-paragraphs_events_block {
-
   .view-content {
     @media(min-width: 766px) {
       display: flex;
@@ -18,9 +17,8 @@
     &:last-child {
       margin: 0;
     }
-
     @media(max-width: 767px) {
-      margin: 0 0 3% 0;
+      margin: 0 0 3%;
     }
   }
 
@@ -56,18 +54,35 @@
     }
 
     .date-stacked.no-image {
+      position: relative;
       margin-right: 0;
-      padding: 0 25px;
+      padding: 0;
       background: #333333;
+      @media (max-width: 767px) {
+        padding: 0 20px 25px;
+      }
 
       .date-month {
-        font-size: 1.2em;
+        position: absolute;
+        bottom: 45%;
+        width: 100%;
+        font-size: 2.9em;
         font-weight: 100;
-        line-height: 1.4em;
+        line-height: 1.5em;
+        @media (max-width: 767px) {
+          position: static;
+        }
       }
 
       .date-day {
+        position: absolute;
+        bottom: 40%;
+        width: 100%;
+        font-size: 3em;
         font-weight: 400;
+        @media (max-width: 767px) {
+          position: static;
+        }
       }
     }
   }
