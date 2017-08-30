@@ -8,11 +8,12 @@
   .views-row {
     flex-grow: 1;
     flex-basis: 0;
-    background: #ffffff;
+    background: #fff;
     -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
     margin: 0 3% 0 0;
+    max-width: 33%;
 
     &:last-child {
       margin: 0;
@@ -38,7 +39,7 @@
         left: 35px;
         margin-right: 0;
         padding: 20px 25px;
-        background: #333333;
+        background: #333;
         -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
@@ -59,7 +60,7 @@
       position: relative;
       margin-right: 0;
       padding: 0;
-      background: #333333;
+      background: #333;
 
       @media (max-width: 767px) {
         padding: 0 20px 25px;
@@ -93,7 +94,7 @@
   }
 
   .paragraphs-events-content-container {
-    background: #ffffff;
+    background: #fff;
     padding: 55px 35px 35px;
 
     .paragraphs-events-content-time {
