@@ -2376,7 +2376,7 @@ function stanford_events_views_views_default_views() {
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['id'] = 'field_stanford_event_datetime_value';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['table'] = 'field_data_field_stanford_event_datetime';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['field'] = 'field_stanford_event_datetime_value';
-  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_stanford_event_datetime_value']['operator'] = '<';
   $handler->display->display_options['filters']['field_stanford_event_datetime_value']['default_date'] = 'now';
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
