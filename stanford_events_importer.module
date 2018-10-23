@@ -22,7 +22,7 @@ function stanford_events_importer_help($path, $arg) {
   );
 
   switch ($path) {
-    case'admin/help':
+    case'admin/help#stanford_events_importer':
       $output = '<h2>' . t('To Use') . '</h2>';
       $output .= '<ol><li>' . t('Enable the module and all dependencies') . '</li>';
       $output .= '<li>' . t('Go to !permissions and give selected roles the following permissions:', $links);
