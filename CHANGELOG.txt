@@ -1,6 +1,10 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+7.x-3.10                                 2018-11-21
+---------------------------------------------------
+- Fix for help page.
+
 7.x-3.9                                  2018-04-16
 ---------------------------------------------------
 - Changed the class on a view to make it more re-useable when a view is cloned
