@@ -762,8 +762,6 @@ function stanford_events_importer_update_7304(&$sandbox) {
 }
 
 /**
- * Implements hook_update_N().
- *
  * Update variables to point to events-legacy.stanford.edu.
  */
 function stanford_events_importer_update_7305(&$sandbox) {
