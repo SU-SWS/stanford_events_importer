@@ -1,7 +1,7 @@
 INTRODUCTION
 ------------
 The 7.x-2.x branch of the Stanford Events Importer module is a significant upgrade
-  from the 7.x-1.x branch. It uses a new version of the API from events.stanford.edu,
+  from the 7.x-1.x branch. It uses a new version of the API from events-legacy.stanford.edu,
   removes the requirement that users input the Feed URL directly, and adds several new
   fields to the Stanford Event content type and associated Feed Importer.
 

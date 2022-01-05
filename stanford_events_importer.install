@@ -81,8 +81,8 @@ function stanford_events_importer_requirements($phase) {
  * Implements hook_install().
  */
 function stanford_events_importer_install() {
-  variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   module_enable(array('stanford_events_importer'));
   // Get the list of categories and orgs, and put them into the DB.
   stanford_events_importer_update_cat_org();
@@ -113,7 +113,7 @@ function stanford_events_importer_uninstall() {
 function stanford_events_importer_schema() {
   $schema = array();
   $schema['stanford_events_category_list'] = array(
-    'description' => 'List of categories from events.stanford.edu',
+    'description' => 'List of categories from events-legacy.stanford.edu',
     'fields' => array(
       'guid' => array(
         'type' => 'int',
@@ -314,8 +314,8 @@ function stanford_events_importer_update_7200a() {
   }
 
   // Set initial source URLs for category and organization lists.
-  variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   // Make stanford_events_importer functions available to us.
   drupal_load('module', 'stanford_events_importer');
   // Get the list of categories and orgs, and put them into the DB.

@@ -199,7 +199,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This field is structural and you should not need to edit it. It describes the status of the event on events.stanford.edu (Published, Unlisted, Bookmarked, Canceled)',
+    'description' => 'This field is structural and you should not need to edit it. It describes the status of the event on events-legacy.stanford.edu (Published, Unlisted, Bookmarked, Canceled)',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -589,7 +589,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This content is imported from events.stanford.edu.',
+    'description' => 'This content is imported from events-legacy.stanford.edu.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -629,7 +629,7 @@ function stanford_events_importer_field_default_field_instances() {
     'bundle' => 'stanford_event',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This content is imported from events.stanford.edu.',
+    'description' => 'This content is imported from events-legacy.stanford.edu.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -1100,8 +1100,8 @@ function stanford_events_importer_field_default_field_instances() {
   t('Speaker Name');
   t('Speaker URL');
   t('Speaker(s)');
-  t('This content is imported from events.stanford.edu.');
-  t('This field is structural and you should not need to edit it. It describes the status of the event on events.stanford.edu (Published, Unlisted, Bookmarked, Canceled)');
+  t('This content is imported from events-legacy.stanford.edu.');
+  t('This field is structural and you should not need to edit it. It describes the status of the event on events-legacy.stanford.edu (Published, Unlisted, Bookmarked, Canceled)');
   t('This filtered text field is the description of the event (e.g., this event is...).');
   t('This formatted text field is for the event admission information (e.g., Free and open to the public).');
   t('This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).');

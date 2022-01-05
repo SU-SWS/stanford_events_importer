@@ -12,7 +12,7 @@ function stanford_events_importer_taxonomy_default_vocabularies() {
     'stanford_event_audience' => array(
       'name' => 'Stanford Event Audience',
       'machine_name' => 'stanford_event_audience',
-      'description' => 'Audience as used on events.stanford.edu (e.g., "Faculty/Staff", "Students", etc.)',
+      'description' => 'Audience as used on events-legacy.stanford.edu (e.g., "Faculty/Staff", "Students", etc.)',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
@@ -35,7 +35,7 @@ function stanford_events_importer_taxonomy_default_vocabularies() {
     'stanford_event_categories' => array(
       'name' => 'Stanford Event Categories',
       'machine_name' => 'stanford_event_categories',
-      'description' => 'Category names as used on events.stanford.edu',
+      'description' => 'Category names as used on events-legacy.stanford.edu',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,

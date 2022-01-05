@@ -16,7 +16,7 @@ function stanford_events_importer_feeds_importer_default() {
   $feeds_importer->id = 'stanford_event_archived_importer';
   $feeds_importer->config = array(
     'name' => 'Stanford Event Archived Importer',
-    'description' => 'Import archive from events.stanford.edu',
+    'description' => 'Import archive from events-legacy.stanford.edu',
     'fetcher' => array(
       'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
@@ -47,7 +47,7 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:13' => 'Category/categoryName',
           'xpathparser:14' => 'contactEmail',
           'xpathparser:15' => 'isoEndDate',
-          'xpathparser:16' => 'concat(\'http://events.stanford.edu/ical/download.php?id=\',eventID)',
+          'xpathparser:16' => 'concat(\'http://events-legacy.stanford.edu/ical/download.php?id=\',eventID)',
           'xpathparser:17' => 'mapUrl',
           'xpathparser:18' => 'eventStatus',
           'xpathparser:19' => 'People/person',
@@ -248,7 +248,7 @@ function stanford_events_importer_feeds_importer_default() {
   $feeds_importer->id = 'stanford_event_importer';
   $feeds_importer->config = array(
     'name' => 'Stanford Event Importer',
-    'description' => 'Import from events.stanford.edu',
+    'description' => 'Import from events-legacy.stanford.edu',
     'fetcher' => array(
       'plugin_key' => 'FeedsHTTPFetcher',
       'config' => array(
@@ -279,7 +279,7 @@ function stanford_events_importer_feeds_importer_default() {
           'xpathparser:13' => 'Category/categoryName',
           'xpathparser:14' => 'contactEmail',
           'xpathparser:15' => 'isoEventEndDate',
-          'xpathparser:16' => 'concat(\'http://events.stanford.edu/ical/download.php?id=\',eventID)',
+          'xpathparser:16' => 'concat(\'http://events-legacy.stanford.edu/ical/download.php?id=\',eventID)',
           'xpathparser:17' => 'mapUrl',
           'xpathparser:18' => 'eventStatus',
           'xpathparser:19' => 'People/person',
