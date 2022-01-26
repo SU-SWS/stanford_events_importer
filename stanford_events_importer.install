@@ -5,7 +5,8 @@
  * Schema definitions. Install/update/uninstall hooks.
  */
 
-use EntityFieldQuery;
+use \EntityFieldQuery;
+
 define("STANFORD_EVENTS_IMPORTER_FEEDS_PROCESS_LIMIT", 200);
 
 /**
