@@ -789,10 +789,7 @@ function stanford_events_importer_update_7306(&$sandbox) {
     $nid = $values['feed_nid'];
     $importer_config = unserialize($values['config']);
     $source = $values['source'];
-
-    $source = str_replace('http://events.stanford.edu/xml/drupal/v2.php', 'https://events-legacy.stanford.edu/xml/drupal/v2.php', $source);
-    // In case there are some that were already https.
-    $source = str_replace('events.stanford.edu/xml/drupal/v2.php', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
+    $source = str_replace('events.stanford.edu/xml/drupal/v2.php/', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
     $importer_config['FeedsHTTPFetcher']['source'] = $source;
 
     db_update('feeds_source')
@@ -804,4 +801,22 @@ function stanford_events_importer_update_7306(&$sandbox) {
       ->execute();
   }
 
+}
+
+/**
+ * Update field_stanford_event_add_to_cal.
+ */
+function stanford_events_importer_update_7307(&$sandbox) {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'stanford_event')
+    ->execute();
+  $nodes = node_load_multiple(array_keys($result['node']));
+  foreach ($nodes as $node) {
+    $add_to_cal_field = $node->field_stanford_event_add_to_cal['und'][0]['url'];
+    $count = null;
+    $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field, $count);
+    $node->field_stanford_event_add_to_cal['und'][0]['url'] = $add_to_cal_field;
+    node_save($node);
+  }
 }
