@@ -81,8 +81,8 @@ function stanford_events_importer_requirements($phase) {
  * Implements hook_install().
  */
 function stanford_events_importer_install() {
-  variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   module_enable(array('stanford_events_importer'));
   // Get the list of categories and orgs, and put them into the DB.
   stanford_events_importer_update_cat_org();
@@ -314,8 +314,8 @@ function stanford_events_importer_update_7200a() {
   }
 
   // Set initial source URLs for category and organization lists.
-  variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   // Make stanford_events_importer functions available to us.
   drupal_load('module', 'stanford_events_importer');
   // Get the list of categories and orgs, and put them into the DB.
@@ -765,8 +765,8 @@ function stanford_events_importer_update_7304(&$sandbox) {
  * Update variables to point to events-legacy.stanford.edu.
  */
 function stanford_events_importer_update_7305(&$sandbox) {
-  variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
 }
 
 /**

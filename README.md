@@ -5,8 +5,8 @@ Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.c
 
 [Changelog.txt](CHANGELOG.txt)
 
-The Stanford Events Importer provides custom functionality for importing from events-legacy.stanford.edu XML feeds. A new feed API is available that is customized to work with this importer. It is available at: http://events-legacy.stanford.edu/xml/drupal/v2.php
-(See [http://events-legacy.stanford.edu/xml/](http://events-legacy.stanford.edu/xml/) for more information on feeds.)
+The Stanford Events Importer provides custom functionality for importing from events-legacy.stanford.edu XML feeds. A new feed API is available that is customized to work with this importer. It is available at: https://events-legacy.stanford.edu/xml/drupal/v2.php
+(See [https://events-legacy.stanford.edu/xml/](https://events-legacy.stanford.edu/xml/) for more information on feeds.)
 
 It gives the following:
 * A content type "Stanford Event Importer", which allows you to create a content node of this type to import each feed you wish
