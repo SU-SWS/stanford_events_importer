@@ -768,3 +768,40 @@ function stanford_events_importer_update_7305(&$sandbox) {
   variable_set('stanford_events_category_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
   variable_set('stanford_events_organization_source', 'http://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
 }
+
+/**
+ * Update feeds_source config to point to events-legacy.stanford.edu.
+ */
+function stanford_events_importer_update_7306(&$sandbox) {
+  // See stanford_events_importer_update_7201().
+  $configs = db_select('feeds_source', 'fs')
+    ->fields('fs',
+      array(
+        'feed_nid',
+        'config',
+        'source',
+      ))
+    ->condition('id', 'stanford_event_importer')
+    ->execute();
+
+  // Loop through each of the configured nodes and update the URL.
+  while ($values = $configs->fetchAssoc()) {
+    $nid = $values['feed_nid'];
+    $importer_config = unserialize($values['config']);
+    $source = $values['source'];
+
+    $source = str_replace('http://events.stanford.edu/xml/drupal/v2.php', 'https://events-legacy.stanford.edu/xml/drupal/v2.php', $source);
+    // In case there are some that were already https.
+    $source = str_replace('events.stanford.edu/xml/drupal/v2.php', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
+    $importer_config['FeedsHTTPFetcher']['source'] = $source;
+
+    db_update('feeds_source')
+      ->fields(array(
+        'config' => serialize($importer_config),
+        'source' => $source,
+      ))
+      ->condition('feed_nid', $nid)
+      ->execute();
+  }
+
+}
