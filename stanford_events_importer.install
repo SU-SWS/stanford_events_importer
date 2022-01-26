@@ -5,6 +5,7 @@
  * Schema definitions. Install/update/uninstall hooks.
  */
 
+use EntityFieldQuery;
 define("STANFORD_EVENTS_IMPORTER_FEEDS_PROCESS_LIMIT", 200);
 
 /**
@@ -765,13 +766,13 @@ function stanford_events_importer_update_7304(&$sandbox) {
  * Update variables to point to events-legacy.stanford.edu.
  */
 function stanford_events_importer_update_7305(&$sandbox) {
-  $stanford_events_category_source = variable_get('stanford_events_category_source');
-  if ($stanford_events_category_source == "http://events.stanford.edu/xml/drupal/v2.php?category-list") {
+  $category_source = variable_get('stanford_events_category_source');
+  if ($category_source == "http://events.stanford.edu/xml/drupal/v2.php?category-list") {
     variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
     watchdog('stanford_events_importer', 'Stanford Events Importer category list updated to pull from events-legacy.stanford.edu');
   }
-  $stanford_events_organization_source = variable_get('stanford_events_organization_source');
-  if ($stanford_events_organization_source == 'http://events.stanford.edu/xml/drupal/v2.php?organization-list') {
+  $organization_source = variable_get('stanford_events_organization_source');
+  if ($organization_source == 'http://events.stanford.edu/xml/drupal/v2.php?organization-list') {
     variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
     watchdog('stanford_events_importer', 'Stanford Events Importer organization list updated to pull from events-legacy.stanford.edu');
   }
@@ -822,10 +823,9 @@ function stanford_events_importer_update_7307(&$sandbox) {
     ->execute();
   $nodes = node_load_multiple(array_keys($result['node']));
   foreach ($nodes as $node) {
-    $add_to_cal_field = $node->field_stanford_event_add_to_cal['und'][0]['url'];
-    $count = null;
-    $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field, $count);
-    $node->field_stanford_event_add_to_cal['und'][0]['url'] = $add_to_cal_field;
+    $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
+    $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
+    $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'] = $add_to_cal_field;
     node_save($node);
   }
   watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
