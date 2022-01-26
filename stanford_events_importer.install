@@ -765,15 +765,23 @@ function stanford_events_importer_update_7304(&$sandbox) {
  * Update variables to point to events-legacy.stanford.edu.
  */
 function stanford_events_importer_update_7305(&$sandbox) {
-  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+  $stanford_events_category_source = variable_get('stanford_events_category_source');
+  if ($stanford_events_category_source == "http://events.stanford.edu/xml/drupal/v2.php?category-list") {
+    variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+    watchdog('stanford_events_importer', 'Stanford Events Importer category list updated to pull from events-legacy.stanford.edu');
+  }
+  $stanford_events_organization_source = variable_get('stanford_events_organization_source');
+  if ($stanford_events_organization_source == 'http://events.stanford.edu/xml/drupal/v2.php?organization-list') {
+    variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+    watchdog('stanford_events_importer', 'Stanford Events Importer organization list updated to pull from events-legacy.stanford.edu');
+  }
 }
 
 /**
  * Update feeds_source config to point to events-legacy.stanford.edu.
  */
 function stanford_events_importer_update_7306(&$sandbox) {
-  // See stanford_events_importer_update_7201().
+  // See also stanford_events_importer_update_7201().
   $configs = db_select('feeds_source', 'fs')
     ->fields('fs',
       array(
@@ -789,7 +797,7 @@ function stanford_events_importer_update_7306(&$sandbox) {
     $nid = $values['feed_nid'];
     $importer_config = unserialize($values['config']);
     $source = $values['source'];
-    $source = str_replace('events.stanford.edu/xml/drupal/v2.php/', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
+    $source = str_replace('events.stanford.edu/xml/drupal/v2.php', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
     $importer_config['FeedsHTTPFetcher']['source'] = $source;
 
     db_update('feeds_source')
@@ -800,6 +808,7 @@ function stanford_events_importer_update_7306(&$sandbox) {
       ->condition('feed_nid', $nid)
       ->execute();
   }
+  watchdog('stanford_events_importer', 'Stanford Events Importer feeds updated to pull from events-legacy.stanford.edu');
 
 }
 
@@ -819,4 +828,5 @@ function stanford_events_importer_update_7307(&$sandbox) {
     $node->field_stanford_event_add_to_cal['und'][0]['url'] = $add_to_cal_field;
     node_save($node);
   }
+  watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
 }
