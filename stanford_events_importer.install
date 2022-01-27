@@ -819,6 +819,7 @@ function stanford_events_importer_update_7307(&$sandbox) {
   $query = new \EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'stanford_event')
+    ->fieldCondition('field_stanford_event_add_to_cal', 'source', '%events.stanford.edu%', 'LIKE')
     ->execute();
   $nodes = node_load_multiple(array_keys($result['node']));
   foreach ($nodes as $node) {
