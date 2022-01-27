@@ -5,8 +5,6 @@
  * Schema definitions. Install/update/uninstall hooks.
  */
 
-use \EntityFieldQuery;
-
 define("STANFORD_EVENTS_IMPORTER_FEEDS_PROCESS_LIMIT", 200);
 
 /**
@@ -818,7 +816,7 @@ function stanford_events_importer_update_7306(&$sandbox) {
  * Update field_stanford_event_add_to_cal.
  */
 function stanford_events_importer_update_7307(&$sandbox) {
-  $query = new EntityFieldQuery();
+  $query = new \EntityFieldQuery();
   $result = $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'stanford_event')
     ->execute();
