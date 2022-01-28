@@ -14,9 +14,9 @@ function stanford_events_importer_help($path, $arg) {
   $links = array(
     '!permissions' => l(t('!url', array('!url' => 'admin/people/permissions')), 'admin/people/permissions'),
     '!addnode' => l(t('Create a new node'), 'node/add/stanford-event-importer'),
-    '!eventsdrupal' => l(t('!url', array('!url' => 'http://events.stanford.edu/xml/drupal/')), 'http://events.stanford.edu/xml/drupal/'),
+    '!eventsdrupal' => l(t('!url', array('!url' => 'https://events-legacy.stanford.edu/xml/drupal/')), 'https://events-legacy.stanford.edu/xml/drupal/'),
     '!editimporter' => l(t('!url', array('!url' => 'admin/build/feeds/edit/stanford_event_importer')), 'admin/build/feeds/edit/stanford_event_importer'),
-    '!events' => l(t('!url', array('!url' => 'events.stanford.edu')), 'http://events.stanford.edu'),
+    '!events' => l(t('!url', array('!url' => 'events-legacy.stanford.edu')), 'https://events-legacy.stanford.edu'),
     '!import' => l(t('!url', array('!url' => 'node/add/stanford-event-importer')), 'node/add/stanford-event-importer'),
     '!config' => l(t('the module configuration page'), 'admin/config/stanford/events'),
   );
@@ -31,7 +31,7 @@ function stanford_events_importer_help($path, $arg) {
       $output .= '<ul><li>' . t('Full documentation of the Stanford Events Drupal Feed Service is available at !eventsdrupal', $links) . '</li></ul></li>';
       $output .= '<li>' . t('Your events will be imported') . '</li>';
       $output .= '<li>' . t('Create a separate Stanford Event Importer node for each category or organization you would like to use to import events');
-      $output .= '<li>' . t('By default, the module will check events.stanford.edu for updates daily, and will import new events and changes. You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module).', $links) . '</li></ol>';
+      $output .= '<li>' . t('By default, the module will check events-legacy.stanford.edu for updates daily, and will import new events and changes. You can set refresh rate and other options at !editimporter (requires enabling the Feeds UI module).', $links) . '</li></ol>';
       $output .= '<p>' . t('The service at !events maintains lists of categories and organizations.', $links) . '';
       $output .= t('These lists are updated several times daily, and the Drupal module is configured to fetch changes regularly.') . '';
       $output .= t('If you have recently added an organization and it is not appearing in the list at !import, you can manually refresh the list information at !config.', $links) . '</p>';
@@ -213,7 +213,7 @@ function stanford_events_importer_form_stanford_event_importer_node_form_alter(&
   if ($form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] == '') {
     // If it's blank, set the default to featured, to avoid errors, because
     // we're hiding the field.
-    $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] = 'http://events.stanford.edu/xml/drupal/v2.php?featured';
+    $form['feeds']['FeedsHTTPFetcher']['source']['#default_value'] = 'https://events-legacy.stanford.edu/xml/drupal/v2.php?featured';
   }
   // If the feed URL is not blank (e.g., when editing an existing node),
   // populate the correct dropdown.
@@ -282,7 +282,7 @@ function stanford_events_importer_validate($form, &$form_state) {
  */
 function stanford_events_importer_build_feed_url($form, &$form_state) {
   // Set the stem of the feed URL.
-  $feed_url = 'http://events.stanford.edu/xml/drupal/v2.php?';
+  $feed_url = 'https://events-legacy.stanford.edu/xml/drupal/v2.php?';
   $parameters = array();
   // Grab the user-entered values, which have already been validated.
   $category = $form_state['values']['s_events_category'];
@@ -353,7 +353,7 @@ function stanford_events_importer_form_stanford_event_node_form_alter(&$form, &$
  */
 function stanford_events_importer_get_categories() {
   // Get the XML url, either user-defined, or fall back to a default.
-  $category_url = variable_get('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
+  $category_url = variable_get('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
   // Pull in the XML file from a URL.
   $categories = drupal_http_request($category_url, array('timeout' => '15.0'));
   // Check that drupal_http_request didn't return an error and that we have
@@ -416,7 +416,7 @@ function stanford_events_importer_write_categories($category_xml) {
  */
 function stanford_events_importer_get_organizations() {
   // Get the XML url, either user-defined, or fall back to a default.
-  $organization_url = variable_get('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  $organization_url = variable_get('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   // Pull in the XML file from a URL.
   $organizations = drupal_http_request($organization_url, array('timeout' => '15.0'));
   // Check that drupal_http_request didn't return an error and that we have

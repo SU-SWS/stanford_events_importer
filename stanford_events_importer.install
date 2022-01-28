@@ -81,8 +81,8 @@ function stanford_events_importer_requirements($phase) {
  * Implements hook_install().
  */
 function stanford_events_importer_install() {
-  variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   module_enable(array('stanford_events_importer'));
   // Get the list of categories and orgs, and put them into the DB.
   stanford_events_importer_update_cat_org();
@@ -113,7 +113,7 @@ function stanford_events_importer_uninstall() {
 function stanford_events_importer_schema() {
   $schema = array();
   $schema['stanford_events_category_list'] = array(
-    'description' => 'List of categories from events.stanford.edu',
+    'description' => 'List of categories from events-legacy.stanford.edu',
     'fields' => array(
       'guid' => array(
         'type' => 'int',
@@ -314,8 +314,8 @@ function stanford_events_importer_update_7200a() {
   }
 
   // Set initial source URLs for category and organization lists.
-  variable_set('stanford_events_category_source', 'http://events.stanford.edu/xml/drupal/v2.php?category-list');
-  variable_set('stanford_events_organization_source', 'http://events.stanford.edu/xml/drupal/v2.php?organization-list');
+  variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+  variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
   // Make stanford_events_importer functions available to us.
   drupal_load('module', 'stanford_events_importer');
   // Get the list of categories and orgs, and put them into the DB.
@@ -759,4 +759,102 @@ function stanford_events_importer_update_7304(&$sandbox) {
     // Clear caches.
     field_cache_clear();
   }
+}
+
+/**
+ * Update variables to point to events-legacy.stanford.edu.
+ */
+function stanford_events_importer_update_7305(&$sandbox) {
+  $category_source = variable_get('stanford_events_category_source');
+  if ($category_source == "http://events.stanford.edu/xml/drupal/v2.php?category-list") {
+    variable_set('stanford_events_category_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?category-list');
+    watchdog('stanford_events_importer', 'Stanford Events Importer category list updated to pull from events-legacy.stanford.edu');
+  }
+  $organization_source = variable_get('stanford_events_organization_source');
+  if ($organization_source == 'http://events.stanford.edu/xml/drupal/v2.php?organization-list') {
+    variable_set('stanford_events_organization_source', 'https://events-legacy.stanford.edu/xml/drupal/v2.php?organization-list');
+    watchdog('stanford_events_importer', 'Stanford Events Importer organization list updated to pull from events-legacy.stanford.edu');
+  }
+}
+
+/**
+ * Update feeds_source config to point to events-legacy.stanford.edu.
+ */
+function stanford_events_importer_update_7306(&$sandbox) {
+  // See also stanford_events_importer_update_7201().
+  $configs = db_select('feeds_source', 'fs')
+    ->fields('fs',
+      array(
+        'feed_nid',
+        'config',
+        'source',
+      ))
+    ->condition('id', 'stanford_event_importer')
+    ->execute();
+
+  // Loop through each of the configured nodes and update the URL.
+  while ($values = $configs->fetchAssoc()) {
+    $nid = $values['feed_nid'];
+    $importer_config = unserialize($values['config']);
+    $source = $values['source'];
+    $source = str_replace('events.stanford.edu/xml/drupal/v2.php', 'events-legacy.stanford.edu/xml/drupal/v2.php', $source);
+    $importer_config['FeedsHTTPFetcher']['source'] = $source;
+
+    db_update('feeds_source')
+      ->fields(array(
+        'config' => serialize($importer_config),
+        'source' => $source,
+      ))
+      ->condition('feed_nid', $nid)
+      ->execute();
+  }
+  watchdog('stanford_events_importer', 'Stanford Events Importer feeds updated to pull from events-legacy.stanford.edu');
+
+}
+
+/**
+ * Update field_stanford_event_add_to_cal.
+ */
+function stanford_events_importer_update_7307(&$sandbox) {
+  if (!isset($sandbox['nids'])) {
+    // EFQ is pretty quick. Run it once, and store the value in the sandbox.
+    $query = new \EntityFieldQuery();
+    $query_results = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'stanford_event')
+      ->execute();
+
+    // No events to update.
+    if (empty($query_results['node'])) {
+      return;
+    }
+
+    // Store the node ids and count the number of events to be updated.
+    $sandbox['nids'] = array_keys($query_results['node']);
+    $sandbox['count'] = count($sandbox['nids']);
+  }
+
+  // Peel off 20 events to update per batch.
+  $nids = array_splice($sandbox['nids'], 0, 20);
+  $nodes = node_load_multiple($nids);
+  // Load up our 20 nodes.
+  foreach ($nodes as $node) {
+    // What's in the add_to_cal field?
+    if (!empty($node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'])) {
+      $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
+      // Replace events.stanford.edu with events-legacy.stanford.edu.
+      $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
+      // Update the field.
+      $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'] = $add_to_cal_field;
+      // Save the node.
+      node_save($node);
+    }
+  }
+  // Calculate how far along we are, expressed as a float between 0 and 1.
+  // E.g., 0.4 when it's 40% complete. $sandbox['#finished'] gets reset to 0
+  // at each pass. When it is unset, or greater than 1, the update hook will
+  // stop iterating. Everything else in the $sandbox variable persists and
+  // gets passed by reference. See:
+  // https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7.x
+  $sandbox['#finished'] = 1 - count($sandbox['nids']) / $sandbox['count'];
+  watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
 }

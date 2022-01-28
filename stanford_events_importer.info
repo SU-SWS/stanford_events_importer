@@ -1,5 +1,5 @@
 name = Stanford Events Importer
-description = Imports events from events.stanford.edu and creates a "Stanford Event" node for each event record
+description = Imports events from events-legacy.stanford.edu and creates a "Stanford Event" node for each event record
 core = 7.x
 package = Stanford
 version = 7.x-3.11-dev
