@@ -849,6 +849,12 @@ function stanford_events_importer_update_7307(&$sandbox) {
       node_save($node);
     }
   }
+  // Calculate how far along we are, expressed as a float between 0 and 1.
+  // E.g., 0.4 when it's 40% complete. $sandbox['#finished'] gets reset to 0
+  // at each pass. When it is unset, or greater than 1, the update hook will
+  // stop iterating. Everything else in the $sandbox variable persists and
+  // gets passed by reference. See:
+  // https://api.drupal.org/api/drupal/modules%21system%21system.api.php/function/hook_update_N/7.x
   $sandbox['#finished'] = 1 - count($sandbox['nids']) / $sandbox['count'];
   watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
 }
