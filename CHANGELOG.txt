@@ -1,6 +1,12 @@
 Stanford Events Importer x.x-x.x, xxxx-xx-xx
 --------------------------------------------
 
+7.x-3.11                                 2012-01-28
+---------------------------------------------------
+- Update URLs from events.stanford.edu to events-legacy.stanford.edu
+- Update all Feeds importers
+- Update the "add to calendar" fields for Stanford Event nodes to point to events-legacy.stanford.edu
+
 7.x-3.10                                 2018-11-21
 ---------------------------------------------------
 - Fix for help page.
