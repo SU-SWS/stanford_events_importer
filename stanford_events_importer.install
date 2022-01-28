@@ -815,18 +815,48 @@ function stanford_events_importer_update_7306(&$sandbox) {
 /**
  * Update field_stanford_event_add_to_cal.
  */
-function stanford_events_importer_update_7307(&$sandbox) {
-  $query = new \EntityFieldQuery();
-  $result = $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'stanford_event')
-    ->fieldCondition('field_stanford_event_add_to_cal', 'source', '%events.stanford.edu%', 'LIKE')
-    ->execute();
-  $nodes = node_load_multiple(array_keys($result['node']));
+function stanford_events_importer_update_7307(&$sandbox)
+{
+  // Take in the progress (as a decimal value between 0 and 1).
+  // $sandbox['#finished'] gets reset to 0 at every pass, so we need to store the value in the variable that gets
+  // passed by reference.
+  $sandbox['#finished'] = $sandbox['progress'];
+  if (!isset($sandbox['#finished'])) {
+    // Set sandbox to zero if it's not already set. This may not be necessary.
+    $sandbox['#finished'] = 0;
+    // EFQ is pretty quick. Run it only once, and store the value in the sandbox.
+    $query = new \EntityFieldQuery();
+    $sandbox['efq_result'] = $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'stanford_event')
+      ->execute();
+    // $sandbox['efq_result'] is an array of node objects (nid, vid, type).
+    // Not sure how big the chunk should be here. Let's go with 30.
+    $sandbox['chunked'] = array_chunk($sandbox['efq_result']['node'], 30, TRUE);
+    // How many chunks do we have?
+    $sandbox['max'] = max(array_keys($sandbox['chunked']));
+    // Set the value of our current pass here for later use.
+    $sandbox['current'] = 0;
+  }
+  $nids = [];
+  foreach ($sandbox['chunked'][$sandbox['current']] as $nid) {
+    $nids[] = $nid->nid;
+  }
+  $nodes = node_load_multiple($nids);
+  // Load up our 30 nodes.
   foreach ($nodes as $node) {
+    // What's in the add_to_cal field?
     $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
+    // Replace events.stanford.edu with events-legacy.stanford.edu.
     $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
+    // Update the field.
     $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'] = $add_to_cal_field;
+    // Save the node.
     node_save($node);
   }
+  // Increment our sandbox pass for the next go-round.
+  $sandbox['current'] = $sandbox['current'] + 1;
+  // Determine our progress percentage to pass it to the next round.
+  $sandbox['progress'] = $sandbox['current'] / $sandbox['max'];
+
   watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
 }
