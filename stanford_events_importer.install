@@ -815,7 +815,7 @@ function stanford_events_importer_update_7306(&$sandbox) {
 /**
  * Update field_stanford_event_add_to_cal.
  */
-function stanford_events_importer_update_7307($sandbox) {
+function stanford_events_importer_update_7307(&$sandbox) {
   if (!isset($sandbox['nids'])) {
     // EFQ is pretty quick. Run it once, and store the value in the sandbox.
     $query = new \EntityFieldQuery();
