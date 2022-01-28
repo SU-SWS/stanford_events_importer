@@ -837,9 +837,11 @@ function stanford_events_importer_update_7307(&$sandbox) {
     $sandbox['current'] = 0;
   }
   $nids = [];
+  // Data manipulation. Get me an array that just has the nids that I want.
   foreach ($sandbox['chunked'][$sandbox['current']] as $nid) {
     $nids[] = $nid->nid;
   }
+  // So that I can pass a simple array of nids to node_load_multiple().
   $nodes = node_load_multiple($nids);
   // Load up our 30 nodes.
   foreach ($nodes as $node) {
