@@ -844,13 +844,15 @@ function stanford_events_importer_update_7307(&$sandbox) {
   // Load up our 30 nodes.
   foreach ($nodes as $node) {
     // What's in the add_to_cal field?
-    $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
-    // Replace events.stanford.edu with events-legacy.stanford.edu.
-    $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
-    // Update the field.
-    $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'] = $add_to_cal_field;
-    // Save the node.
-    node_save($node);
+    if (isset($node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'])) {
+      $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
+      // Replace events.stanford.edu with events-legacy.stanford.edu.
+      $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
+      // Update the field.
+      $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'] = $add_to_cal_field;
+      // Save the node.
+      node_save($node);
+    }
   }
   // Increment our sandbox pass for the next go-round.
   $sandbox['current'] = $sandbox['current'] + 1;
