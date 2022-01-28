@@ -815,38 +815,31 @@ function stanford_events_importer_update_7306(&$sandbox) {
 /**
  * Update field_stanford_event_add_to_cal.
  */
-function stanford_events_importer_update_7307(&$sandbox) {
-  // Take in the progress (as a decimal value between 0 and 1).
-  // $sandbox['#finished'] gets reset to 0 at every pass, so we need to store
-  // the value in the variable that gets passed by reference.
-  $sandbox['#finished'] = $sandbox['progress'];
-  if (!isset($sandbox['#finished'])) {
-    // Set sandbox to zero if it's not already set. This may not be necessary.
-    $sandbox['#finished'] = 0;
+function stanford_events_importer_update_7307($sandbox) {
+  if (!isset($sandbox['nids'])) {
     // EFQ is pretty quick. Run it once, and store the value in the sandbox.
     $query = new \EntityFieldQuery();
-    $sandbox['efq_result'] = $query->entityCondition('entity_type', 'node')
+    $query_results = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'stanford_event')
       ->execute();
-    // $sandbox['efq_result'] is an array of node objects (nid, vid, type).
-    // Not sure how big the chunk should be here. Let's go with 30.
-    $sandbox['chunked'] = array_chunk($sandbox['efq_result']['node'], 30, TRUE);
-    // How many chunks do we have?
-    $sandbox['max'] = max(array_keys($sandbox['chunked']));
-    // Set the value of our current pass here for later use.
-    $sandbox['current'] = 0;
+
+    // No events to update.
+    if (empty($query_results['node'])) {
+      return;
+    }
+
+    // Store the node ids and count the number of events to be updated.
+    $sandbox['nids'] = array_keys($query_results['node']);
+    $sandbox['count'] = count($sandbox['nids']);
   }
-  $nids = [];
-  // Data manipulation. Get me an array that just has the nids that I want.
-  foreach ($sandbox['chunked'][$sandbox['current']] as $nid) {
-    $nids[] = $nid->nid;
-  }
-  // So that I can pass a simple array of nids to node_load_multiple().
+
+  // Peel off 20 events to update per batch.
+  $nids = array_splice($sandbox['nids'], 0, 20);
   $nodes = node_load_multiple($nids);
-  // Load up our 30 nodes.
+  // Load up our 20 nodes.
   foreach ($nodes as $node) {
     // What's in the add_to_cal field?
-    if (isset($node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'])) {
+    if (!empty($node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'])) {
       $add_to_cal_field = $node->field_stanford_event_add_to_cal[LANGUAGE_NONE][0]['url'];
       // Replace events.stanford.edu with events-legacy.stanford.edu.
       $add_to_cal_field = str_replace('events.stanford.edu', 'events-legacy.stanford.edu', $add_to_cal_field);
@@ -856,10 +849,6 @@ function stanford_events_importer_update_7307(&$sandbox) {
       node_save($node);
     }
   }
-  // Increment our sandbox pass for the next go-round.
-  $sandbox['current'] = $sandbox['current'] + 1;
-  // Determine our progress percentage to pass it to the next round.
-  $sandbox['progress'] = $sandbox['current'] / $sandbox['max'];
-
+  $sandbox['#finished'] = 1 - count($sandbox['nids']) / $sandbox['count'];
   watchdog('stanford_events_importer', 'Stanford Events add-to-calendar links updated to pull from events-legacy.stanford.edu');
 }
