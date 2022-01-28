@@ -817,13 +817,13 @@ function stanford_events_importer_update_7306(&$sandbox) {
  */
 function stanford_events_importer_update_7307(&$sandbox) {
   // Take in the progress (as a decimal value between 0 and 1).
-  // $sandbox['#finished'] gets reset to 0 at every pass, so we need to store the value in the variable that gets
-  // passed by reference.
+  // $sandbox['#finished'] gets reset to 0 at every pass, so we need to store
+  // the value in the variable that gets passed by reference.
   $sandbox['#finished'] = $sandbox['progress'];
   if (!isset($sandbox['#finished'])) {
     // Set sandbox to zero if it's not already set. This may not be necessary.
     $sandbox['#finished'] = 0;
-    // EFQ is pretty quick. Run it only once, and store the value in the sandbox.
+    // EFQ is pretty quick. Run it once, and store the value in the sandbox.
     $query = new \EntityFieldQuery();
     $sandbox['efq_result'] = $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'stanford_event')
